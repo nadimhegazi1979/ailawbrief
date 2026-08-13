@@ -177,6 +177,41 @@
   .list-tools button { background: none; border: none; color: var(--accent); font-family: var(--sans);
     font-size: 13px; font-weight: 500; cursor: pointer; padding: 0; }
   .list-tools button:hover { text-decoration: underline; }
+  /* ---------- Recent developments ---------- */
+  .recent { margin-top: 30px; border: 1px solid var(--line); background: var(--card); border-radius: 10px; padding: 16px 20px; max-width: 720px; }
+  .recent h3 { font-family: var(--serif); font-size: 15.5px; font-weight: 700; margin-bottom: 9px; }
+  .recent ul { list-style: none; }
+  .recent li { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 6px; display: flex; gap: 12px; line-height: 1.45; }
+  .recent .rd { color: var(--ink-faint); font-weight: 600; flex: none; min-width: 48px; font-variant-numeric: tabular-nums; }
+  .recent a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .recent a:hover { text-decoration: underline; }
+
+  /* ---------- US state tile map ---------- */
+  .us-map { display: grid; grid-template-columns: repeat(11, 1fr); gap: 5px; max-width: 680px; margin: 24px auto 6px; }
+  .tile { aspect-ratio: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    font-family: var(--sans); font-size: 12.5px; font-weight: 700; cursor: pointer; border: none;
+    color: #fff; transition: transform .1s ease, box-shadow .1s ease; padding: 0; }
+  .tile:hover { transform: scale(1.14); box-shadow: 0 2px 10px rgba(26,35,50,.35); z-index: 2; }
+  .lv-comprehensive { background: #1e3a8a; }
+  .lv-targeted { background: #3b6fce; }
+  .lv-deepfake-only { background: #0f766e; }
+  .lv-proposed-only { background: #d19a2f; }
+  .lv-none { background: #d5d0c4; color: #57534e; }
+  .map-legend { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 12px; font-size: 12.5px; color: var(--ink-soft); }
+  .map-legend .lg { display: inline-flex; align-items: center; gap: 6px; }
+  .map-legend .sw { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+  .badge.lv { color: #fff; font-weight: 600; }
+  .badge.lv.lv-none { color: #57534e; }
+  .state-laws { padding-left: 0 !important; list-style: none; }
+  .state-laws li { margin-bottom: 7px; }
+  .state-laws .lname { font-weight: 600; color: var(--ink); }
+  .mini-status { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; margin: 0 4px; white-space: nowrap; }
+  .mini-status.in-force { color: var(--green); background: var(--green-bg); }
+  .mini-status.enacted { color: var(--blue); background: var(--blue-bg); }
+  .mini-status.proposed { color: var(--gray); background: var(--gray-bg); }
+  .law-body .law-card { margin-top: 10px; background: var(--paper); }
+  @media (max-width: 560px) { .tile { font-size: 9.5px; border-radius: 4px; } .us-map { gap: 3px; } }
+
   .to-top { position: fixed; right: 22px; bottom: 22px; width: 44px; height: 44px; border-radius: 999px;
     background: var(--accent); color: #fff; border: none; font-size: 20px; cursor: pointer;
     opacity: 0; pointer-events: none; transition: opacity .2s ease; box-shadow: 0 2px 12px rgba(26,35,50,.3); z-index: 60; }
@@ -211,6 +246,7 @@
     <a class="brand" href="#"><span class="scales">⚖️</span>AI Law Brief</a>
     <nav>
       <a href="#laws">Laws/Regulations</a>
+      <a href="#states">US States</a>
       <a href="#cases">Case Law</a>
       <a href="#about">About</a>
     </nav>
@@ -221,12 +257,16 @@
   <div class="wrap">
     <h1>The laws governing generative AI, tracked in one place.</h1>
     <p class="lede">A plain-English guide to how the world regulates AI-generated text, images, video, and audio — what's in force, what's coming, and what it requires.</p>
-    <p class="updated">Last reviewed: <strong id="last-updated">August 12, 2026</strong> · Statuses verified against official sources</p>
+    <p class="updated">Last reviewed: <strong id="last-updated">August 13, 2026</strong> · Statuses verified against official sources</p>
     <div class="stats">
       <div class="stat"><div class="num" id="stat-laws">–</div><div class="label">Laws &amp; regulations tracked</div></div>
+      <div class="stat"><div class="num" id="stat-states">–</div><div class="label">US states covered</div></div>
       <div class="stat"><div class="num" id="stat-cases">–</div><div class="label">Court cases tracked</div></div>
       <div class="stat"><div class="num" id="stat-juris">–</div><div class="label">Jurisdictions</div></div>
-      <div class="stat"><div class="num" id="stat-force">–</div><div class="label">Fully or partly in force</div></div>
+    </div>
+    <div class="recent" id="recent-box">
+      <h3>Recent developments</h3>
+      <ul id="recent-list"></ul>
     </div>
   </div>
 </section>
@@ -234,13 +274,14 @@
 <div class="wrap">
   <div class="tabs" id="tabs" role="tablist">
     <button class="tab-btn active" data-tab="laws" role="tab">Laws &amp; Regulations<span class="tcount" id="tcount-laws"></span></button>
+    <button class="tab-btn" data-tab="states" role="tab">US State Laws<span class="tcount" id="tcount-states"></span></button>
     <button class="tab-btn" data-tab="cases" role="tab">Case Law<span class="tcount" id="tcount-cases"></span></button>
   </div>
 </div>
 
 <section class="panel active wrap" id="panel-laws">
   <div class="filters">
-    <p class="tracker-sub">Statutes, regulations, and governance frameworks that bind (or will bind) providers and deployers of generative AI, grouped by region.</p>
+    <p class="tracker-sub">Statutes, regulations, and governance frameworks that bind (or will bind) providers and deployers of generative AI, grouped by region. US state legislation lives in its own tab.</p>
     <div class="search-row" style="margin-top: 16px;">
       <input id="search-laws" type="search" placeholder="Search laws &amp; regulations… (e.g. “deepfake”, “watermark”, “training data”)" aria-label="Search laws and regulations">
     </div>
@@ -281,6 +322,31 @@
     </div>
   </div>
   <div class="laws" id="law-list"></div>
+</section>
+
+<section class="panel wrap" id="panel-states">
+  <div class="filters">
+    <p class="tracker-sub">Generative-AI legislation across all 50 states — deepfake and digital-replica laws, disclosure duties, and comprehensive AI acts. Click a state on the map, or filter and browse below.</p>
+    <div class="us-map" id="us-map" aria-label="US state map, colored by legislative coverage"></div>
+    <div class="map-legend" id="map-legend"></div>
+    <div class="filter-group" id="fg-state-level" style="margin-top: 18px;">
+      <span class="glabel">Coverage</span>
+      <button class="pill active" data-v="all">All states</button>
+      <button class="pill" data-v="comprehensive">Comprehensive AI law</button>
+      <button class="pill" data-v="targeted">Targeted gen-AI laws</button>
+      <button class="pill" data-v="deepfake-only">Deepfake &amp; replica laws</button>
+      <button class="pill" data-v="proposed-only">Proposed only</button>
+      <button class="pill" data-v="none">None yet</button>
+    </div>
+    <div class="result-row">
+      <div class="result-count" id="state-count"></div>
+      <div class="list-tools">
+        <button data-act="expand" data-list="state-list">Expand all</button>
+        <button data-act="collapse" data-list="state-list">Collapse all</button>
+      </div>
+    </div>
+  </div>
+  <div class="laws" id="state-list"></div>
 </section>
 
 <section class="panel wrap" id="panel-cases">
@@ -578,6 +644,7 @@ const LAWS = [
   },
   {
     id: "california-sb942-transparency",
+    usState: "CA",
     commentary: [{"title": "New California AI Disclosure Rules Become Operative", "source": "Morgan Lewis", "url": "https://www.morganlewis.com/pubs/2026/08/new-california-ai-disclosure-rules-become-operative", "type": "law-firm"}, {"title": "California Amends Artificial Intelligence Transparency Act and Passes AI Defenses Act", "source": "Hintze Law", "url": "https://hintzelaw.com/blog/2025/10/19/california-amends-artificial-intelligence-transparency-act-and-passes-ai-defenses-act", "type": "law-firm"}, {"title": "California AI Transparency Act Amendments Signed Into Law", "source": "Troutman Pepper Locke", "url": "https://www.troutmanprivacy.com/2025/10/california-ai-transparency-act-amendments-signed-into-law/", "type": "law-firm"}],
     citation: "Cal. Bus. & Prof. Code § 22757 et seq. (SB 942 (2024), as amended by AB 853 (2025))",
     name: "California AI Transparency Act (SB 942, as amended by AB 853)",
@@ -600,6 +667,7 @@ const LAWS = [
   },
   {
     id: "california-ab2013-training-data",
+    usState: "CA",
     commentary: [{"title": "California's AB 2013 Takes Effect: Navigating AI Training Data Transparency and Trade Secret Risk", "source": "Goodwin", "url": "https://www.goodwinlaw.com/en/insights/publications/2026/01/alerts-otherindustries-californias-ab-2013-takes-effect", "type": "law-firm"}, {"title": "California's AB 2013 Requires Generative AI Data Disclosure by January 1, 2026", "source": "Crowell & Moring", "url": "https://www.crowell.com/en/insights/client-alerts/californias-ab-2013-requires-generative-ai-data-disclosure-by-january-1-2026", "type": "law-firm"}, {"title": "California's AB 2013: Challenges and Opportunities in Generative AI Compliance", "source": "Baker Botts", "url": "https://www.bakerbotts.com/thought-leadership/publications/2024/november/ca-ab-2013_gen-ai-compliance", "type": "law-firm"}],
     citation: "Cal. Civ. Code §§ 3110–3111 (AB 2013 (2024))",
     name: "California Generative AI Training Data Transparency Act (AB 2013)",
@@ -621,6 +689,7 @@ const LAWS = [
   },
   {
     id: "california-sb53-frontier",
+    usState: "CA",
     commentary: [{"title": "At the Frontier — California Enacts AI Safety and Transparency Regulation TFAIA (SB 53)", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/251001-california-enacts-ai-safety-transparency-regulation-tfaia-sb-53", "type": "law-firm"}, {"title": "California Just Passed the First U.S. Frontier AI Law. Here's What It Does.", "source": "Carnegie Endowment", "url": "https://carnegieendowment.org/emissary/2025/10/california-sb-53-frontier-ai-law-what-it-does", "type": "think-tank"}, {"title": "California's 'Transparency in Frontier Artificial Intelligence Act' Gap Analysis", "source": "CodeX — Stanford Law School", "url": "https://law.stanford.edu/2026/01/11/californias-transparency-in-frontier-artificial-intelligence-act-gap-analysis/", "type": "academic"}],
     citation: "Cal. SB 53 (2025) — Transparency in Frontier Artificial Intelligence Act",
     name: "California Transparency in Frontier AI Act (SB 53)",
@@ -642,6 +711,7 @@ const LAWS = [
   },
   {
     id: "california-election-deepfakes",
+    usState: "CA",
     commentary: [{"title": "2024 Year in Review: Navigating California's Landmark Deepfake Legislation", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/241211-2024-year-in-review-navigating-california-s-landmark-deepfake-legislation", "type": "law-firm"}, {"title": "Kohls et al. v. Bonta (litigation tracker)", "source": "Tech Policy Press", "url": "https://www.techpolicy.press/tracker/kohls-v-bonta/", "type": "think-tank"}, {"title": "Political Deepfakes and Elections", "source": "First Amendment Encyclopedia (MTSU)", "url": "https://firstamendment.mtsu.edu/article/political-deepfakes-and-elections/", "type": "academic"}],
     citation: "Cal. AB 2839 & AB 2655 (2024) (Elections Code); held unconstitutional, Kohls v. Bonta (E.D. Cal. 2025)",
     name: "California election deepfake laws (AB 2839 & AB 2655)",
@@ -662,6 +732,7 @@ const LAWS = [
   },
   {
     id: "california-explicit-deepfakes",
+    usState: "CA",
     commentary: [{"title": "2024 Year in Review: Navigating California's Landmark Deepfake Legislation", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/241211-2024-year-in-review-navigating-california-s-landmark-deepfake-legislation", "type": "law-firm"}, {"title": "California's AI Laws Are Here — Is Your Business Ready?", "source": "Pillsbury", "url": "https://www.pillsburylaw.com/en/news-and-insights/california-ai-laws.html", "type": "law-firm"}],
     citation: "Cal. SB 926 & SB 981 (2024)",
     name: "California sexually explicit deepfake laws (SB 926 & SB 981)",
@@ -683,6 +754,7 @@ const LAWS = [
   },
   {
     id: "california-performer-replicas",
+    usState: "CA",
     commentary: [{"title": "California Enacts Generative AI Law Addressing 'Digital Replicas' of Performers", "source": "Proskauer", "url": "https://www.proskauer.com/blog/california-enacts-generative-ai-law-addressing-digital-replicas-of-performers", "type": "law-firm"}, {"title": "California's New AI Laws Limit Uses of Digital Likeness", "source": "Fenwick & West", "url": "https://www.fenwick.com/insights/publications/californias-new-ai-laws-limit-uses-of-digital-likeness", "type": "law-firm"}, {"title": "California Considers a Digital Replica Law for the Dead", "source": "Rothman's Roadmap to the Right of Publicity", "url": "https://rightofpublicityroadmap.com/news_commentary/california-considers-a-digital-replica-law-for-the-dead/", "type": "academic"}],
     citation: "Cal. Lab. Code § 927 (AB 2602 (2024)); Cal. Civ. Code § 3344.1 (AB 1836 (2024))",
     name: "California digital replica laws for performers (AB 2602 & AB 1836)",
@@ -704,6 +776,7 @@ const LAWS = [
   },
   {
     id: "colorado-admt-act",
+    usState: "CO",
     commentary: [{"title": "Colorado Hits Reset on AI Regulation: SB 26-189 Repeals and Reenacts the Colorado AI Act", "source": "Crowell & Moring", "url": "https://www.crowell.com/en/insights/client-alerts/colorado-hits-reset-on-ai-regulation-sb-26-189-repeals-and-reenacts-the-colorado-ai-act", "type": "law-firm"}, {"title": "Colorado rewrites its landmark AI law: Unpacking SB 26-189 and what it means for businesses", "source": "Ballard Spahr", "url": "https://www.consumerfinancemonitor.com/2026/05/12/colorado-rewrites-its-landmark-ai-law-unpacking-sb-26-189-and-what-it-means-for-businesses/", "type": "law-firm"}, {"title": "Colorado Rewrites Its AI Law: What Employers Must Know About SB 26-189", "source": "Buchalter", "url": "https://www.buchalter.com/insights/colorado-rewrites-its-ai-law-what-employers-must-know-about-sb-26-189/", "type": "law-firm"}],
     citation: "Colo. SB 26-189 (2026), replacing Colo. Rev. Stat. § 6-1-1701 et seq. (SB 24-205 (2024))",
     name: "Colorado Automated Decision-Making Technology Act (SB 26-189)",
@@ -725,6 +798,7 @@ const LAWS = [
   },
   {
     id: "texas-traiga",
+    usState: "TX",
     commentary: [{"title": "The Texas Responsible AI Governance Act: What your company needs to know before January 1", "source": "Norton Rose Fulbright", "url": "https://www.nortonrosefulbright.com/en/knowledge/publications/c6c60e0c/the-texas-responsible-ai-governance-act", "type": "law-firm"}, {"title": "Pared Back Version of the Texas Responsible AI Governance Act Signed Into Law", "source": "K&L Gates", "url": "https://www.klgates.com/Pared-Back-Version-of-the-Texas-Responsible-Artificial-Intelligence-Governance-Act-Signed-Into-Law-6-24-2025", "type": "law-firm"}, {"title": "Texas Enacts Comprehensive AI Governance Laws with Sector-Specific Healthcare Provisions", "source": "Holland & Knight", "url": "https://www.hklaw.com/en/insights/publications/2025/06/texas-enacts-comprehensive-ai-governance-laws", "type": "law-firm"}],
     citation: "Tex. HB 149, 89th Leg., R.S. (2025) (TRAIGA)",
     name: "Texas Responsible AI Governance Act (TRAIGA, HB 149)",
@@ -746,6 +820,7 @@ const LAWS = [
   },
   {
     id: "utah-ai-policy-act",
+    usState: "UT",
     commentary: [{"title": "Utah Enacts Multiple Laws Amending and Expanding the State's Regulation of AI", "source": "Davis Wright Tremaine", "url": "https://www.dwt.com/blogs/artificial-intelligence-law-advisor/2025/04/utah-regulation-ai-policy-mental-health-chatbots", "type": "law-firm"}, {"title": "Chatbots in Check: Utah's Latest AI Legislation", "source": "Future of Privacy Forum", "url": "https://fpf.org/blog/chatbots-in-check-utahs-latest-ai-legislation/", "type": "think-tank"}, {"title": "Utah Law Aims to Regulate AI Mental Health Chatbots", "source": "Epstein Becker Green", "url": "https://www.ebglaw.com/health-law-advisor/utah-law-aims-to-regulate-ai-mental-health-chatbots", "type": "law-firm"}],
     citation: "Utah Code § 13-72-101 et seq. (SB 149 (2024), as amended 2025)",
     name: "Utah AI Policy Act (SB 149, as amended 2025)",
@@ -767,6 +842,7 @@ const LAWS = [
   },
   {
     id: "tennessee-elvis-act",
+    usState: "TN",
     commentary: [{"title": "The ELVIS Act: Tennessee Shakes Up Its Right of Publicity Law and Takes On Generative AI", "source": "Latham & Watkins", "url": "https://www.lw.com/admin/upload/SiteAttachments/The-ELVIS-Act-Tennessee-Shakes-Up-Its-Right-of-Publicity-Law-and-Takes-On-Generative-AI.pdf", "type": "law-firm"}, {"title": "First-of-Its-Kind AI Law Addresses Deep Fakes and Voice Clones", "source": "Holland & Knight", "url": "https://www.hklaw.com/en/insights/publications/2024/04/first-of-its-kind-ai-law-addresses-deep-fakes-and-voice-clones", "type": "law-firm"}, {"title": "Why Tennessee's ELVIS Act Is the King of Artificial Intelligence Protections", "source": "Vanderbilt J. of Ent. & Tech. Law", "url": "https://scholarship.law.vanderbilt.edu/jetlaw/vol27/iss2/2/", "type": "academic"}],
     citation: "Tenn. Code Ann. § 47-25-1101 et seq. (ELVIS Act, 2024 Tenn. Pub. Ch. 588)",
     name: "Tennessee ELVIS Act (Ensuring Likeness Voice and Image Security Act)",
@@ -788,6 +864,7 @@ const LAWS = [
   },
   {
     id: "illinois-digital-replica",
+    usState: "IL",
     commentary: [{"title": "New Illinois Laws Address Use of Generative AI and Digital Likeness, Publicity Rights", "source": "Jackson Lewis", "url": "https://www.workplaceprivacyreport.com/2024/08/articles/artificial-intelligence/new-illinois-laws-address-use-of-generative-ai-and-digital-likeness-publicity-rights/", "type": "law-firm"}, {"title": "Cracking Down on AI", "source": "Baird Holm", "url": "https://www.bairdholm.com/blog/cracking-down-on-ai/", "type": "law-firm"}],
     citation: "765 ILCS 1075 (Right of Publicity Act, as amended by P.A. 103-0836 (HB 4875))",
     name: "Illinois Digital Replica Law (HB 4875)",
@@ -809,6 +886,7 @@ const LAWS = [
   },
   {
     id: "new-york-raise-act",
+    usState: "NY",
     commentary: [{"title": "New York Finalizes RAISE Act for Frontier AI Models; Law Takes Effect January 1, 2027", "source": "Wiley Rein", "url": "https://www.wiley.law/alert-New-York-Finalizes-RAISE-Act-for-Frontier-AI-Models-Law-Takes-Effect-January-1-2027", "type": "law-firm"}, {"title": "NY Overhauls Transparency and Governance Requirements for Frontier AI Developers", "source": "Davis Wright Tremaine", "url": "https://www.dwt.com/blogs/artificial-intelligence-law-advisor/2026/04/ny-overhauls-frontier-ai-transparency-law", "type": "law-firm"}, {"title": "New York Enacts the RAISE Act Regulating Frontier AI Models", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/260105-new-york-enacts-the-raise-act-regulating-frontier-ai-models", "type": "law-firm"}],
     citation: "N.Y. S6953B (2025), as amended by chapter amendment (Mar. 27, 2026); eff. Jan. 1, 2027",
     name: "New York RAISE Act (S6953B)",
@@ -1907,11 +1985,103 @@ const CASES = [
   },
 ];
 
+/* =====================================================================
+   US STATES — one object per state. level: comprehensive | targeted |
+   deepfake-only | proposed-only | none. Deep-dive entries in LAWS link
+   here via their usState field.
+   ===================================================================== */
+const STATES = [
+  {"code": "AL", "name": "Alabama", "level": "deepfake-only", "summary": "Criminalizes AI election deepfakes and AI-generated child sexual abuse material; broader generative-AI disclosure proposals have failed.", "laws": [{"name": "Election deepfake law (HB 172)", "year": 2024, "status": "in-force", "note": "Deceptive AI election media a crime within 90 days of election"}, {"name": "Alabama Child Protection Act (HB 168)", "year": 2024, "status": "in-force", "note": "Criminalizes AI-generated child sexual abuse material"}]},
+  {"code": "AK", "name": "Alaska", "level": "proposed-only", "summary": "Nothing enacted; HB 47 (AI CSAM felonies, forged digital likenesses) passed the House unanimously in 2026 but died in the Senate.", "laws": [{"name": "AI CSAM / digital likeness bill (HB 47)", "year": 2026, "status": "proposed", "note": "Passed House 39-0; died at May 2026 adjournment"}, {"name": "Election deepfake disclosure bill (SB 2)", "year": 2025, "status": "proposed", "note": "Deepfake disclaimers; stalled in committee"}]},
+  {"code": "AZ", "name": "Arizona", "level": "deepfake-only", "summary": "Election digital impersonation, AI voice-cloning fraud, and AI-generated CSAM laws; a chatbot safety bill remains pending.", "laws": [{"name": "Election digital impersonation law (HB 2394)", "year": 2024, "status": "in-force", "note": "Civil action over unconsented deepfakes of candidates"}, {"name": "AI impersonation fraud law (SB 1295)", "year": 2025, "status": "in-force", "note": "AI voice/image impersonation fraud a felony"}, {"name": "AI CSAM law (HB 2678)", "year": 2025, "status": "in-force", "note": "Criminalizes AI child sexual imagery indistinguishable from real"}, {"name": "Chatbot safety bill (HB 2311)", "year": 2026, "status": "proposed", "note": "Passed House; pending in Senate"}]},
+  {"code": "AR", "name": "Arkansas", "level": "targeted", "summary": "2025 package grants ownership of generative-AI outputs, extends publicity rights to AI voice clones, and criminalizes sexual deepfakes and AI CSAM.", "laws": [{"name": "AI content ownership law (Act 927)", "year": 2025, "status": "in-force", "note": "Ownership of generative-AI outputs to the commissioning user"}, {"name": "Publicity rights law (Act 159)", "year": 2025, "status": "in-force", "note": "Publicity rights extended to AI-generated voice and likeness"}, {"name": "Sexual deepfake law (Act 827)", "year": 2025, "status": "in-force", "note": "Criminalizes nonconsensual deepfake sexual material"}, {"name": "AI CSAM law (Act 977)", "year": 2025, "status": "in-force", "note": "Criminalizes AI-generated child sexual abuse material"}]},
+  {"code": "CA", "name": "California", "level": "targeted", "summary": "Nation's deepest generative-AI rulebook: frontier-model safety, AI-content transparency, training-data disclosure, and companion-chatbot duties, among others.", "laws": [{"name": "Transparency in Frontier AI Act (SB 53)", "year": 2025, "status": "in-force", "note": "Frontier developers publish safety frameworks, report incidents"}, {"name": "California AI Transparency Act (SB 942)", "year": 2024, "status": "in-force", "note": "AI detection tools and content marking; operative Aug 2026"}, {"name": "Training data transparency (AB 2013)", "year": 2024, "status": "in-force", "note": "Generative-AI training-data documentation since Jan 2026"}, {"name": "Companion chatbot law (SB 243)", "year": 2025, "status": "in-force", "note": "Chatbot disclosures, minor safeguards, crisis protocols"}]},
+  {"code": "CO", "name": "Colorado", "level": "comprehensive", "summary": "First-in-nation AI Act (2024) was repealed and replaced by the narrower SB 26-189, effective January 2027; election deepfake disclosure law in force.", "laws": [{"name": "ADMT Act (SB 26-189)", "year": 2026, "status": "enacted", "note": "ADMT transparency, adverse-decision notice, human review; effective Jan 2027"}, {"name": "Colorado AI Act (SB 24-205)", "year": 2024, "status": "enacted", "note": "Repealed by SB 26-189 before taking effect"}, {"name": "Election deepfake law (HB 24-1147)", "year": 2024, "status": "in-force", "note": "Disclosure on AI content in candidate communications"}]},
+  {"code": "CT", "name": "Connecticut", "level": "comprehensive", "summary": "Omnibus CART Act (2026) covers frontier models, AI companions, hiring AI, and content provenance; synthetic intimate-image crimes already in force.", "laws": [{"name": "CART Act (SB 5 / PA 26-15)", "year": 2026, "status": "enacted", "note": "Frontier AI, AI companions, provenance; phased 2026-2028"}, {"name": "Synthetic intimate images law (PA 25-168)", "year": 2025, "status": "in-force", "note": "Criminalizes synthetically created intimate images"}, {"name": "Deepfake civil remedies (HB 5312)", "year": 2026, "status": "enacted", "note": "Civil action for victims of synthetic intimate images"}]},
+  {"code": "DE", "name": "Delaware", "level": "deepfake-only", "summary": "Deepfake laws only: 2024 election-deepfake crime and the Amelia Kramer Act's remedies for nonconsensual intimate deepfakes.", "laws": [{"name": "Election deepfake law (HS 1 / HB 316)", "year": 2024, "status": "in-force", "note": "Election deepfakes a misdemeanor absent disclaimer"}, {"name": "Amelia Kramer Act (HB 353)", "year": 2024, "status": "in-force", "note": "Criminal and civil remedies for intimate deepfakes"}]},
+  {"code": "FL", "name": "Florida", "level": "deepfake-only", "summary": "Political-ad AI disclaimers plus strict synthetic sexual-imagery laws, including 48-hour platform takedowns and felony AI-generated CSAM, among others.", "laws": [{"name": "Political ad AI disclosure (HB 919)", "year": 2024, "status": "in-force", "note": "Generative-AI political ads require disclaimers"}, {"name": "Brooke's Law (HB 1161)", "year": 2025, "status": "in-force", "note": "Platforms must remove altered sexual depictions within 48 hours"}, {"name": "AI sexual images law (HB 757)", "year": 2025, "status": "in-force", "note": "Felony to create AI sexual images of identifiable people"}, {"name": "AI CSAM felony upgrade (HB 1159)", "year": 2026, "status": "in-force", "note": "AI-generated CSAM a second-degree felony; effective July 2026"}]},
+  {"code": "GA", "name": "Georgia", "level": "targeted", "summary": "Chatbot disclosure and child-safety law enacted in 2026; deepfake-porn and AI child-exploitation crimes in force; election deepfake bill died.", "laws": [{"name": "Chatbot disclosure and safety law (SB 540)", "year": 2026, "status": "enacted", "note": "AI-identity disclosure, minor safeguards; effective July 2027"}, {"name": "AI child exploitation law (HB 993)", "year": 2024, "status": "in-force", "note": "AI generation no defense in child-exploitation prosecutions"}, {"name": "Falsely created intimate images (SB 337)", "year": 2020, "status": "in-force", "note": "Revenge-porn crime extended to falsely created images"}]},
+  {"code": "HI", "name": "Hawaii", "level": "targeted", "summary": "New 2026 chatbot-safety and deepfake civil-remedy acts join an older intimate-deepfake felony; the 2024 election deepfake law was struck down in January 2026.", "laws": [{"name": "AI Disclosure and Safety Act (SB 3001)", "year": 2026, "status": "enacted", "note": "Chatbot disclosure, self-harm protocols, minor safeguards"}, {"name": "Deepfake Protection Act (HB 2137)", "year": 2026, "status": "enacted", "note": "Civil remedies up to $25,000 per unauthorized AI imitation"}, {"name": "NCII deepfake felony (SB 309)", "year": 2021, "status": "in-force", "note": "Privacy felony covers fake sexual images of real people"}, {"name": "Election deepfake law (SB 2687)", "year": 2024, "status": "enacted", "note": "Permanently enjoined Jan 2026 on First Amendment grounds"}]},
+  {"code": "ID", "name": "Idaho", "level": "deepfake-only", "summary": "Criminalizes explicit synthetic media and requires election deepfake disclosures, with a 2026 felony upgrade for minor victims.", "laws": [{"name": "Election synthetic media law (HB 664)", "year": 2024, "status": "in-force", "note": "Disclosure of synthetic media in electioneering; civil remedies"}, {"name": "Explicit synthetic media law (HB 575)", "year": 2024, "status": "in-force", "note": "Criminalizes disclosing explicit synthetic media without consent"}, {"name": "Minor-victim felony upgrade (HB 727)", "year": 2026, "status": "in-force", "note": "Felony when explicit synthetic media depicts minors"}]},
+  {"code": "IL", "name": "Illinois", "level": "targeted", "summary": "Pairs a 2026 frontier-model safety act with AI-therapy ban, digital-replica, and deepfake-forgery laws, among others.", "laws": [{"name": "AI Safety Measures Act (SB 315)", "year": 2026, "status": "enacted", "note": "Frontier developer safety plans and audits; effective Jan 2027"}, {"name": "WOPR Act (HB 1806)", "year": 2025, "status": "in-force", "note": "Bans AI therapy without licensed professional oversight"}, {"name": "Digital replica law (HB 4875)", "year": 2024, "status": "in-force", "note": "Right-of-publicity liability for unauthorized digital replicas"}, {"name": "Digital forgeries law (HB 2123)", "year": 2023, "status": "in-force", "note": "Civil action for sexually explicit digital forgeries"}]},
+  {"code": "IN", "name": "Indiana", "level": "deepfake-only", "summary": "Election fabricated-media disclaimers and criminal laws on AI intimate images and CSAM, but no broader generative-AI statute.", "laws": [{"name": "Intimate image law (HB 1047)", "year": 2024, "status": "in-force", "note": "Intimate-image crimes cover AI-generated depictions"}, {"name": "Fabricated media law (HB 1133)", "year": 2024, "status": "in-force", "note": "Campaign fabricated media requires disclaimer; candidates may sue"}, {"name": "CSAM restructuring (HEA 1303)", "year": 2026, "status": "in-force", "note": "Computer-generated child imagery included; effective July 2026"}]},
+  {"code": "IA", "name": "Iowa", "level": "targeted", "summary": "New chatbot-safety law for minors (effective 2027) joins criminal statutes on AI-generated intimate images and CSAM.", "laws": [{"name": "Chatbot safety law (SF 2417)", "year": 2026, "status": "enacted", "note": "Chatbot disclosures, parental controls, self-harm protocols; effective July 2027"}, {"name": "AI CSAM law (SF 2243)", "year": 2024, "status": "in-force", "note": "CSAM includes AI-altered images of identifiable minors"}, {"name": "Synthetic intimate images law (HF 2240)", "year": 2024, "status": "in-force", "note": "Penalties for nonconsensual synthetic intimate images"}]},
+  {"code": "KS", "name": "Kansas", "level": "deepfake-only", "summary": "Criminalizes AI-generated child sexual abuse material and nonconsensual intimate deepfakes; no election deepfake or broader AI statute.", "laws": [{"name": "AI CSAM and intimate imagery law (SB 186)", "year": 2025, "status": "in-force", "note": "Criminalizes AI-generated CSAM and nonconsensual AI intimate imagery"}, {"name": "Child exploitation extension (HB 2183)", "year": 2026, "status": "in-force", "note": "Extends exploitation crimes to AI-generated, morphed depictions"}]},
+  {"code": "KY", "name": "Kentucky", "level": "deepfake-only", "summary": "Requires AI disclosures on electioneering communications and criminalizes sextortion using fabricated images; broader AI bills have stalled.", "laws": [{"name": "Election AI disclosure law (SB 4)", "year": 2025, "status": "in-force", "note": "Election AI disclosures plus state-agency AI governance"}, {"name": "Sextortion law (SB 73)", "year": 2025, "status": "in-force", "note": "Sextortion felony covers threats using fabricated or AI images"}]},
+  {"code": "LA", "name": "Louisiana", "level": "deepfake-only", "summary": "Criminal deepfake statutes since 2023, expanded in August 2026, plus new political-ad AI disclosure requirements.", "laws": [{"name": "Unlawful deepfakes law (SB 175)", "year": 2023, "status": "in-force", "note": "Criminalizes sexual deepfakes of minors and nonconsensual deepfakes"}, {"name": "Ivy Daniels Act (HB 119)", "year": 2026, "status": "in-force", "note": "Felonies for AI-generated sexual images; effective Aug 2026"}, {"name": "Political ad disclosure law (HB 459)", "year": 2026, "status": "in-force", "note": "Political ads must disclose materially altered AI content"}]},
+  {"code": "ME", "name": "Maine", "level": "targeted", "summary": "Chatbot disclosure law joined by AI revenge-porn coverage and a 2026 campaign-ad synthetic-media disclosure law.", "laws": [{"name": "Chatbot disclosure law (LD 1727)", "year": 2025, "status": "in-force", "note": "Chatbot disclosure in consumer transactions"}, {"name": "AI revenge-porn law (LD 1944)", "year": 2025, "status": "in-force", "note": "Revenge-porn statute covers AI-generated intimate images"}, {"name": "Campaign AI disclosure law (LD 517)", "year": 2026, "status": "in-force", "note": "Campaign ads must disclose AI-manipulated media"}]},
+  {"code": "MD", "name": "Maryland", "level": "deepfake-only", "summary": "Deepfake NCII, election, and impersonation laws arrived 2025-2026; no chatbot or comprehensive AI statute.", "laws": [{"name": "NCII law (SB 360)", "year": 2025, "status": "in-force", "note": "NCII crime and civil action cover computer-generated images"}, {"name": "Election deepfake law (SB 141)", "year": 2026, "status": "in-force", "note": "Prohibits election deepfakes intended to deceive voters"}, {"name": "Deepfake impersonation law (SB 8)", "year": 2026, "status": "enacted", "note": "Impersonation crime with private right of action; effective Oct 2026"}]},
+  {"code": "MA", "name": "Massachusetts", "level": "deepfake-only", "summary": "Only enacted statute is the 2024 revenge-porn law covering sexual deepfakes; 2026 election-deepfake and synthetic-CSAM measures stalled in the legislature.", "laws": [{"name": "Act to Prevent Abuse and Exploitation (H.4744)", "year": 2024, "status": "in-force", "note": "Criminalizes nonconsensual intimate images including deepfakes"}, {"name": "Election misinformation bill (H.5093)", "year": 2026, "status": "proposed", "note": "Passed House Feb 2026; died when Senate formal sessions ended"}, {"name": "Synthetic CSAM amendment", "year": 2026, "status": "proposed", "note": "Senate-passed July 2026; awaiting House conference"}]},
+  {"code": "MI", "name": "Michigan", "level": "deepfake-only", "summary": "Election-ad AI disclosure and deceptive-media laws plus 2025 intimate-deepfake crimes; a minors' companion-chatbot bill awaits the House.", "laws": [{"name": "Political AI disclaimer law (HB 5141)", "year": 2023, "status": "in-force", "note": "Disclosure on AI-generated political ads"}, {"name": "Materially deceptive election media law (HB 5144)", "year": 2023, "status": "in-force", "note": "Bans undisclosed election deepfakes within 90 days"}, {"name": "Protection from Intimate Deep Fakes Act (PA 11-12)", "year": 2025, "status": "in-force", "note": "Criminal and civil liability for sexual deepfakes"}, {"name": "Kids ethical AI chatbot bill (SB 760)", "year": 2026, "status": "proposed", "note": "Passed Senate May 2026; pending in House"}]},
+  {"code": "MN", "name": "Minnesota", "level": "deepfake-only", "summary": "Pioneering 2023 election and sexual deepfake crimes, expanded in 2024, plus the nation's first nudification-tool ban effective August 2026.", "laws": [{"name": "Deepfake crimes law (HF 1370)", "year": 2023, "status": "in-force", "note": "Criminalizes sexual and election deepfakes; election provision under challenge"}, {"name": "Election deepfake amendments (HF 4772)", "year": 2024, "status": "in-force", "note": "Broader coverage; convicted candidates forfeit office"}, {"name": "Nudification technology ban (HF 1606)", "year": 2026, "status": "in-force", "note": "First-in-nation ban on nudification apps; $500,000 penalties"}]},
+  {"code": "MS", "name": "Mississippi", "level": "deepfake-only", "summary": "Criminalizes harmful deepfake 'digitizations' and computer-generated child sexual imagery; a 2026 AI name-likeness-voice right died in the House.", "laws": [{"name": "Wrongful dissemination of digitizations (SB 2577)", "year": 2024, "status": "in-force", "note": "Criminalizes deepfakes intended to harm or deter voting"}, {"name": "Walker Montgomery Protecting Children Online Act (HB 1126)", "year": 2024, "status": "in-force", "note": "Covers computer-generated explicit images of minors"}, {"name": "Right to Name, Likeness and Voice Act (SB 2046)", "year": 2026, "status": "proposed", "note": "AI identity property right; passed Senate, died in House"}]},
+  {"code": "MO", "name": "Missouri", "level": "deepfake-only", "summary": "First deepfake statutes, signed 2026, make nonconsensual AI-generated intimate depictions a felony from August 28, 2026.", "laws": [{"name": "Protection of children omnibus (HB 2273)", "year": 2026, "status": "enacted", "note": "Felony for nonconsensual intimate digital depictions; effective Aug 28, 2026"}, {"name": "Public safety omnibus (HB 2637)", "year": 2026, "status": "enacted", "note": "Parallel intimate-depiction and cyberstalking provisions"}, {"name": "Taylor Swift Act (SB 1117)", "year": 2026, "status": "proposed", "note": "Civil deepfake cause of action; not confirmed passed"}]},
+  {"code": "MT", "name": "Montana", "level": "targeted", "summary": "First-in-nation Right to Compute Act plus election-deepfake, sexual-deepfake, and digital-replica likeness laws, among others.", "laws": [{"name": "Right to Compute Act (SB 212)", "year": 2025, "status": "in-force", "note": "Protects computation rights; risk plans for AI-run critical infrastructure"}, {"name": "Name, voice, and likeness law (HB 513)", "year": 2025, "status": "in-force", "note": "Property right against unauthorized digital replicas"}, {"name": "Election synthetic media law (SB 25)", "year": 2025, "status": "in-force", "note": "Restricts undisclosed deepfakes in election communications"}, {"name": "Sexual deepfake criminalization (HB 514)", "year": 2025, "status": "in-force", "note": "Criminalizes fabricated sexually explicit images"}]},
+  {"code": "NE", "name": "Nebraska", "level": "targeted", "summary": "Conversational AI chatbot safety act, AI child-abuse-imagery ban, and civil deepfake remedies enacted; an election-deepfake bill failed.", "laws": [{"name": "Conversational AI Safety Act (LB 525)", "year": 2026, "status": "enacted", "note": "Chatbot disclosure and minor safeguards; effective July 2027"}, {"name": "Parental Rights in Social Media Act (LB 383)", "year": 2025, "status": "in-force", "note": "Bans AI-generated CSAM; effective July 2026"}, {"name": "Intimate image civil remedies (LB 371)", "year": 2025, "status": "in-force", "note": "Civil damages for computer-generated intimate images"}]},
+  {"code": "NV", "name": "Nevada", "level": "targeted", "summary": "2025 laws restrict AI mental-health therapy and criminalize AI intimate imagery and CSAM, with election-ad AI disclosures effective 2026.", "laws": [{"name": "AI mental health restrictions (AB 406)", "year": 2025, "status": "in-force", "note": "Bans AI systems offering therapy or school counseling"}, {"name": "Deepfake intimate images law (SB 213)", "year": 2025, "status": "in-force", "note": "Felony for AI-generated nonconsensual intimate images"}, {"name": "AI CSAM law (SB 263)", "year": 2025, "status": "in-force", "note": "Extends child-pornography definition to AI-generated material"}, {"name": "Election AI disclosure law (AB 73)", "year": 2025, "status": "in-force", "note": "Disclosure of AI-manipulated election media from Jan 2026"}]},
+  {"code": "NH", "name": "New Hampshire", "level": "targeted", "summary": "Criminal and civil deepfake liability, election-ad deepfake disclosure, and an AI chatbot child-safety law effective January 2026.", "laws": [{"name": "AI chatbot child safety law (HB 143)", "year": 2025, "status": "in-force", "note": "Bars chatbots encouraging child harm; private suits"}, {"name": "Fraudulent deepfakes law (HB 1432)", "year": 2024, "status": "in-force", "note": "Felony plus civil action for harmful deepfakes"}, {"name": "Election deepfake disclosure law (HB 1596)", "year": 2024, "status": "in-force", "note": "Disclosure for political-ad deepfakes within 90 days"}]},
+  {"code": "NJ", "name": "New Jersey", "level": "deepfake-only", "summary": "A 2025 law imposes criminal and civil penalties for deceptive deepfakes; chatbot-disclosure and AI-companion bills remain pending.", "laws": [{"name": "Deceptive deepfake media law (P.L.2025 c.40)", "year": 2025, "status": "in-force", "note": "Third-degree crime, $30,000 fines, victim civil suits"}, {"name": "AI companion chatbot bill (A4732)", "year": 2026, "status": "proposed", "note": "AI-companion disclosures; cleared committee, not enacted"}]},
+  {"code": "NM", "name": "New Mexico", "level": "deepfake-only", "summary": "Only an election-ad AI disclosure law is enacted; the AI Accountability Act and sexual-deepfake bills died in the short 2026 session.", "laws": [{"name": "Campaign AI Disclosure Law (HB 182)", "year": 2024, "status": "in-force", "note": "Disclaimers on deceptive AI campaign media; under First Amendment challenge"}, {"name": "AI Accountability Act", "year": 2026, "status": "proposed", "note": "Synthetic-media provenance bill; died Feb 2026, refile expected"}]},
+  {"code": "NY", "name": "New York", "level": "targeted", "summary": "Frontier-model safety law, companion-chatbot safeguards, digital-replica contract protections, and criminal deepfake laws, among others.", "laws": [{"name": "RAISE Act (S6953B)", "year": 2025, "status": "enacted", "note": "Frontier-model safety and transparency duties; effective Jan 2027"}, {"name": "AI Companion Safeguards", "year": 2025, "status": "in-force", "note": "Companion chatbots must disclose AI status, run suicide-prevention protocols"}, {"name": "Digital Replica Contracts Law (S7676B)", "year": 2024, "status": "in-force", "note": "Voids replica contract terms lacking specific use description"}, {"name": "Deepfake Intimate Images Law (S1042A)", "year": 2023, "status": "in-force", "note": "Criminalizes disseminating AI-generated intimate images"}]},
+  {"code": "NC", "name": "North Carolina", "level": "deepfake-only", "summary": "AI-generated intimate-image deepfakes are criminalized (2024); broader synthetic-media and election-deepfake bills remain pending.", "laws": [{"name": "Intimate Image Deepfake Law (HB 591)", "year": 2024, "status": "in-force", "note": "Extends intimate-image crimes to realistic AI depictions"}, {"name": "AI and Synthetic Media Act (HB 375)", "year": 2025, "status": "proposed", "note": "Would regulate deceptive election and synthetic media"}]},
+  {"code": "ND", "name": "North Dakota", "level": "deepfake-only", "summary": "2025 laws criminalize nonconsensual sexual deepfakes with civil damages and require AI disclaimers on political advertising.", "laws": [{"name": "Sexual Deepfake Law (HB 1351)", "year": 2025, "status": "in-force", "note": "Criminalizes computer-generated intimate images; $10,000 civil damages"}, {"name": "Political AI Disclosure Law (HB 1167)", "year": 2025, "status": "in-force", "note": "AI-generated political ads must carry AI disclaimer"}]},
+  {"code": "OH", "name": "Ohio", "level": "proposed-only", "summary": "No generative-AI or deepfake statute enacted; SB 163 (AI CSAM, deepfake fraud) passed the Senate May 2026 and awaits House action.", "laws": [{"name": "AI CSAM and Deepfake Bill (SB 163)", "year": 2025, "status": "proposed", "note": "Bans AI CSAM, requires watermarks; passed Senate, pending House"}, {"name": "AI Nonsentience Bill (HB 469)", "year": 2025, "status": "proposed", "note": "Would declare AI nonsentient, bar legal personhood"}]},
+  {"code": "OK", "name": "Oklahoma", "level": "deepfake-only", "summary": "Criminal laws cover AI-generated child sexual abuse material (2024) and AI revenge porn (2025); election-deepfake bills have repeatedly stalled.", "laws": [{"name": "AI CSAM Law (HB 3642)", "year": 2024, "status": "in-force", "note": "Extends CSAM bans to computer-generated child imagery"}, {"name": "AI Revenge Porn Law (HB 1364)", "year": 2025, "status": "in-force", "note": "Nonconsensual AI sexual depictions criminalized"}, {"name": "Synthetic Media Likeness Bill (HB 3299)", "year": 2026, "status": "proposed", "note": "Likeness misuse and political-ad disclosure; died May 2026"}]},
+  {"code": "OR", "name": "Oregon", "level": "deepfake-only", "summary": "Campaign ads using AI-altered voice or likeness require disclosure (2024), and realistic AI-generated intimate images are criminalized (2025).", "laws": [{"name": "Election Synthetic Media Disclosure (SB 1571)", "year": 2024, "status": "in-force", "note": "Campaign AI-manipulation disclosure; $10,000 fines"}, {"name": "Intimate Image Deepfake Law (HB 2299)", "year": 2025, "status": "in-force", "note": "Covers realistic digitally created depictions; effective Jan 2026"}]},
+  {"code": "PA", "name": "Pennsylvania", "level": "deepfake-only", "summary": "Criminalizes sexual deepfakes and AI child sexual abuse material (2024) plus fraudulent forged digital likenesses, including voice clones (2025).", "laws": [{"name": "Sexual Deepfake Law (Act 125)", "year": 2024, "status": "in-force", "note": "Criminalizes intimate deepfakes; minors' deepfakes treated as CSAM"}, {"name": "Digital Forgery Law (Act 35)", "year": 2025, "status": "in-force", "note": "Forged digital likenesses with intent to defraud, including voice clones"}]},
+  {"code": "RI", "name": "Rhode Island", "level": "targeted", "summary": "Bans AI therapy and mandates chatbot self-harm safeguards (2026); election-deepfake disclosure and intimate-image deepfake crimes enacted 2025.", "laws": [{"name": "Chatbot Safety Law (S 2195)", "year": 2026, "status": "enacted", "note": "Self-harm protocols, crisis referrals; $15,000 daily penalties"}, {"name": "AI Mental Health Restrictions (H 7349)", "year": 2026, "status": "enacted", "note": "Bans AI therapy and AI simulating emotional dependency"}, {"name": "Election Deepfake Disclosure (H 5872)", "year": 2025, "status": "in-force", "note": "Deceptive synthetic media near elections requires disclosure"}, {"name": "Intimate Image Deepfake Law (H 5046)", "year": 2025, "status": "in-force", "note": "Extends intimate-image ban to AI-created content"}]},
+  {"code": "SC", "name": "South Carolina", "level": "deepfake-only", "summary": "Three 2025 laws criminalize digitally forged intimate images and AI-generated or morphed child sexual abuse material.", "laws": [{"name": "Digitally Forged Intimate Images (Act 37)", "year": 2025, "status": "in-force", "note": "Criminalizes nonconsensual AI-generated intimate forgeries"}, {"name": "AI CSAM Law (Act 57)", "year": 2025, "status": "in-force", "note": "Felony for obscene AI-generated child depictions"}, {"name": "Morphed Image Law (Act 58)", "year": 2025, "status": "in-force", "note": "Criminalizes morphed sexual images of identifiable minors"}]},
+  {"code": "SD", "name": "South Dakota", "level": "deepfake-only", "summary": "Three criminal laws target AI child sexual abuse material, nonconsensual deepfake pornography, and unlabeled election deepfakes.", "laws": [{"name": "AI CSAM law (SB 79)", "year": 2024, "status": "in-force", "note": "Felony for computer-generated child sexual abuse material"}, {"name": "Election deepfake labels (SB 164)", "year": 2025, "status": "in-force", "note": "Labels required on candidate deepfakes within 90 days of election"}, {"name": "Sexual deepfake felony (SB 41)", "year": 2026, "status": "in-force", "note": "Felony to create or share nonconsensual sexual deepfakes"}]},
+  {"code": "TN", "name": "Tennessee", "level": "targeted", "summary": "The ELVIS Act protects voice and likeness from AI cloning; later laws add intimate-deepfake remedies and bar AI posing as mental-health professionals.", "laws": [{"name": "ELVIS Act (HB 2091)", "year": 2024, "status": "in-force", "note": "Right-of-publicity liability for unauthorized AI voice clones"}, {"name": "Preventing Deepfake Images Act (SB 1346)", "year": 2025, "status": "in-force", "note": "Civil and criminal remedies for intimate digital depictions"}, {"name": "AI mental-health restriction (SB 1580)", "year": 2026, "status": "in-force", "note": "Bars representing AI as qualified mental-health professional"}]},
+  {"code": "TX", "name": "Texas", "level": "comprehensive", "summary": "TRAIGA comprehensively regulates AI development and deployment from January 2026, atop pioneering election-deepfake, intimate-imagery, and AI-CSAM criminal laws.", "laws": [{"name": "TRAIGA (HB 149)", "year": 2025, "status": "in-force", "note": "Comprehensive AI act banning manipulative, discriminatory uses"}, {"name": "Election deepfake law (SB 751)", "year": 2019, "status": "in-force", "note": "First state criminal ban on election deepfake videos"}, {"name": "Explicit deepfake law (SB 1361)", "year": 2023, "status": "in-force", "note": "Criminalizes sexually explicit deepfake production"}, {"name": "AI CSAM law (HB 2700)", "year": 2023, "status": "in-force", "note": "Criminalizes AI-generated child sexual abuse material"}]},
+  {"code": "UT", "name": "Utah", "level": "targeted", "summary": "Utah's AI Policy Act mandates chatbot disclosures; further laws cover mental-health chatbots, digital replicas, and AI intimate-image abuse, among others.", "laws": [{"name": "AI Policy Act (SB 149)", "year": 2024, "status": "in-force", "note": "Generative-AI disclosure duties; narrowed by 2025 amendments"}, {"name": "Mental-health chatbot law (HB 452)", "year": 2025, "status": "in-force", "note": "Chatbot disclosures, advertising ban, data protections"}, {"name": "Identity replica law (SB 271)", "year": 2025, "status": "in-force", "note": "Identity-abuse protections cover AI voice and likeness replicas"}, {"name": "Digital Voyeurism Prevention Act (HB 276)", "year": 2026, "status": "in-force", "note": "Bans counterfeit intimate images; 48-hour takedowns"}]},
+  {"code": "VT", "name": "Vermont", "level": "deepfake-only", "summary": "Requires disclosures on AI-generated election media and criminalizes digitally altered intimate images; broader AI bills remain pending.", "laws": [{"name": "Election synthetic media law (Act 75)", "year": 2026, "status": "in-force", "note": "Disclosure on synthetic election media within 90 days"}, {"name": "Altered intimate images law (Act 161)", "year": 2024, "status": "in-force", "note": "Criminalizes nonconsensual digitally altered intimate images"}]},
+  {"code": "VA", "name": "Virginia", "level": "deepfake-only", "summary": "Only its pioneering deepfake revenge-porn law is in force; the 2025 comprehensive AI act was vetoed and 2026 AI bills were carried to 2027.", "laws": [{"name": "Deepfake revenge-porn law (HB 2678)", "year": 2019, "status": "in-force", "note": "First state to criminalize deepfake nonconsensual intimate images"}, {"name": "AI Companion Chatbots and Minors Act (SB 796)", "year": 2026, "status": "proposed", "note": "Passed Senate 39-1; carried over to 2027"}, {"name": "Election synthetic-media bill (HB 868)", "year": 2026, "status": "proposed", "note": "Disclosure requirement; continued to 2027 session"}]},
+  {"code": "WA", "name": "Washington", "level": "targeted", "summary": "New 2026 laws add AI content provenance and companion-chatbot safeguards to election-deepfake, intimate-image, and forged-likeness statutes, among others.", "laws": [{"name": "AI provenance law (HB 1170)", "year": 2026, "status": "enacted", "note": "Content provenance, watermarking, detection tool; effective Feb 2027"}, {"name": "Companion chatbot law (HB 2225)", "year": 2026, "status": "enacted", "note": "Chatbot safeguards with private action; effective Jan 2027"}, {"name": "Forged likeness law (HB 1205)", "year": 2025, "status": "in-force", "note": "Misdemeanor to distribute forged digital likenesses"}, {"name": "Election synthetic media law (SB 5152)", "year": 2023, "status": "in-force", "note": "Disclosure of synthetic media in electioneering"}]},
+  {"code": "WV", "name": "West Virginia", "level": "proposed-only", "summary": "No generative-AI or deepfake statutes enacted; election synthetic-media and deepfake-CSAM bills have stalled.", "laws": [{"name": "Election synthetic-media bill (SB 484)", "year": 2025, "status": "proposed", "note": "Disclaimer requirement; not enacted"}, {"name": "Minor deepfake felony bill (SB 154)", "year": 2026, "status": "proposed", "note": "Sexual deepfakes of minors; not enacted"}]},
+  {"code": "WI", "name": "Wisconsin", "level": "deepfake-only", "summary": "Mandates AI labels on political ads and criminalizes AI-generated child sexual abuse material and sexually explicit deepfakes.", "laws": [{"name": "Political ad AI label law (2023 Act 123)", "year": 2024, "status": "in-force", "note": "Campaign ads must carry AI-generated content label"}, {"name": "AI CSAM law (2023 Act 224)", "year": 2024, "status": "in-force", "note": "Child pornography felonies cover AI-generated depictions"}, {"name": "Synthetic intimate images law (2025 Act 34)", "year": 2025, "status": "in-force", "note": "Criminalizes synthetic intimate representations posted to harass"}]},
+  {"code": "WY", "name": "Wyoming", "level": "deepfake-only", "summary": "Wyoming's first synthetic-media law criminalizes nonconsensual sexual deepfakes and AI tools designed for CSAM or self-harm promotion.", "laws": [{"name": "Synthetic media law (HB 102)", "year": 2026, "status": "in-force", "note": "Criminalizes nonconsensual synthetic sexual images; bans CSAM tools"}]}
+];
+
+/* =====================================================================
+   RECENT DEVELOPMENTS — newest first, keep at most 8. Each: date label,
+   text, and the id of the related entry (law, case, or state).
+   ===================================================================== */
+const RECENT = [
+  { d: "Aug 13", t: "Reddit v. SerpApi & Perplexity added — DMCA anti-circumvention claims survive dismissal", id: "reddit-v-serpapi-perplexity" },
+  { d: "Aug 12", t: "EU Digital Omnibus confirmed as Regulation (EU) 2026/1744; AI Act entry updated", id: "eu-ai-act" },
+  { d: "Aug 12", t: "Denmark's deepfake copyright amendment downgraded to proposed — bill lapsed in the March snap election", id: "denmark-deepfake-copyright" },
+  { d: "Jul 31", t: "GEMA v. Suno: Munich court hands rightsholders a second German win over AI music", id: "gema-v-suno" },
+  { d: "Jul 24", t: "ANI v. OpenAI: Delhi High Court denies interim injunction, provisionally treating AI training as fair dealing", id: "ani-v-openai" },
+  { d: "Jul 20", t: "Bartz v. Anthropic: $1.5B settlement receives final approval", id: "bartz-v-anthropic" },
+];
+
 /* ---------- Rendering ----------
    Pill filters are multi-select: an empty Set means "All"; values within a
    group combine as OR, groups combine as AND. */
 const lawState = { q: "", region: new Set(), modality: new Set(), status: new Set() };
 const caseState = { q: "", region: new Set(), modality: new Set(), caseStatus: new Set(), issue: new Set() };
+const stateState = { level: "all" };
+
+const LEVEL_LABEL = {
+  "comprehensive": "Comprehensive AI law",
+  "targeted": "Targeted gen-AI laws",
+  "deepfake-only": "Deepfake & replica laws",
+  "proposed-only": "Proposed only",
+  "none": "None yet",
+};
+const MINI_STATUS = { "in-force": "In force", "enacted": "Enacted", "proposed": "Proposed" };
+/* Tile-grid coordinates [column, row] on an 11-column grid */
+const TILE_GRID = {
+  AK: [1, 1], ME: [11, 1],
+  VT: [10, 2], NH: [11, 2],
+  WA: [1, 3], ID: [2, 3], MT: [3, 3], ND: [4, 3], MN: [5, 3], WI: [6, 3], MI: [7, 3], NY: [9, 3], MA: [10, 3], RI: [11, 3],
+  OR: [1, 4], NV: [2, 4], WY: [3, 4], SD: [4, 4], IA: [5, 4], IL: [6, 4], IN: [7, 4], OH: [8, 4], PA: [9, 4], NJ: [10, 4], CT: [11, 4],
+  CA: [1, 5], UT: [2, 5], CO: [3, 5], NE: [4, 5], MO: [5, 5], KY: [6, 5], WV: [7, 5], VA: [8, 5], MD: [9, 5], DE: [10, 5],
+  AZ: [2, 6], NM: [3, 6], KS: [4, 6], AR: [5, 6], TN: [6, 6], NC: [7, 6], SC: [8, 6],
+  OK: [4, 7], LA: [5, 7], MS: [6, 7], AL: [7, 7], GA: [8, 7],
+  HI: [1, 8], TX: [4, 8], FL: [9, 8],
+};
 const STATUS_LABEL = {
   "in-force": "In force",
   "partially-in-force": "Partially in force",
@@ -1981,7 +2151,6 @@ function lawCard(law) {
       <p>${esc(law.statusDetail)}</p>
       ${obligations ? `<h4>Key obligations</h4><ul>${obligations}</ul>` : ""}
       ${law.penalties ? `<h4>Penalties</h4><p>${esc(law.penalties)}</p>` : ""}
-      ${law.citation ? `<h4>Citation</h4><p class="cite">${esc(law.citation)}</p>` : ""}
       ${commentaryBlock(law.commentary)}
       <div class="law-meta">
         ${law.officialLink ? `<a href="${esc(law.officialLink)}" target="_blank" rel="noopener">Official text ↗</a>` : ""}
@@ -1993,7 +2162,8 @@ function lawCard(law) {
 
 function render() {
   const list = document.getElementById("law-list");
-  const filtered = LAWS.filter(matches);
+  const globalLaws = LAWS.filter(l => !l.usState);
+  const filtered = globalLaws.filter(matches);
   const byRegion = {};
   for (const law of filtered) (byRegion[law.region] ??= []).push(law);
 
@@ -2006,7 +2176,61 @@ function render() {
   }
   list.innerHTML = html || `<div class="empty">No laws match these filters. Try clearing a filter or two.</div>`;
   document.getElementById("result-count").textContent =
-    `Showing ${filtered.length} of ${LAWS.length} tracked laws & frameworks`;
+    `Showing ${filtered.length} of ${globalLaws.length} tracked laws & frameworks`;
+}
+
+/* ---------- US States tab ---------- */
+function stateCard(s) {
+  const deepDives = LAWS.filter(l => l.usState === s.code);
+  const lawsList = (s.laws || []).map(l =>
+    `<li><span class="lname">${esc(l.name)}</span> (${esc(String(l.year))})<span class="mini-status ${esc(l.status)}">${esc(MINI_STATUS[l.status] || l.status)}</span>— ${esc(l.note)}</li>`).join("");
+  return `
+  <details class="law-card" id="state-${esc(s.code)}">
+    <summary>
+      <div class="law-top">
+        <div><div class="law-title">${esc(s.name)}</div></div>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="badges">
+        <span class="badge lv lv-${esc(s.level)}">${esc(LEVEL_LABEL[s.level] || s.level)}</span>
+        ${(s.laws || []).length ? `<span class="badge mod">${s.laws.length} ${s.laws.length === 1 ? "law" : "laws"} tracked</span>` : ""}
+      </div>
+      <div class="law-summary">${esc(s.summary)}</div>
+    </summary>
+    <div class="law-body">
+      ${lawsList ? `<h4>Key laws</h4><ul class="state-laws">${lawsList}</ul>` : ""}
+      ${deepDives.length ? `<h4>Deep dives</h4>` + deepDives.map(lawCard).join("") : ""}
+    </div>
+  </details>`;
+}
+
+function renderStates() {
+  const list = document.getElementById("state-list");
+  const filtered = STATES.filter(s => stateState.level === "all" || s.level === stateState.level);
+  list.innerHTML = filtered.map(stateCard).join("") || `<div class="empty">No states match this filter.</div>`;
+  document.getElementById("state-count").textContent =
+    `Showing ${filtered.length} of ${STATES.length} states`;
+}
+
+function renderStatesMap() {
+  const map = document.getElementById("us-map");
+  map.innerHTML = STATES.map(s => {
+    const pos = TILE_GRID[s.code] || [1, 1];
+    return `<button class="tile lv-${esc(s.level)}" style="grid-column:${pos[0]};grid-row:${pos[1]}" title="${esc(s.name)} — ${esc(LEVEL_LABEL[s.level] || s.level)}" data-code="${esc(s.code)}">${esc(s.code)}</button>`;
+  }).join("");
+  document.getElementById("map-legend").innerHTML = Object.entries(LEVEL_LABEL).map(([k, v]) =>
+    `<span class="lg"><span class="sw lv-${k}"></span>${v}</span>`).join("");
+  map.addEventListener("click", e => {
+    const t = e.target.closest(".tile");
+    if (!t) return;
+    const card = document.getElementById("state-" + t.dataset.code);
+    if (card) { card.open = true; card.scrollIntoView({ behavior: "smooth", block: "center" }); }
+  });
+}
+
+function renderRecent() {
+  document.getElementById("recent-list").innerHTML = RECENT.slice(0, 8).map(r =>
+    `<li><span class="rd">${esc(r.d)}</span><span>${esc(r.t)}${r.id ? ` <a href="#${esc(r.id)}">→</a>` : ""}</span></li>`).join("");
 }
 
 function matchesCase(c) {
@@ -2048,7 +2272,6 @@ function caseCard(c) {
       <p>${esc(c.statusDetail)}</p>
       ${holdings ? `<h4>Key holdings</h4><ul>${holdings}</ul>` : ""}
       ${c.significance ? `<h4>Why it matters</h4><p>${esc(c.significance)}</p>` : ""}
-      ${c.citation ? `<h4>Citation</h4><p class="cite">${esc(c.citation)}</p>` : ""}
       ${commentaryBlock(c.commentary)}
       <div class="law-meta">
         ${c.officialLink ? `<a href="${esc(c.officialLink)}" target="_blank" rel="noopener">Docket / opinion ↗</a>` : ""}
@@ -2077,13 +2300,14 @@ function renderCases() {
 }
 
 function renderStats() {
-  document.getElementById("stat-laws").textContent = LAWS.length;
+  const stateLawTotal = STATES.reduce((n, s) => n + (s.laws || []).length, 0);
+  document.getElementById("stat-laws").textContent = LAWS.filter(l => !l.usState).length + stateLawTotal;
+  document.getElementById("stat-states").textContent = STATES.length;
   document.getElementById("stat-cases").textContent = CASES.length;
   document.getElementById("stat-juris").textContent =
-    new Set([...LAWS.map(l => l.jurisdiction), ...CASES.map(c => c.jurisdiction)]).size;
-  document.getElementById("stat-force").textContent =
-    LAWS.filter(l => l.status === "in-force" || l.status === "partially-in-force").length;
-  document.getElementById("tcount-laws").textContent = LAWS.length;
+    new Set([...LAWS.filter(l => !l.usState).map(l => l.jurisdiction), ...CASES.map(c => c.jurisdiction)]).size + STATES.length;
+  document.getElementById("tcount-laws").textContent = LAWS.filter(l => !l.usState).length;
+  document.getElementById("tcount-states").textContent = STATES.length;
   document.getElementById("tcount-cases").textContent = CASES.length;
 }
 
@@ -2119,28 +2343,49 @@ function wireFilters() {
     caseState.q = e.target.value.trim().toLowerCase();
     renderCases();
   });
+  // State coverage filter is single-select (levels are mutually exclusive)
+  document.getElementById("fg-state-level").addEventListener("click", e => {
+    const btn = e.target.closest(".pill");
+    if (!btn) return;
+    document.querySelectorAll("#fg-state-level .pill").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    stateState.level = btn.dataset.v;
+    renderStates();
+  });
 }
 
 /* ---------- Tabs, deep links & navigation helpers ---------- */
+const TABS = ["laws", "states", "cases"];
+
 function showTab(name, push = true) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
-  document.getElementById("panel-laws").classList.toggle("active", name === "laws");
-  document.getElementById("panel-cases").classList.toggle("active", name === "cases");
+  TABS.forEach(t => document.getElementById("panel-" + t).classList.toggle("active", t === name));
   if (push) try { history.replaceState(null, "", "#" + name); } catch (e) { /* sandboxed previews disallow this */ }
+}
+
+function openEntry(h) {
+  const law = LAWS.find(l => l.id === h);
+  const isCase = CASES.some(c => c.id === h);
+  const isState = h.startsWith("state-") && STATES.some(s => "state-" + s.code === h);
+  if (law) showTab(law.usState ? "states" : "laws", false);
+  else if (isCase) showTab("cases", false);
+  else if (isState) showTab("states", false);
+  else return;
+  requestAnimationFrame(() => {
+    if (law && law.usState) {
+      const sc = document.getElementById("state-" + law.usState);
+      if (sc) sc.open = true;
+    }
+    const el = document.getElementById(h);
+    if (el) { if (el.tagName === "DETAILS") el.open = true; el.scrollIntoView(); }
+  });
 }
 
 function initFromHash() {
   const h = decodeURIComponent(location.hash.replace("#", ""));
-  if (!h || h === "laws" || h === "tracker") return;
-  if (h === "cases") { showTab("cases", false); return; }
-  if (h === "about") return;
-  const inCases = CASES.some(c => c.id === h);
-  if (inCases) showTab("cases", false);
-  else if (!LAWS.some(l => l.id === h)) return;
-  requestAnimationFrame(() => {
-    const el = document.getElementById(h);
-    if (el) { el.open = true; el.scrollIntoView(); }
-  });
+  if (!h || h === "about" || h === "tracker") return;
+  if (TABS.includes(h)) { showTab(h, false); return; }
+  openEntry(h);
 }
 
 function wireNavigation() {
@@ -2149,10 +2394,12 @@ function wireNavigation() {
     if (b) showTab(b.dataset.tab);
   });
   window.addEventListener("hashchange", () => {
-    const h = location.hash.replace("#", "");
-    if (h === "laws" || h === "cases") {
+    const h = decodeURIComponent(location.hash.replace("#", ""));
+    if (TABS.includes(h)) {
       showTab(h, false);
       document.getElementById("tabs").scrollIntoView({ behavior: "smooth" });
+    } else if (h && h !== "about") {
+      openEntry(h);
     }
   });
   document.querySelectorAll(".list-tools button").forEach(b => {
@@ -2236,7 +2483,10 @@ renderStats();
 wireFilters();
 wireNavigation();
 render();
+renderStates();
+renderStatesMap();
 renderCases();
+renderRecent();
 initFromHash();
 injectStructuredData();
 </script>

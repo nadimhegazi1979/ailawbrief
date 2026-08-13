@@ -13,10 +13,13 @@ A single-file static website tracking global laws AND court cases on generative 
 The page injects schema.org JSON-LD at load time, generated from the live data arrays: `WebSite` + `Dataset`, plus an `ItemList` of `Legislation` objects (one per law, with `legislationIdentifier` = the formal citation) and an `ItemList` of `LegalCase` objects. Because it's generated from `LAWS`/`CASES`, it stays correct as entries change — no maintenance needed. JS-rendering crawlers (Google, Bing) see it; text-only AI crawlers get `llms.txt`, the meta tags, and the raw array text in the page source.
 
 ## Page structure
-The page is a two-tab interface — **Laws & Regulations** and **Case Law** — each tab with its own search box and filter pills (region, modality, status; the cases tab adds an issue filter). Pills are multi-select: values within a group combine as OR (e.g. "text + video"), groups combine as AND, "All" is exclusive with specific picks, and clicking an active pill toggles it off (empty selection reverts to All). Tabs deep-link via `#laws` / `#cases`, and individual entries deep-link via `#<entry-id>` (auto-opens the right tab and card).
+The page is a three-tab interface — **Laws & Regulations** (global + US federal), **US State Laws** (all 50 states with a color-coded clickable tile map), and **Case Law**. The laws and cases tabs have per-tab search and multi-select filter pills (values within a group combine as OR, groups as AND, "All" exclusive, click-again to toggle off). The states tab has a single-select coverage-level filter. A "Recent developments" strip under the hero lists the latest changes. Tabs deep-link via `#laws` / `#states` / `#cases`; entries deep-link via `#<entry-id>` (state-tagged laws auto-open inside their state card; states via `#state-XX`).
 
 ## How to update the tracker
-All content lives in `index.html` in two clearly marked JavaScript arrays near the bottom of the file:
+All content lives in `index.html` in four clearly marked JavaScript arrays near the bottom of the file — `LAWS`, `CASES`, `STATES`, and `RECENT`:
+
+0a. **`const STATES = [...]`** — one object per US state: `{code, name, level, summary, laws: [{name, year, status, note}]}`. `level`: `comprehensive` | `targeted` | `deepfake-only` | `proposed-only` | `none`; law `status`: `in-force` | `enacted` | `proposed`. Keep summaries ≤25 words and law notes ≤14 words — this tab is deliberately concise. Detailed LAWS entries link into state cards via their `usState: "XX"` field (they render under "Deep dives" and are excluded from the global laws tab).
+0b. **`const RECENT = [...]`** — the "Recent developments" strip: `{d: "Aug 13", t: "one-line description", id: "related-entry-id"}`, newest first, cap at 8.
 
 1. **`const LAWS = [...]`** — one object per law. To add a law, copy an existing entry and edit its fields:
    - `status`: `in-force` | `partially-in-force` | `enacted-not-yet-effective` | `proposed` | `guidance` | `enjoined`
@@ -27,7 +30,7 @@ All content lives in `index.html` in two clearly marked JavaScript arrays near t
    - `issues`: tags from the `ISSUE_LABEL` map (training-data, fair-use, output-infringement, right-of-publicity, voice-cloning, defamation, product-liability, free-speech, trademark, dmca, constitutional-challenge, consumer-protection)
    - `modalities` and `region`: same values as laws
 
-Every law and case entry carries a **`citation`** field — the formal legal citation (OJ citation, Public Law number, code section, docket number, or neutral citation) — shown in the card next to the `officialLink`. Where a precise codified cite couldn't be verified, the citation uses the bill/session form (e.g. "Tex. HB 149, 89th Leg. (2025)"), which is always accurate; upgrade to code sections when verified.
+Every law and case entry carries a **`citation`** field — the formal legal citation (OJ citation, Public Law number, code section, docket number, or neutral citation). Citations are NOT displayed on the cards (removed Aug 2026 for a cleaner UX) but are kept in the data: they feed the page's schema.org structured data (`legislationIdentifier`) and full-text search, so keep populating the field for new entries. Where a precise codified cite can't be verified, use the bill/session form.
 
 Entries may also carry a **`commentary`** array — curated "Commentary & analysis" links (law-firm client alerts, academic articles, think-tank pieces): `{title, source, url, type}` where `type` is `law-firm` | `academic` | `think-tank` | `official`. Rule: every URL must be verified to load and to discuss the specific instrument before being added — never guess URLs. Keep it to 2–3 high-quality pieces per entry.
 
