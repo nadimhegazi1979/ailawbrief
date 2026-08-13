@@ -140,6 +140,12 @@
   .law-body ul li { margin-bottom: 4px; }
   .law-body p { font-size: 14.5px; color: var(--ink-soft); }
   .law-body p.cite { font-family: var(--serif); color: var(--ink); }
+  .law-body ul.commentary { list-style: none; padding-left: 0; }
+  .law-body ul.commentary li { margin-bottom: 6px; padding-left: 18px; position: relative; }
+  .law-body ul.commentary li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+  .law-body ul.commentary a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .law-body ul.commentary a:hover { text-decoration: underline; }
+  .law-body ul.commentary .c-src { color: var(--ink-faint); font-size: 13px; }
   .law-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; }
   .law-meta a { color: var(--accent); font-weight: 500; text-decoration: none; }
   .law-meta a:hover { text-decoration: underline; }
@@ -367,6 +373,7 @@ const LAWS = [
   /* ================= EUROPE ================= */
   {
     id: "eu-ai-act",
+    commentary: [{"title": "EU AI Act Omnibus Agreement — Postponed High-Risk Deadlines and Other Key Changes", "source": "Gibson Dunn", "url": "https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/", "type": "law-firm"}, {"title": "Not Delayed, Not Deferred: EU AI Act Transparency Obligations Are Now in Force", "source": "Goodwin", "url": "https://www.goodwinlaw.com/en/insights/publications/2026/08/alerts-technology-dpc-eu-ai-act-transparency-obligations-now-in-force", "type": "law-firm"}, {"title": "The EU AI Act's Transparency Rules: A Practical Guide to Article 50", "source": "Future of Life Institute", "url": "https://artificialintelligenceact.eu/transparency-rules-article-50/", "type": "think-tank"}],
     citation: "Regulation (EU) 2024/1689 (AI Act), OJ L, 2024/1689, 12.7.2024, as amended by Regulation (EU) 2026/1744 (Digital Omnibus on AI), OJ L, 2026/1744, 24.7.2026",
     name: "EU AI Act (Regulation (EU) 2024/1689)",
     jurisdiction: "European Union",
@@ -388,6 +395,7 @@ const LAWS = [
   },
   {
     id: "eu-gpai-training-content-template",
+    commentary: [{"title": "European Commission Releases Mandatory Template for Public Disclosure of AI Training Data", "source": "WilmerHale", "url": "https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/european-commission-releases-mandatory-template-for-public-disclosure-of-ai-training-data", "type": "law-firm"}, {"title": "EU AI Act: Copyright compliance for GPAI model providers", "source": "Clifford Chance", "url": "https://www.cliffordchance.com/insights/resources/blogs/ip-insights/2025/10/copyright-compliance-under-the-eu-ai-act-for-gpai-model-providers.html", "type": "law-firm"}, {"title": "'Sufficiently detailed summary' — v2.0 of the blueprint for GPAI training data", "source": "Open Future", "url": "https://openfuture.eu/blog/sufficiently-detailed-summary-v2-0-of-the-blueprint-for-gpai-training-data/", "type": "think-tank"}],
     citation: "Regulation (EU) 2024/1689, Art. 53(1)(d) & Annex XII; Commission explanatory notice & template (24 July 2025)",
     name: "EU training-content summary template (AI Act Art. 53(1)(d))",
     jurisdiction: "European Union",
@@ -409,6 +417,7 @@ const LAWS = [
   },
   {
     id: "uk-ai-framework",
+    commentary: [{"title": "How the law is catching up with AI 'deepfakes'", "source": "DLA Piper", "url": "https://www.dlapiper.com/en-gb/insights/topics/algorithm-to-advantage/how-the-law-is-catching-up-with-ai-deepfakes", "type": "law-firm"}, {"title": "Online safety reforms to be fast-tracked amid rising AI risks", "source": "Lewis Silkin", "url": "https://www.lewissilkin.com/insights/2026/02/23/online-safety-reforms-to-be-fast-tracked-amid-rising-ai-risks-102mk2r", "type": "law-firm"}, {"title": "The legal response to AI-generated sexual deepfakes", "source": "Doughty Street Chambers", "url": "https://insights.doughtystreet.co.uk/post/102mdvo/the-legal-response-to-ai-generated-sexual-deepfakes", "type": "law-firm"}],
     citation: "Data (Use and Access) Act 2025 (c. 18); Crime and Policing Act 2026; Online Safety Act 2023 (c. 50)",
     name: "UK framework: DUA Act 2025, Crime and Policing Act 2026 & Online Safety Act",
     jurisdiction: "United Kingdom",
@@ -430,6 +439,7 @@ const LAWS = [
   },
   {
     id: "coe-ai-framework-convention",
+    commentary: [{"title": "Council of Europe Framework Convention on AI and Human Rights, Democracy, and the Rule of Law", "source": "Gibson Dunn", "url": "https://www.gibsondunn.com/council-of-europe-framework-convention-on-artificial-intelligence-and-human-rights-democracy-and-rule-of-law/", "type": "law-firm"}, {"title": "The CoE Framework Convention on AI: Context, Regulatory Approach and Scope of Obligations", "source": "European Journal of Risk Regulation (Stoyanova)", "url": "https://www.cambridge.org/core/journals/european-journal-of-risk-regulation/article/council-of-europe-framework-convention-on-artificial-intelligence-context-regulatory-approach-and-scope-of-obligations/0ED34EFE5AA7C9628F7053720F88F48C", "type": "academic"}],
     citation: "Council of Europe Framework Convention on AI, CETS No. 225 (opened for signature 5 Sept. 2024)",
     name: "Council of Europe Framework Convention on AI (CETS No. 225)",
     jurisdiction: "Council of Europe (open to non-members)",
@@ -451,6 +461,7 @@ const LAWS = [
   },
   {
     id: "italy-ai-law-132-2025",
+    commentary: [{"title": "Italy enacts Law No. 132/2025 on Artificial Intelligence: Sector rules and next steps", "source": "Norton Rose Fulbright", "url": "https://www.nortonrosefulbright.com/en/knowledge/publications/9bfedfea/italy-enacts-law-no-132-2025-on-artificial-intelligence-sector-rules-and-next-steps", "type": "law-firm"}, {"title": "Law No. 132 of September 23, 2025: Italy's leadership in national AI regulation", "source": "A&O Shearman", "url": "https://www.aoshearman.com/en/insights/law-no-132-of-23-september-2025-italys-leadership-in-national-ai-regulation", "type": "law-firm"}, {"title": "Italian Law no. 132/2025 — The First Domestic Law in the EU on the Use of AI", "source": "Squire Patton Boggs", "url": "https://www.squirepattonboggs.com/insights/publications/italian-law-no-132-2025-the-first-domestic-law-in-the-european-union-on-the-use-of-artificial-intelligence/", "type": "law-firm"}],
     citation: "Legge 23 settembre 2025, n. 132 (G.U. Serie Generale n. 223, 25.9.2025)",
     name: "Italy — AI Law (Law No. 132/2025)",
     jurisdiction: "Italy",
@@ -472,6 +483,7 @@ const LAWS = [
   },
   {
     id: "spain-ai-governance-bill",
+    commentary: [{"title": "Spain: Government approves the draft Organic Law on the proper use and governance of AI", "source": "DLA Piper (Privacy Matters)", "url": "https://privacymatters.dlapiper.com/2026/05/spain-government-approves-the-draft-organic-law-on-the-proper-use-and-governance-of-artificial-intelligence/", "type": "law-firm"}, {"title": "Spain makes progress on AI regulation: key points of the new Organic Law on governance", "source": "Osborne Clarke", "url": "https://www.osborneclarke.com/insights/spain-makes-progress-ai-regulation-key-points-new-organic-law-governance", "type": "law-firm"}],
     citation: "Proyecto de Ley Orgánica para el buen uso y la gobernanza de la IA (Cortes Generales, 2026)",
     name: "Spain — Bill on the Good Use and Governance of AI",
     jurisdiction: "Spain",
@@ -492,6 +504,7 @@ const LAWS = [
   },
   {
     id: "denmark-deepfake-copyright",
+    commentary: [{"title": "Owning the Self: Denmark's Copyright Turn Against Deepfakes", "source": "Schjødt", "url": "https://schjodt.com/news/owning-the-self-denmarks-copyright-turn-against-deepfakes", "type": "law-firm"}, {"title": "Deepfake Bills in Denmark and the Netherlands: Right idea, wrong legal framework", "source": "Kluwer Copyright Blog (Hugenholtz)", "url": "https://legalblogs.wolterskluwer.com/copyright-blog/deepfake-bills-in-denmark-and-the-netherlands-right-idea-wrong-legal-framework/", "type": "academic"}, {"title": "The Danish approach to copyright and deepfakes: A model for the EU?", "source": "European Parliamentary Research Service", "url": "https://www.europarl.europa.eu/thinktank/en/document/EPRS_ATA(2026)782611", "type": "official"}],
     citation: "Danish Copyright Act (ophavsretsloven) §§ 65a & 73a (2026 amendment)",
     name: "Denmark — Copyright Act deepfake amendment (§§ 65a / 73a)",
     jurisdiction: "Denmark",
@@ -513,6 +526,7 @@ const LAWS = [
   /* ================= AMERICAS ================= */
   {
     id: "us-take-it-down-act",
+    commentary: [{"title": "'Take It Down Act' Requires Online Platforms To Remove Unauthorized Intimate Images and Deepfakes When Notified", "source": "Skadden", "url": "https://www.skadden.com/insights/publications/2025/06/take-it-down-act", "type": "law-firm"}, {"title": "May 19 Deadline for TAKE IT DOWN Act Compliance: Is Your Company Prepared?", "source": "Wiley Rein", "url": "https://www.wiley.law/alert-May-19-Deadline-for-TAKE-IT-DOWN-Act-Compliance-Is-Your-Company-Prepared", "type": "law-firm"}, {"title": "The Promise and Limits of the TAKE IT DOWN Act", "source": "The Regulatory Review (Penn)", "url": "https://www.theregreview.org/2026/05/27/li-the-promise-and-limits-of-the-take-it-down-act/", "type": "academic"}],
     citation: "TAKE IT DOWN Act, Pub. L. No. 119-12 (2025) (S. 146, 119th Cong.)",
     name: "TAKE IT DOWN Act (Pub. L. 119-12)",
     jurisdiction: "United States (federal)",
@@ -533,6 +547,7 @@ const LAWS = [
   },
   {
     id: "us-eo-14365",
+    commentary: [{"title": "White House Issues Executive Order to Establish Uniform National AI Standards", "source": "Morgan Lewis", "url": "https://www.morganlewis.com/pubs/2025/12/white-house-issues-executive-order-to-establish-uniform-national-ai-standards", "type": "law-firm"}, {"title": "AI Executive Order Targets State Laws and Seeks Uniform Federal Standards", "source": "Latham & Watkins", "url": "https://www.lw.com/en/insights/ai-executive-order-targets-state-laws-and-seeks-uniform-federal-standards", "type": "law-firm"}, {"title": "What to Watch as White House Moves to Federalize AI Regulation", "source": "Holland & Knight", "url": "https://www.hklaw.com/en/insights/publications/2025/12/what-to-watch-as-white-house-moves-to-federalize-ai-regulation", "type": "law-firm"}],
     citation: "Exec. Order No. 14365, 90 Fed. Reg. 58499 (Dec. 16, 2025)",
     name: "Executive Order 14365 — National Policy Framework for AI",
     jurisdiction: "United States (federal)",
@@ -553,6 +568,7 @@ const LAWS = [
   },
   {
     id: "california-sb942-transparency",
+    commentary: [{"title": "New California AI Disclosure Rules Become Operative", "source": "Morgan Lewis", "url": "https://www.morganlewis.com/pubs/2026/08/new-california-ai-disclosure-rules-become-operative", "type": "law-firm"}, {"title": "California Amends Artificial Intelligence Transparency Act and Passes AI Defenses Act", "source": "Hintze Law", "url": "https://hintzelaw.com/blog/2025/10/19/california-amends-artificial-intelligence-transparency-act-and-passes-ai-defenses-act", "type": "law-firm"}, {"title": "California AI Transparency Act Amendments Signed Into Law", "source": "Troutman Pepper Locke", "url": "https://www.troutmanprivacy.com/2025/10/california-ai-transparency-act-amendments-signed-into-law/", "type": "law-firm"}],
     citation: "Cal. Bus. & Prof. Code § 22757 et seq. (SB 942 (2024), as amended by AB 853 (2025))",
     name: "California AI Transparency Act (SB 942, as amended by AB 853)",
     jurisdiction: "California, USA",
@@ -574,6 +590,7 @@ const LAWS = [
   },
   {
     id: "california-ab2013-training-data",
+    commentary: [{"title": "California's AB 2013 Takes Effect: Navigating AI Training Data Transparency and Trade Secret Risk", "source": "Goodwin", "url": "https://www.goodwinlaw.com/en/insights/publications/2026/01/alerts-otherindustries-californias-ab-2013-takes-effect", "type": "law-firm"}, {"title": "California's AB 2013 Requires Generative AI Data Disclosure by January 1, 2026", "source": "Crowell & Moring", "url": "https://www.crowell.com/en/insights/client-alerts/californias-ab-2013-requires-generative-ai-data-disclosure-by-january-1-2026", "type": "law-firm"}, {"title": "California's AB 2013: Challenges and Opportunities in Generative AI Compliance", "source": "Baker Botts", "url": "https://www.bakerbotts.com/thought-leadership/publications/2024/november/ca-ab-2013_gen-ai-compliance", "type": "law-firm"}],
     citation: "Cal. Civ. Code §§ 3110–3111 (AB 2013 (2024))",
     name: "California Generative AI Training Data Transparency Act (AB 2013)",
     jurisdiction: "California, USA",
@@ -594,6 +611,7 @@ const LAWS = [
   },
   {
     id: "california-sb53-frontier",
+    commentary: [{"title": "At the Frontier — California Enacts AI Safety and Transparency Regulation TFAIA (SB 53)", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/251001-california-enacts-ai-safety-transparency-regulation-tfaia-sb-53", "type": "law-firm"}, {"title": "California Just Passed the First U.S. Frontier AI Law. Here's What It Does.", "source": "Carnegie Endowment", "url": "https://carnegieendowment.org/emissary/2025/10/california-sb-53-frontier-ai-law-what-it-does", "type": "think-tank"}, {"title": "California's 'Transparency in Frontier Artificial Intelligence Act' Gap Analysis", "source": "CodeX — Stanford Law School", "url": "https://law.stanford.edu/2026/01/11/californias-transparency-in-frontier-artificial-intelligence-act-gap-analysis/", "type": "academic"}],
     citation: "Cal. SB 53 (2025) — Transparency in Frontier Artificial Intelligence Act",
     name: "California Transparency in Frontier AI Act (SB 53)",
     jurisdiction: "California, USA",
@@ -614,6 +632,7 @@ const LAWS = [
   },
   {
     id: "california-election-deepfakes",
+    commentary: [{"title": "2024 Year in Review: Navigating California's Landmark Deepfake Legislation", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/241211-2024-year-in-review-navigating-california-s-landmark-deepfake-legislation", "type": "law-firm"}, {"title": "Kohls et al. v. Bonta (litigation tracker)", "source": "Tech Policy Press", "url": "https://www.techpolicy.press/tracker/kohls-v-bonta/", "type": "think-tank"}, {"title": "Political Deepfakes and Elections", "source": "First Amendment Encyclopedia (MTSU)", "url": "https://firstamendment.mtsu.edu/article/political-deepfakes-and-elections/", "type": "academic"}],
     citation: "Cal. AB 2839 & AB 2655 (2024) (Elections Code); held unconstitutional, Kohls v. Bonta (E.D. Cal. 2025)",
     name: "California election deepfake laws (AB 2839 & AB 2655)",
     jurisdiction: "California, USA",
@@ -633,6 +652,7 @@ const LAWS = [
   },
   {
     id: "california-explicit-deepfakes",
+    commentary: [{"title": "2024 Year in Review: Navigating California's Landmark Deepfake Legislation", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/241211-2024-year-in-review-navigating-california-s-landmark-deepfake-legislation", "type": "law-firm"}, {"title": "California's AI Laws Are Here — Is Your Business Ready?", "source": "Pillsbury", "url": "https://www.pillsburylaw.com/en/news-and-insights/california-ai-laws.html", "type": "law-firm"}],
     citation: "Cal. SB 926 & SB 981 (2024)",
     name: "California sexually explicit deepfake laws (SB 926 & SB 981)",
     jurisdiction: "California, USA",
@@ -653,6 +673,7 @@ const LAWS = [
   },
   {
     id: "california-performer-replicas",
+    commentary: [{"title": "California Enacts Generative AI Law Addressing 'Digital Replicas' of Performers", "source": "Proskauer", "url": "https://www.proskauer.com/blog/california-enacts-generative-ai-law-addressing-digital-replicas-of-performers", "type": "law-firm"}, {"title": "California's New AI Laws Limit Uses of Digital Likeness", "source": "Fenwick & West", "url": "https://www.fenwick.com/insights/publications/californias-new-ai-laws-limit-uses-of-digital-likeness", "type": "law-firm"}, {"title": "California Considers a Digital Replica Law for the Dead", "source": "Rothman's Roadmap to the Right of Publicity", "url": "https://rightofpublicityroadmap.com/news_commentary/california-considers-a-digital-replica-law-for-the-dead/", "type": "academic"}],
     citation: "Cal. Lab. Code § 927 (AB 2602 (2024)); Cal. Civ. Code § 3344.1 (AB 1836 (2024))",
     name: "California digital replica laws for performers (AB 2602 & AB 1836)",
     jurisdiction: "California, USA",
@@ -673,6 +694,7 @@ const LAWS = [
   },
   {
     id: "colorado-admt-act",
+    commentary: [{"title": "Colorado Hits Reset on AI Regulation: SB 26-189 Repeals and Reenacts the Colorado AI Act", "source": "Crowell & Moring", "url": "https://www.crowell.com/en/insights/client-alerts/colorado-hits-reset-on-ai-regulation-sb-26-189-repeals-and-reenacts-the-colorado-ai-act", "type": "law-firm"}, {"title": "Colorado rewrites its landmark AI law: Unpacking SB 26-189 and what it means for businesses", "source": "Ballard Spahr", "url": "https://www.consumerfinancemonitor.com/2026/05/12/colorado-rewrites-its-landmark-ai-law-unpacking-sb-26-189-and-what-it-means-for-businesses/", "type": "law-firm"}, {"title": "Colorado Rewrites Its AI Law: What Employers Must Know About SB 26-189", "source": "Buchalter", "url": "https://www.buchalter.com/insights/colorado-rewrites-its-ai-law-what-employers-must-know-about-sb-26-189/", "type": "law-firm"}],
     citation: "Colo. SB 26-189 (2026), replacing Colo. Rev. Stat. § 6-1-1701 et seq. (SB 24-205 (2024))",
     name: "Colorado Automated Decision-Making Technology Act (SB 26-189)",
     jurisdiction: "Colorado, USA",
@@ -693,6 +715,7 @@ const LAWS = [
   },
   {
     id: "texas-traiga",
+    commentary: [{"title": "The Texas Responsible AI Governance Act: What your company needs to know before January 1", "source": "Norton Rose Fulbright", "url": "https://www.nortonrosefulbright.com/en/knowledge/publications/c6c60e0c/the-texas-responsible-ai-governance-act", "type": "law-firm"}, {"title": "Pared Back Version of the Texas Responsible AI Governance Act Signed Into Law", "source": "K&L Gates", "url": "https://www.klgates.com/Pared-Back-Version-of-the-Texas-Responsible-Artificial-Intelligence-Governance-Act-Signed-Into-Law-6-24-2025", "type": "law-firm"}, {"title": "Texas Enacts Comprehensive AI Governance Laws with Sector-Specific Healthcare Provisions", "source": "Holland & Knight", "url": "https://www.hklaw.com/en/insights/publications/2025/06/texas-enacts-comprehensive-ai-governance-laws", "type": "law-firm"}],
     citation: "Tex. HB 149, 89th Leg., R.S. (2025) (TRAIGA)",
     name: "Texas Responsible AI Governance Act (TRAIGA, HB 149)",
     jurisdiction: "Texas, USA",
@@ -713,6 +736,7 @@ const LAWS = [
   },
   {
     id: "utah-ai-policy-act",
+    commentary: [{"title": "Utah Enacts Multiple Laws Amending and Expanding the State's Regulation of AI", "source": "Davis Wright Tremaine", "url": "https://www.dwt.com/blogs/artificial-intelligence-law-advisor/2025/04/utah-regulation-ai-policy-mental-health-chatbots", "type": "law-firm"}, {"title": "Chatbots in Check: Utah's Latest AI Legislation", "source": "Future of Privacy Forum", "url": "https://fpf.org/blog/chatbots-in-check-utahs-latest-ai-legislation/", "type": "think-tank"}, {"title": "Utah Law Aims to Regulate AI Mental Health Chatbots", "source": "Epstein Becker Green", "url": "https://www.ebglaw.com/health-law-advisor/utah-law-aims-to-regulate-ai-mental-health-chatbots", "type": "law-firm"}],
     citation: "Utah Code § 13-72-101 et seq. (SB 149 (2024), as amended 2025)",
     name: "Utah AI Policy Act (SB 149, as amended 2025)",
     jurisdiction: "Utah, USA",
@@ -733,6 +757,7 @@ const LAWS = [
   },
   {
     id: "tennessee-elvis-act",
+    commentary: [{"title": "The ELVIS Act: Tennessee Shakes Up Its Right of Publicity Law and Takes On Generative AI", "source": "Latham & Watkins", "url": "https://www.lw.com/admin/upload/SiteAttachments/The-ELVIS-Act-Tennessee-Shakes-Up-Its-Right-of-Publicity-Law-and-Takes-On-Generative-AI.pdf", "type": "law-firm"}, {"title": "First-of-Its-Kind AI Law Addresses Deep Fakes and Voice Clones", "source": "Holland & Knight", "url": "https://www.hklaw.com/en/insights/publications/2024/04/first-of-its-kind-ai-law-addresses-deep-fakes-and-voice-clones", "type": "law-firm"}, {"title": "Why Tennessee's ELVIS Act Is the King of Artificial Intelligence Protections", "source": "Vanderbilt J. of Ent. & Tech. Law", "url": "https://scholarship.law.vanderbilt.edu/jetlaw/vol27/iss2/2/", "type": "academic"}],
     citation: "Tenn. Code Ann. § 47-25-1101 et seq. (ELVIS Act, 2024 Tenn. Pub. Ch. 588)",
     name: "Tennessee ELVIS Act (Ensuring Likeness Voice and Image Security Act)",
     jurisdiction: "Tennessee, USA",
@@ -753,6 +778,7 @@ const LAWS = [
   },
   {
     id: "illinois-digital-replica",
+    commentary: [{"title": "New Illinois Laws Address Use of Generative AI and Digital Likeness, Publicity Rights", "source": "Jackson Lewis", "url": "https://www.workplaceprivacyreport.com/2024/08/articles/artificial-intelligence/new-illinois-laws-address-use-of-generative-ai-and-digital-likeness-publicity-rights/", "type": "law-firm"}, {"title": "Cracking Down on AI", "source": "Baird Holm", "url": "https://www.bairdholm.com/blog/cracking-down-on-ai/", "type": "law-firm"}],
     citation: "765 ILCS 1075 (Right of Publicity Act, as amended by P.A. 103-0836 (HB 4875))",
     name: "Illinois Digital Replica Law (HB 4875)",
     jurisdiction: "Illinois, USA",
@@ -773,6 +799,7 @@ const LAWS = [
   },
   {
     id: "new-york-raise-act",
+    commentary: [{"title": "New York Finalizes RAISE Act for Frontier AI Models; Law Takes Effect January 1, 2027", "source": "Wiley Rein", "url": "https://www.wiley.law/alert-New-York-Finalizes-RAISE-Act-for-Frontier-AI-Models-Law-Takes-Effect-January-1-2027", "type": "law-firm"}, {"title": "NY Overhauls Transparency and Governance Requirements for Frontier AI Developers", "source": "Davis Wright Tremaine", "url": "https://www.dwt.com/blogs/artificial-intelligence-law-advisor/2026/04/ny-overhauls-frontier-ai-transparency-law", "type": "law-firm"}, {"title": "New York Enacts the RAISE Act Regulating Frontier AI Models", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/260105-new-york-enacts-the-raise-act-regulating-frontier-ai-models", "type": "law-firm"}],
     citation: "N.Y. S6953B (2025), as amended by chapter amendment (Mar. 27, 2026); eff. Jan. 1, 2027",
     name: "New York RAISE Act (S6953B)",
     jurisdiction: "New York, USA",
@@ -793,6 +820,7 @@ const LAWS = [
   },
   {
     id: "canada-post-aida",
+    commentary: [{"title": "The Demise of the Artificial Intelligence and Data Act (AIDA): 5 Key Lessons", "source": "McInnes Cooper", "url": "https://www.mcinnescooper.com/publications/the-demise-of-the-artificial-intelligence-and-data-act-aida-5-key-lessons/", "type": "law-firm"}, {"title": "AI for All: bridging the trust, adoption, and sovereignty gaps", "source": "Torys", "url": "https://www.torys.com/our-latest-thinking/publications/2026/06/ai-for-all", "type": "law-firm"}, {"title": "What's Next After AIDA?", "source": "Schwartz Reisman Institute (U. Toronto)", "url": "https://srinstitute.utoronto.ca/news/whats-next-for-aida", "type": "think-tank"}],
     citation: "Bill C-27 (AIDA, Part 3), 44th Parl., 1st Sess. — died on prorogation (Jan. 2025)",
     name: "Canada — post-AIDA approach (AI for All strategy)",
     jurisdiction: "Canada (federal)",
@@ -813,6 +841,7 @@ const LAWS = [
   },
   {
     id: "brazil-pl-2338",
+    commentary: [{"title": "Artificial intelligence reignites debates in the Brazilian House of Representatives", "source": "Demarest", "url": "https://www.demarest.com.br/en/inteligencia-artificial-reacende-debates-na-camara-dos-deputados/", "type": "law-firm"}, {"title": "The AI Legislation in Brazil: Technical Analysis of the Text to Be Voted in the Senate Plenary", "source": "Data Privacy Brasil", "url": "https://www.dataprivacybr.org/en/the-artificial-intelligence-legislation-in-brazil-technical-analysis-of-the-text-to-be-voted-on-in-the-federal-senate-plenary/", "type": "think-tank"}, {"title": "AI Policy Corner: How Brazil Plans to Govern AI: Reviewing PL 2338/2023", "source": "Montreal AI Ethics Institute", "url": "https://montrealethics.ai/ai-policy-corner-how-brazil-plans-to-govern-ai-reviewing-pl-2338-2023/", "type": "think-tank"}],
     citation: "Projeto de Lei nº 2.338/2023 (Senado Federal / Câmara dos Deputados)",
     name: "Brazil AI Bill (PL 2338/2023 — Marco Legal da IA)",
     jurisdiction: "Brazil (federal)",
@@ -835,6 +864,7 @@ const LAWS = [
   /* ================= ASIA-PACIFIC & MIDDLE EAST ================= */
   {
     id: "china-genai-interim-measures",
+    commentary: [{"title": "A Practitioner's Guide to China's New Generative AI Regulation", "source": "Covington & Burling", "url": "https://www.cov.com/-/media/files/corporate/publications/2023/08/a-practitioners-guide-to-chinas-new-generative-ai-reg.pdf", "type": "law-firm"}, {"title": "Navigating China's Regulatory Approach to Generative AI and Large Language Models", "source": "Cambridge Forum on AI: Law & Governance (Zou & Zhang)", "url": "https://www.cambridge.org/core/journals/cambridge-forum-on-ai-law-and-governance/article/navigating-chinas-regulatory-approach-to-generative-artificial-intelligence-and-large-language-models/969B2055997BF42DE693B7A1A1B4E8BA", "type": "academic"}, {"title": "China's Interim Measures for Generative AI: Final vs Draft Comparison", "source": "Future of Privacy Forum", "url": "https://fpf.org/blog/chinas-interim-measures-for-the-management-of-generative-ai-services-a-comparison-between-the-final-and-draft-versions-of-the-text/", "type": "think-tank"}],
     citation: "生成式人工智能服务管理暂行办法 (Interim Measures for Generative AI Services), CAC et al. (2023)",
     name: "China — Interim Measures for Generative AI Services",
     jurisdiction: "China",
@@ -856,6 +886,7 @@ const LAWS = [
   },
   {
     id: "china-deep-synthesis",
+    commentary: [{"title": "China Brings Into Force Regulations on the Administration of Deep Synthesis, Addressing Deepfakes", "source": "A&O Shearman", "url": "https://www.aoshearman.com/en/insights/ao-shearman-on-data/china-brings-into-force-regulations-on-the-administration-of-deep-synthesis-of-internet-technology", "type": "law-firm"}, {"title": "China's New AI Regulations", "source": "Latham & Watkins", "url": "https://www.lw.com/admin/upload/SiteAttachments/Chinas-New-AI-Regulations.pdf", "type": "law-firm"}, {"title": "China's AI Regulations and How They Get Made", "source": "Carnegie Endowment (Matt Sheehan)", "url": "https://carnegieendowment.org/research/2023/07/chinas-ai-regulations-and-how-they-get-made", "type": "think-tank"}],
     citation: "互联网信息服务深度合成管理规定 (Deep Synthesis Provisions), CAC/MIIT/MPS (2022)",
     name: "China — Deep Synthesis Provisions",
     jurisdiction: "China",
@@ -876,6 +907,7 @@ const LAWS = [
   },
   {
     id: "china-labeling-measures",
+    commentary: [{"title": "China Releases New Labeling Requirements for AI-Generated Content", "source": "Covington (Inside Privacy)", "url": "https://www.insideprivacy.com/international/china/china-releases-new-labeling-requirements-for-ai-generated-content/", "type": "law-firm"}, {"title": "China's AI-Labeling Measures and Mandatory National Standards Take Effect September 1", "source": "Loeb & Loeb", "url": "https://www.loeb.com/en/insights/publications/2025/03/chinas-ai-labeling-measures-and-mandatory-national-standards-take-effect-september-1", "type": "law-firm"}, {"title": "China Released New Measures for Labelling AI-Generated and Synthetic Content", "source": "DLA Piper", "url": "https://www.technologyslegaledge.com/2025/03/china-released-new-measures-for-labelling-ai-generated-and-synthetic-content/", "type": "law-firm"}],
     citation: "人工智能生成合成内容标识办法 (Labeling Measures, 2025); mandatory standard GB 45438-2025",
     name: "China — AI Content Labeling Measures (+ standard GB 45438-2025)",
     jurisdiction: "China",
@@ -897,6 +929,7 @@ const LAWS = [
   },
   {
     id: "china-algorithm-filing",
+    commentary: [{"title": "Navigating the Complexities of AI Regulation in China", "source": "Reed Smith", "url": "https://www.reedsmith.com/en/perspectives/2024/08/navigating-the-complexities-of-ai-regulation-in-china", "type": "law-firm"}, {"title": "What China's Algorithm Registry Reveals about AI Governance", "source": "Carnegie Endowment (Sheehan & Du)", "url": "https://carnegieendowment.org/posts/2022/12/what-chinas-algorithm-registry-reveals-about-ai-governance?lang=en", "type": "think-tank"}],
     citation: "互联网信息服务算法推荐管理规定 (Algorithm Recommendation Provisions), CAC et al. (2022)",
     name: "China — Algorithm Recommendation Provisions & filing regime",
     jurisdiction: "China",
@@ -917,6 +950,7 @@ const LAWS = [
   },
   {
     id: "china-anthropomorphic-ai",
+    commentary: [{"title": "China's First Regulatory Framework for Virtual Companions Soon to Take Effect", "source": "Hunton Andrews Kurth", "url": "https://www.hunton.com/privacy-and-cybersecurity-law-blog/chinas-first-regulatory-framework-for-virtual-companions-soon-to-take-effect", "type": "law-firm"}, {"title": "China Rolls Out Interim Regulations on AI Human-Like Interaction Services: A Detailed Analysis", "source": "Geopolitechs", "url": "https://www.geopolitechs.org/p/china-rolls-out-interim-regulations", "type": "think-tank"}],
     citation: "Interim Measures for the Administration of AI Anthropomorphic Interactive Services, CAC/NDRC/MIIT/MPS/SAMR (Apr. 10, 2026)",
     name: "China — Interim Measures for AI Anthropomorphic Interactive Services",
     jurisdiction: "China",
@@ -938,6 +972,7 @@ const LAWS = [
   },
   {
     id: "korea-ai-basic-act",
+    commentary: [{"title": "South Korea's AI Basic Act: Overview and Key Takeaways", "source": "Cooley", "url": "https://www.cooley.com/news/insight/2026/2026-01-27-south-koreas-ai-basic-act-overview-and-key-takeaways", "type": "law-firm"}, {"title": "AI Basic Act and the Revised Key Guidelines Now in Effect", "source": "Kim & Chang", "url": "https://www.kimchang.com/en/insights/detail.kc?sch_section=4&idx=34018", "type": "law-firm"}, {"title": "South Korea's New AI Framework Act: A Balancing Act Between Innovation and Regulation", "source": "Future of Privacy Forum", "url": "https://fpf.org/blog/south-koreas-new-ai-framework-act-a-balancing-act-between-innovation-and-regulation/", "type": "think-tank"}],
     citation: "Framework Act on the Development of AI and Establishment of a Foundation for Trust, Act No. 20676 (promulgated Jan. 21, 2025)",
     name: "South Korea — AI Basic Act (Framework Act on AI)",
     jurisdiction: "South Korea",
@@ -959,6 +994,7 @@ const LAWS = [
   },
   {
     id: "japan-ai-promotion-act",
+    commentary: [{"title": "Japan Enacts AI Promotion Act: Overview and Implications for Businesses", "source": "ZeLo", "url": "https://zelojapan.com/en/lawsquare/56899", "type": "law-firm"}, {"title": "Japan's Emerging Framework for Responsible AI: Legislation, Guidelines and Guidance", "source": "International Bar Association", "url": "https://www.ibanet.org/japan-emerging-framework-ai-legislation-guidelines", "type": "law-firm"}, {"title": "Understanding Japan's AI Promotion Act: An 'Innovation-First' Blueprint for AI Regulation", "source": "Future of Privacy Forum", "url": "https://fpf.org/blog/understanding-japans-ai-promotion-act-an-innovation-first-blueprint-for-ai-regulation/", "type": "think-tank"}],
     citation: "Act on the Promotion of R&D and Utilization of AI-Related Technologies, Act No. 53 of 2025 (Japan)",
     name: "Japan — AI Promotion Act (Act No. 53 of 2025)",
     jurisdiction: "Japan",
@@ -979,6 +1015,7 @@ const LAWS = [
   },
   {
     id: "japan-copyright-guidance",
+    commentary: [{"title": "Japan's Draft Guidelines on AI and Copyright: Is It Really OK to Train AI Using Pirated Materials?", "source": "Squire Patton Boggs", "url": "https://www.privacyworld.blog/2024/03/japans-new-draft-guidelines-on-ai-and-copyright-is-it-really-ok-to-train-ai-using-pirated-materials/", "type": "law-firm"}, {"title": "'General Understanding' on AI and Copyright in Japan", "source": "Prof. Tatsuhiro Ueno (Waseda), WIPO Japan Office", "url": "https://www.wipo.int/documents/d/office-japan/docs-en-tatsuhiro-ueno_general-understanding-on-ai-and-copyright-in-japan_set.pdf", "type": "academic"}, {"title": "'General Understanding on AI and Copyright in Japan' — Official Overview", "source": "Japan Agency for Cultural Affairs", "url": "https://www.bunka.go.jp/english/policy/copyright/pdf/94055801_01.pdf", "type": "official"}],
     citation: "Agency for Cultural Affairs, 'General Understanding on AI and Copyright' (Mar. 2024); Checklist & Guidance (July 2024)",
     name: "Japan — Agency for Cultural Affairs guidance on AI & copyright",
     jurisdiction: "Japan",
@@ -999,6 +1036,7 @@ const LAWS = [
   },
   {
     id: "taiwan-ai-basic-act",
+    commentary: [{"title": "Taiwan: AI Basic Act", "source": "Baker McKenzie", "url": "https://www.bakermckenzie.com/en/insight/publications/2026/01/taiwan-ai-basic-act", "type": "law-firm"}, {"title": "Taiwan's AI Basic Act Can Be a Model for Asia", "source": "Tech Policy Press", "url": "https://www.techpolicy.press/taiwans-ai-basic-act-can-be-a-model-for-asia/", "type": "think-tank"}, {"title": "Striking the balance? Evaluating the governance model of Taiwan's AI basic law", "source": "Humanities & Social Sciences Communications", "url": "https://www.nature.com/articles/s41599-026-07751-6", "type": "academic"}],
     citation: "人工智慧基本法 (AI Basic Act), promulgated Jan. 14, 2026 (Taiwan)",
     name: "Taiwan — AI Basic Act",
     jurisdiction: "Taiwan",
@@ -1019,6 +1057,7 @@ const LAWS = [
   },
   {
     id: "vietnam-ai-law",
+    commentary: [{"title": "Vietnam Enacts Its First Law on AI: Key Regulatory Obligations from 1 March 2026", "source": "VILAF", "url": "https://www.vilaf.com.vn/blog/vietnam-enacts-its-first-law-on-artificial-intelligence-key-regulatory-obligations-from-1-march-2026/", "type": "law-firm"}, {"title": "A Closer Look at Vietnam's New AI Law: What It Means for AI Businesses", "source": "Tilleke & Gibbins", "url": "https://www.tilleke.com/insights/a-closer-look-at-vietnams-new-ai-law-what-it-means-for-ai-businesses/", "type": "law-firm"}, {"title": "Vietnam: Artificial Intelligence Law — Foundation and Outlook", "source": "Baker McKenzie", "url": "https://www.bakermckenzie.com/en/insight/publications/2026/02/vietnam-artificial-intelligence-law-foundation-and-outlook", "type": "law-firm"}],
     citation: "Law on Artificial Intelligence, No. 134/2025/QH15 (Dec. 10, 2025)",
     name: "Vietnam — Law on Artificial Intelligence (No. 134/2025/QH15)",
     jurisdiction: "Vietnam",
@@ -1040,6 +1079,7 @@ const LAWS = [
   },
   {
     id: "india-it-rules-2026",
+    commentary: [{"title": "India targets deepfakes and AI-generated content: key changes under MeitY's 2026 amendments to the IT Rules", "source": "Freshfields", "url": "https://www.freshfields.com/en/our-thinking/blogs/technology-quotient/india-targets-deepfakes-and-ai-generated-content-key-changes-under-meitys-2026-102mjwn", "type": "law-firm"}, {"title": "Government Notifies Information Technology Amendment Rules 2026", "source": "S.S. Rana & Co. (Chambers)", "url": "https://chambers.com/articles/government-notifies-information-technology-amendment-rules-2026", "type": "law-firm"}, {"title": "India's Synthetic Media Rules Build Enforcement on the Wrong Foundation", "source": "WITNESS", "url": "https://www.witness.org/indias-synthetic-media-rules-build-enforcement-on-the-wrong-foundation/", "type": "think-tank"}],
     citation: "IT (Intermediary Guidelines and Digital Media Ethics Code) Amendment Rules, 2026, G.S.R. 120(E) (Feb. 10, 2026)",
     name: "India — IT Amendment Rules, 2026 (synthetically generated information)",
     jurisdiction: "India",
@@ -1061,6 +1101,7 @@ const LAWS = [
   },
   {
     id: "singapore-elections-deepfakes",
+    commentary: [{"title": "New Measures against Digitally Manipulated Content and Deepfakes during Elections", "source": "Rajah & Tann", "url": "https://www.rajahtannasia.com/viewpoints/new-measures-against-digitally-manipulated-content-and-deepfakes-during-elections/", "type": "law-firm"}, {"title": "Singapore bans deepfakes in elections", "source": "Reed Smith", "url": "https://www.reedsmith.com/en/perspectives/2024/11/singapore-bans-deepfakes-in-elections", "type": "law-firm"}, {"title": "Singapore: Ban on deepfake content depicting election candidates comes into effect", "source": "Baker McKenzie Wong & Leow", "url": "https://connectontech.bakermckenzie.com/singapore-ban-on-the-publication-boosting-sharing-and-reposting-of-deepfake-content-depicting-election-candidates-comes-into-effect/", "type": "law-firm"}],
     citation: "Elections (Integrity of Online Advertising) (Amendment) Act 2024 (Singapore)",
     name: "Singapore — Elections (Integrity of Online Advertising) Amendment Act",
     jurisdiction: "Singapore",
@@ -1081,6 +1122,7 @@ const LAWS = [
   },
   {
     id: "singapore-genai-framework",
+    commentary: [{"title": "Singapore launches Model AI Governance Framework for Generative AI", "source": "Allen & Gledhill", "url": "https://www.allenandgledhill.com/sg/publication/articles/28262/launches-model-ai-governance-framework-for-generative-ai", "type": "law-firm"}, {"title": "The Model AI Governance Framework for Generative AI", "source": "WongPartnership", "url": "https://www.wongpartnership.com/insights/detail/the-model-ai-governance-framework-for-generative-ai-5", "type": "law-firm"}, {"title": "Singapore AI Guidance: Governance, Data Protection, and Legal Responsibility (2026 developments)", "source": "Latham & Watkins", "url": "https://www.lw.com/en/insights/singapore-ai-guidance-governance-data-protection-and-legal-responsibility", "type": "law-firm"}],
     citation: "IMDA & AI Verify Foundation, Model AI Governance Framework for Generative AI (30 May 2024)",
     name: "Singapore — Model AI Governance Framework for Generative AI",
     jurisdiction: "Singapore",
@@ -1101,6 +1143,7 @@ const LAWS = [
   },
   {
     id: "australia-deepfake-criminal",
+    commentary: [{"title": "The Criminal Code Amendment (Deepfake Sexual Material) Act 2024 — policy reform to strengthen online safety", "source": "Carroll & O'Dea", "url": "https://www.codea.com.au/publication/the-criminal-code-amendment-deepfake-sexual-material-act-2024-policy-reform-to-strengthen-online-safety-in-australia/", "type": "law-firm"}, {"title": "The Deepfake Sexual Material Act 2024 — What's next?", "source": "College of Law (Australia)", "url": "https://www.collaw.edu.au/community/news/the-deepfake-sexual-material-act-2024-whats-next/", "type": "academic"}, {"title": "Deepfake Sexual Material Bill introduced", "source": "Law Society Journal (NSW)", "url": "https://lsj.com.au/articles/deepfake-sexual-material-bill-introduced/", "type": "official"}],
     citation: "Criminal Code Amendment (Deepfake Sexual Material) Act 2024 (Cth), No. 78 of 2024",
     name: "Australia — Criminal Code Amendment (Deepfake Sexual Material) Act 2024",
     jurisdiction: "Australia",
@@ -1121,6 +1164,7 @@ const LAWS = [
   },
   {
     id: "australia-ai-guidance",
+    commentary: [{"title": "Responsible use of AI: call for submissions on new safety Standard", "source": "Johnson Winter Slattery", "url": "https://jws.com.au/insights/articles/2024/responsible-use-of-ai-call-for-submissions-on-new", "type": "law-firm"}, {"title": "Australia now has a National AI Plan. Now What?", "source": "Piper Alderman", "url": "https://piperalderman.com.au/insight/australia-now-has-a-national-ai-plan-now-what/", "type": "law-firm"}, {"title": "On our terms: Australia announces world-first AI framework", "source": "MinterEllisonRuddWatts", "url": "https://minterellison.co.nz/insights/on-our-terms-australia-announces-world-first-ai-framework", "type": "law-firm"}],
     citation: "DISR, Voluntary AI Safety Standard (Sept. 2024); National AI Centre, Guidance for AI Adoption (Oct. 2025)",
     name: "Australia — Voluntary AI Safety Standard & National AI Plan",
     jurisdiction: "Australia",
@@ -1141,6 +1185,7 @@ const LAWS = [
   },
   {
     id: "uae-ai-charter",
+    commentary: [{"title": "AI in the UAE: Understanding the Regulatory Landscape and Key Authorities", "source": "Latham & Watkins", "url": "https://www.lw.com/en/insights/ai-in-the-uae-understanding-the-regulatory-landscape-and-key-authorities", "type": "law-firm"}, {"title": "Regulation 10 of the DIFC Data Protection Law: Why it matters for Autonomous Systems", "source": "Clyde & Co", "url": "https://www.clydeco.com/en/insights/2026/01/regulation-10-of-the-difc-data-protection-law", "type": "law-firm"}, {"title": "AI Regulation in the DIFC: Personal Data Processed through Autonomous and Semi-Autonomous Systems", "source": "Mayer Brown", "url": "https://www.mayerbrown.com/en/insights/publications/2026/01/ai-regulation-in-the-difc-personal-data-processed-through-autonomous-and-semi-autonomous-systems", "type": "law-firm"}],
     citation: "UAE Charter for the Development and Use of Artificial Intelligence (UAE AI Office, July 2024)",
     name: "UAE — Charter for the Development and Use of AI",
     jurisdiction: "United Arab Emirates",
@@ -1169,6 +1214,7 @@ const CASES = [
   /* ============ US COPYRIGHT / TRAINING-DATA LITIGATION ============ */
   {
     id: "bartz-v-anthropic",
+    commentary: [{"title": "Landmark Ruling on AI Copyright: Fair Use vs. Infringement in Bartz v. Anthropic", "source": "ArentFox Schiff", "url": "https://www.afslaw.com/perspectives/alerts/landmark-ruling-ai-copyright-fair-use-vs-infringement-bartz-v-anthropic", "type": "law-firm"}, {"title": "The Bartz v. Anthropic Settlement: Understanding America's Largest Copyright Settlement", "source": "Kluwer Copyright Blog", "url": "https://legalblogs.wolterskluwer.com/copyright-blog/the-bartz-v-anthropic-settlement-understanding-americas-largest-copyright-settlement/", "type": "academic"}, {"title": "Bartz v. Anthropic Settlement Receives Final Approval", "source": "Authors Alliance", "url": "https://www.authorsalliance.org/2026/07/21/bartz-v-anthropic-settlement-receives-final-approval/", "type": "think-tank"}],
     citation: "Bartz v. Anthropic PBC, No. 3:24-cv-05417 (N.D. Cal.)",
     name: "Bartz v. Anthropic",
     court: "N.D. Cal.",
@@ -1191,6 +1237,7 @@ const CASES = [
   },
   {
     id: "kadrey-v-meta",
+    commentary: [{"title": "Two US decisions find that reproducing works to train large language models is fair use — Part 2: Kadrey v Meta", "source": "Norton Rose Fulbright", "url": "https://www.nortonrosefulbright.com/en/knowledge/publications/29109e7a/two-us-decisions-find-that-reproducing-works-to-train", "type": "law-firm"}, {"title": "Kadrey v. Meta: Will Market Dilution Reshape AI Copyright Law?", "source": "Mass Law Blog (Gesmer Updegrove)", "url": "https://masslawblog.com/copyright/kadrey-v-meta-will-market-dilution-reshape-ai-copyright-law/", "type": "law-firm"}, {"title": "Generative AI: When Fair Use Becomes Unfair Competition", "source": "George Mason Law Review", "url": "https://lawreview.gmu.edu/print__issues/generative-ai-when-fair-use-becomes-unfair-competition/", "type": "academic"}],
     citation: "Kadrey v. Meta Platforms, Inc., No. 3:23-cv-03417 (N.D. Cal.)",
     name: "Kadrey v. Meta Platforms",
     court: "N.D. Cal.",
@@ -1212,6 +1259,7 @@ const CASES = [
   },
   {
     id: "nyt-v-openai",
+    commentary: [{"title": "From Copyright Case to AI Data Crisis: How NYT v. OpenAI Reshapes Companies' Data Governance and eDiscovery Strategy", "source": "Nelson Mullins", "url": "https://www.nelsonmullins.com/insights/blogs/corporate-governance-insights/all/from-copyright-case-to-ai-data-crisis-how-the-new-york-times-v-openai-reshapes-companies-data-governance-and-ediscovery-strategy", "type": "law-firm"}, {"title": "OpenAI Loses Privacy Gambit: 20 Million ChatGPT Logs Likely Headed to Copyright Plaintiffs", "source": "Jones Walker (AI Law Blog)", "url": "https://www.joneswalker.com/en/insights/blogs/ai-law-blog/openai-loses-privacy-gambit-20-million-chatgpt-logs-likely-headed-to-copyright-p.html?id=102lzo9", "type": "law-firm"}],
     citation: "N.Y. Times Co. v. Microsoft Corp., No. 1:23-cv-11195 (S.D.N.Y.); In re OpenAI, Inc. Copyright Infringement Litig., MDL No. 3143",
     name: "New York Times v. OpenAI & Microsoft",
     court: "S.D.N.Y. (MDL 3143)",
@@ -1233,6 +1281,7 @@ const CASES = [
   },
   {
     id: "authors-guild-v-openai",
+    commentary: [{"title": "Court Denies OpenAI's Motion to Dismiss Claims that ChatGPT Infringed Game of Thrones Author's Rights", "source": "Cullen and Dykman", "url": "https://www.cullenllp.com/blog/ai-lawsuits-are-coming-court-denies-openais-motion-to-dismiss-claims-that-chatgpt-infringed-game-of-thrones-authors-rights/", "type": "law-firm"}, {"title": "Judge Stein denies OpenAI's motion to dismiss the infringing-outputs claim", "source": "Chat GPT Is Eating the World (Prof. Edward Lee)", "url": "https://chatgptiseatingtheworld.com/2025/10/27/judge-stein-issues-opinion-denying-openais-motion-to-dismiss-claim-based-on-allegations-of-some-infringing-outputs/", "type": "academic"}],
     citation: "Authors Guild v. OpenAI, Inc., No. 1:23-cv-08292 (S.D.N.Y.); MDL No. 3143",
     name: "Authors Guild v. OpenAI",
     court: "S.D.N.Y. (MDL 3143)",
@@ -1254,6 +1303,7 @@ const CASES = [
   },
   {
     id: "thomson-reuters-v-ross",
+    commentary: [{"title": "IP Hot Topic: Third Circuit Probes Fair Use in Thomson Reuters v. Ross Intelligence", "source": "Sterne Kessler", "url": "https://www.sternekessler.com/news-insights/client-alerts/ip-hot-topic-third-circuit-probes-fair-use-in-thomson-reuters-v-ross-intelligence/", "type": "law-firm"}, {"title": "Third Circuit Hears Oral Argument in Ross v. Reuters AI Training Copyright Case", "source": "Baker Botts", "url": "https://www.bakerbotts.com/thought-leadership/publications/2026/july/third-circuit-hears-oral-argument", "type": "law-firm"}, {"title": "Amicus Briefs in 'Thomson Reuters v. Ross' Urge Application of Established Standards of Copyrightability, Fair Use", "source": "Copyright Alliance", "url": "https://copyrightalliance.org/thomson-reuters-v-ross-amicus-briefs/", "type": "think-tank"}],
     citation: "Thomson Reuters Enter. Centre GmbH v. Ross Intelligence Inc., No. 1:20-cv-00613 (D. Del.); No. 25-2153 (3d Cir.)",
     name: "Thomson Reuters v. Ross Intelligence",
     court: "3d Cir. (from D. Del.)",
@@ -1275,6 +1325,7 @@ const CASES = [
   },
   {
     id: "getty-v-stability-us",
+    commentary: [{"title": "Trademark Law Meets Generative AI: Key Takeaways from the Getty v. Stability AI Ruling", "source": "Baker Botts", "url": "https://ourtake.bakerbotts.com/post/102n2ty/trademark-law-meets-generative-ai-key-takeaways-from-the-getty-v-stability-ai-r", "type": "law-firm"}, {"title": "Getty Images (US), Inc. v. Stability AI, Ltd. — April 2026 ruling summary", "source": "Loeb & Loeb", "url": "https://www.loeb.com/en/insights/publications/2026/04/getty-images-us-inc-v-stability-ai-ltd", "type": "law-firm"}, {"title": "Getty Images mostly wins, surviving motion to dismiss except the DMCA CMI claim", "source": "Chat GPT Is Eating the World (Prof. Edward Lee)", "url": "https://chatgptiseatingtheworld.com/2026/04/24/getty-images-mostly-wins-surviving-motion-to-dismiss-claims-except-for-dmca-cmi-claim-but-can-amend-that-claim-in-light-of-judge-thompsons-ruling/", "type": "academic"}],
     citation: "Getty Images (US), Inc. v. Stability AI, Inc., No. 3:25-cv-06891 (N.D. Cal.)",
     name: "Getty Images v. Stability AI (US)",
     court: "N.D. Cal. (refiled from D. Del.)",
@@ -1296,6 +1347,7 @@ const CASES = [
   },
   {
     id: "andersen-v-stability",
+    commentary: [{"title": "California Federal Court Trims Lawsuit Against Stability AI, Midjourney, and DeviantArt in Generative AI Artwork Case", "source": "Crowell & Moring", "url": "https://www.crowell.com/en/insights/client-alerts/california-federal-court-trims-lawsuit-against-stability-ai-midjourney-and-deviantart-in-generative-ai-artwork-case", "type": "law-firm"}, {"title": "Andersen v. Stability AI: The Landmark Case Unpacking the Copyright Risks of AI Image Generators", "source": "NYU JIPEL", "url": "https://jipel.law.nyu.edu/andersen-v-stability-ai-the-landmark-case-unpacking-the-copyright-risks-of-ai-image-generators/", "type": "academic"}, {"title": "Top Takeaways from Order in the Andersen v. Stability AI Copyright Case", "source": "Copyright Alliance", "url": "https://copyrightalliance.org/andersen-v-stability-ai-copyright-case/", "type": "think-tank"}],
     citation: "Andersen v. Stability AI Ltd., No. 3:23-cv-00201 (N.D. Cal.)",
     name: "Andersen v. Stability AI, Midjourney, DeviantArt & Runway",
     court: "N.D. Cal.",
@@ -1317,6 +1369,7 @@ const CASES = [
   },
   {
     id: "concord-v-anthropic",
+    commentary: [{"title": "Concord Music Group v. Anthropic — Interim Development Narrows Issues in Pending Preliminary Injunction Motion", "source": "Quinn Emanuel", "url": "https://www.quinnemanuel.com/the-firm/publications/client-alert-concord-music-group-inc-et-al-v-anthropic-pbc-interim-development-narrows-issues-in-pending-preliminary-injunction-motion/", "type": "law-firm"}, {"title": "Concord Music Group, Inc. v. Anthropic PBC", "source": "Loeb & Loeb", "url": "https://www.loeb.com/en/insights/publications/2025/04/concord-music-group-inc-v-anthropic-pbc", "type": "law-firm"}, {"title": "Music publishers file amended lyrics lawsuit against Anthropic", "source": "Music Business Worldwide", "url": "https://www.musicbusinessworldwide.com/music-publishers-file-amended-lyrics-lawsuit-against-anthropic-just-as-ai-firms-separate-1-5b-piracy-settlement-with-authors-wins-court-approval/", "type": "think-tank"}],
     citation: "Concord Music Grp., Inc. v. Anthropic PBC, No. 5:24-cv-03811 (N.D. Cal.); second action filed Jan. 2026",
     name: "Concord Music Group v. Anthropic",
     court: "N.D. Cal.",
@@ -1338,6 +1391,7 @@ const CASES = [
   },
   {
     id: "umg-v-suno",
+    commentary: [{"title": "AI Infringement Case Updates: December 22, 2025", "source": "McKool Smith", "url": "https://www.mckoolsmith.com/newsroom-ailitigation-49", "type": "law-firm"}, {"title": "Why a fight over 61,000 recordings could shape the future of AI music licensing", "source": "Music Business Worldwide", "url": "https://www.musicbusinessworldwide.com/why-a-fight-over-61000-recordings-could-shape-the-future-of-ai-music-licensing/", "type": "think-tank"}],
     citation: "UMG Recordings, Inc. v. Suno, Inc., No. 1:24-cv-11611 (D. Mass.)",
     name: "UMG Recordings v. Suno",
     court: "D. Mass.",
@@ -1359,6 +1413,7 @@ const CASES = [
   },
   {
     id: "umg-v-udio",
+    commentary: [{"title": "UMG Records v. Uncharted Labs, Inc.", "source": "Loeb & Loeb", "url": "https://www.loeb.com/en/insights/publications/2026/04/umg-records-v-uncharted-labs-inc", "type": "law-firm"}, {"title": "What UMG's AI Partnerships with Udio and Stability AI Mean for Artists and the Music Industry", "source": "Manatt", "url": "https://www.manatt.com/insights/newsletters/client-alert/what-umg-s-ai-partnerships-with-udio-and-stability-ai-mean-for-artists-and-the-music-industry", "type": "law-firm"}, {"title": "Universal Music settles Udio lawsuit, strikes deal for licensed AI music platform", "source": "Music Business Worldwide", "url": "https://www.musicbusinessworldwide.com/universal-music-settles-udio-lawsuit-strikes-deal-for-licensed-ai-music-platform/", "type": "think-tank"}],
     citation: "UMG Recordings, Inc. v. Uncharted Labs, Inc., No. 1:24-cv-04777 (S.D.N.Y.)",
     name: "UMG Recordings v. Uncharted Labs (Udio)",
     court: "S.D.N.Y.",
@@ -1380,6 +1435,7 @@ const CASES = [
   },
   {
     id: "disney-v-midjourney",
+    commentary: [{"title": "Progress or plagiarism? The Disney & Universal lawsuit shaping AI and copyright law", "source": "Ashurst Perkins Coie", "url": "https://www.ashurstperkinscoie.com/en/insights/ip-ashurst-update-progress-or-plagiarism-the-disney-universal-lawsuit-shaping-ai/", "type": "law-firm"}, {"title": "AI Infringement Case Updates: July 13, 2026", "source": "McKool Smith", "url": "https://www.mckoolsmith.com/newsroom-ailitigation-64", "type": "law-firm"}, {"title": "Disney, NBC Universal, and DreamWorks File Major IP Lawsuit Against AI Image Generator Midjourney", "source": "Georgetown Law Tech Institute", "url": "https://www.law.georgetown.edu/tech-institute/research-insights/insights/disney-nbc-universal-and-dreamworks-file-major-ip-lawsuit-against-ai-image-generator-midjourney/", "type": "academic"}],
     citation: "Disney Enters., Inc. v. Midjourney, Inc., No. 2:25-cv-05275 (C.D. Cal.) (consolidated)",
     name: "Disney & Universal v. Midjourney (consol. with Warner Bros.)",
     court: "C.D. Cal.",
@@ -1401,6 +1457,7 @@ const CASES = [
   },
   {
     id: "dow-jones-v-perplexity",
+    commentary: [{"title": "Generative AI Meets Generative Litigation: News Corp Continues Its Battle Against Perplexity AI", "source": "ArentFox Schiff", "url": "https://www.afslaw.com/perspectives/ai-law-blog/generative-ai-meets-generative-litigation-news-corp-continues-its-battle", "type": "law-firm"}, {"title": "Dow Jones & Company Inc. v. Perplexity AI Inc.", "source": "Loeb & Loeb", "url": "https://www.loeb.com/en/insights/publications/2025/08/dow-jones-and-company-inc-v-perplexity-ai-inc", "type": "law-firm"}],
     citation: "Dow Jones & Co. v. Perplexity AI, Inc., No. 1:24-cv-07984 (S.D.N.Y.)",
     name: "Dow Jones & NYP Holdings v. Perplexity AI",
     court: "S.D.N.Y.",
@@ -1422,6 +1479,7 @@ const CASES = [
   },
   {
     id: "reddit-v-serpapi-perplexity",
+    commentary: [{"title": "Reddit vs Perplexity and the Future of AI Data Ethics", "source": "Kronenberger Rosenfeld", "url": "https://kr.law/news/article-detail/reddit-vs-perplexity-and-the-future-of-ai-data-ethics", "type": "law-firm"}, {"title": "Reddit keeps its strange DMCA fight over Google search results alive", "source": "RightsTech Project", "url": "https://rightstech.com/2026/08/reddit-keeps-its-strange-dmca-fight-over-google-search-results-alive/", "type": "think-tank"}],
     citation: "Reddit, Inc. v. SerpApi, LLC et al. (S.D.N.Y., opinion July 31, 2026)",
     name: "Reddit v. SerpApi & Perplexity AI",
     court: "S.D.N.Y.",
@@ -1443,6 +1501,7 @@ const CASES = [
   },
   {
     id: "doe-v-github",
+    commentary: [{"title": "DMCA Question Certified for Appellate Court in Action Involving Artificial Intelligence", "source": "Venable", "url": "https://www.venable.com/insights/publications/2024/10/dmca-question-certified-for-appellate-court", "type": "law-firm"}, {"title": "Beyond Infringement: Rethinking DMCA § 1202 for Generative AI", "source": "Stanford Law Review", "url": "https://www.stanfordlawreview.org/print/article/beyond-infringement-rethinking-dmca-%C2%A7-1202/", "type": "academic"}, {"title": "Do as I Say, Not as I Code: GitHub's Copilot Prompts IP Litigation with International Implications", "source": "NYU Guarini Global Law & Tech", "url": "https://www.guariniglobal.org/gglt-publications/2025/4/23/do-as-i-say-not-as-i-code-githubs-copilot-prompts-ip-litigation-with-international-implications", "type": "academic"}],
     citation: "Doe v. GitHub, Inc., No. 4:22-cv-06823 (N.D. Cal.); No. 24-6136 (9th Cir.)",
     name: "Doe v. GitHub, Microsoft & OpenAI (Copilot)",
     court: "9th Cir. (from N.D. Cal.)",
@@ -1466,6 +1525,7 @@ const CASES = [
   /* ============ US CONSTITUTIONAL, LIABILITY & PERSONALITY CASES ============ */
   {
     id: "kohls-v-bonta",
+    commentary: [{"title": "Court Enjoins California's Anti-'Political Deepfakes' Law Because It's Unconstitutional Censorship — Kohls v. Bonta", "source": "Eric Goldman, Technology & Marketing Law Blog", "url": "https://blog.ericgoldman.org/archives/2024/10/court-enjoins-californias-anti-political-deepfakes-law-ab-2839-because-its-unconstitutional-censorship-kohls-v-bonta.htm", "type": "academic"}, {"title": "California Law Restricting 'Materially Deceptive' Election-Related Deepfakes Violates First Amendment", "source": "The Volokh Conspiracy (Reason)", "url": "https://reason.com/volokh/2025/08/29/california-law-restricting-materially-deceptive-election-related-deepfakes-violates-first-amendment/", "type": "academic"}, {"title": "2024 Year in Review: Navigating California's Landmark Deepfake Legislation", "source": "Morrison Foerster", "url": "https://www.mofo.com/resources/insights/241211-2024-year-in-review-navigating-california-s-landmark-deepfake-legislation", "type": "law-firm"}],
     citation: "Kohls v. Bonta, No. 2:24-cv-02527 (E.D. Cal.); No. 25-6138 (9th Cir.)",
     name: "Kohls v. Bonta",
     court: "9th Cir. (from E.D. Cal.)",
@@ -1487,6 +1547,7 @@ const CASES = [
   },
   {
     id: "xai-v-weiser",
+    commentary: [{"title": "X.AI sues, DOJ intervenes, enforcement of Colorado's AI Act suspended", "source": "Norton Rose Fulbright", "url": "https://www.nortonrosefulbright.com/en-us/knowledge/publications/de3ad9de/xai-sues-doj-intervenes-enforcement-of-colorado-ai-act-suspended", "type": "law-firm"}, {"title": "xAI Sues to Enjoin Colorado's AI Act Before June 30 Effective Date", "source": "Baker Botts", "url": "https://ourtake.bakerbotts.com/post/102mpre/xai-sues-to-enjoin-colorados-ai-act-before-june-30-effective-date", "type": "law-firm"}, {"title": "DOJ Intervenes in Lawsuit Challenging Colorado's 'Algorithmic Discrimination' Law", "source": "Barnes & Thornburg (National Law Review)", "url": "https://natlawreview.com/article/doj-intervenes-lawsuit-challenging-colorados-algorithmic-discrimination-law", "type": "law-firm"}],
     citation: "xAI Corp. v. Weiser (D. Colo., filed Apr. 9, 2026)",
     name: "xAI v. Weiser",
     court: "D. Colo.",
@@ -1507,6 +1568,7 @@ const CASES = [
   },
   {
     id: "xai-v-bonta",
+    commentary: [{"title": "When Courts Become the Regulator: The xAI Decision and What California's AI Transparency Law Actually Means", "source": "Jones Walker (AI Law Blog)", "url": "https://www.joneswalker.com/en/insights/blogs/ai-law-blog/when-courts-become-the-regulator-the-xai-decision-and-what-californias-ai-trans.html", "type": "law-firm"}, {"title": "First Amendment Questions for AI Transparency Laws", "source": "Lawfare", "url": "https://www.lawfaremedia.org/article/first-amendment-questions-for-ai-transparency-laws", "type": "think-tank"}],
     citation: "xAI Corp. v. Bonta (C.D. Cal.; 9th Cir. appeal argued July 2026)",
     name: "xAI v. Bonta",
     court: "9th Cir. (from C.D. Cal.)",
@@ -1527,6 +1589,7 @@ const CASES = [
   },
   {
     id: "lehrman-v-lovo",
+    commentary: [{"title": "New York Court Tackles the Legality of AI Voice Cloning", "source": "Skadden", "url": "https://www.skadden.com/insights/publications/2025/07/new-york-court-tackles-the-legality-of-ai-voice-cloning", "type": "law-firm"}, {"title": "Lehrman v. Lovo Inc. — IP/Entertainment Case Law Update", "source": "Loeb & Loeb", "url": "https://www.loeb.com/en/insights/publications/2025/07/lehrman-v-lovo-inc", "type": "law-firm"}],
     citation: "Lehrman v. Lovo, Inc., No. 1:24-cv-03770 (S.D.N.Y.)",
     name: "Lehrman v. Lovo, Inc.",
     court: "S.D.N.Y.",
@@ -1548,6 +1611,7 @@ const CASES = [
   },
   {
     id: "garcia-v-character-ai",
+    commentary: [{"title": "Addiction Lawsuit Against Character AI Can Proceed — Garcia v. Character Technologies", "source": "Eric Goldman, Technology & Marketing Law Blog", "url": "https://blog.ericgoldman.org/archives/2025/05/addiction-lawsuit-against-character-ai-can-proceed-garcia-v-character-technologies.htm", "type": "academic"}, {"title": "Lawsuit analyzes First Amendment protection for AI chatbots in civil case", "source": "National Constitution Center", "url": "https://constitutioncenter.org/blog/lawsuit-analyzes-first-amendment-protection-for-ai-chatbots-in-civil-case", "type": "think-tank"}],
     citation: "Garcia v. Character Techs., Inc., No. 6:24-cv-01903 (M.D. Fla.)",
     name: "Garcia v. Character Technologies",
     court: "M.D. Fla.",
@@ -1569,6 +1633,7 @@ const CASES = [
   },
   {
     id: "raine-v-openai",
+    commentary: [{"title": "From Code to Courtroom: Raine v. OpenAI and the Future of AI Responsibility", "source": "Tyson & Mendes (defense-bar analysis)", "url": "https://www.tysonmendes.com/raine-v-openai-ai-product-liability-lawsuit/", "type": "law-firm"}, {"title": "Litigation Case Study: OpenAI", "source": "Center for Humane Technology (consults for plaintiffs' co-counsel)", "url": "https://www.humanetech.com/case-study/litigation-case-study-openai", "type": "think-tank"}],
     citation: "Raine v. OpenAI, Inc., No. CGC-25-628528 (Cal. Super. Ct., S.F. Cty.)",
     name: "Raine v. OpenAI",
     court: "Cal. Super. Ct. (San Francisco)",
@@ -1588,6 +1653,7 @@ const CASES = [
   },
   {
     id: "millette-v-openai",
+    commentary: [{"title": "OpenAI sued in Millette v. OpenAI over use of YouTube videos to train AI — but no copyright claims raised", "source": "Chat GPT Is Eating the World (Prof. Edward Lee)", "url": "https://chatgptiseatingtheworld.com/2024/08/05/openai-sued-again-in-in-millette-v-openai-based-on-use-of-youtube-videos-to-train-ai-but-no-copyright-claims-raised-download-complaint-pdf/", "type": "academic"}],
     citation: "Millette v. OpenAI, Inc., No. 5:24-cv-04710 (N.D. Cal.), consol. in MDL No. 3143 (S.D.N.Y.)",
     name: "Millette v. OpenAI (YouTube transcripts class actions)",
     court: "S.D.N.Y. (MDL 3143)",
@@ -1608,6 +1674,7 @@ const CASES = [
   },
   {
     id: "us-ai-enforcement",
+    commentary: [{"title": "Rising AI Enforcement: Insights From State AG Settlement and FTC Sweep for Risk Management and Governance", "source": "Sidley Austin (Data Matters)", "url": "https://datamatters.sidley.com/2024/12/10/rising-ai-enforcement-insights-from-state-attorney-general-settlement-and-u-s-ftc-sweep-for-risk-management-and-governance/", "type": "law-firm"}, {"title": "Novel Settlement Reached in Generative AI Deceptive Trade Practices Healthcare Investigation", "source": "Holland & Knight", "url": "https://www.hklaw.com/en/insights/publications/2024/09/novel-settlement-reached-in-generative-ai-deceptive-trade-practices", "type": "law-firm"}],
     citation: "In re Rytr LLC, FTC File No. 232-3052 (order set aside Dec. 2025); Texas v. Pieces Techs. (AVC, Sept. 2024)",
     name: "FTC v. Rytr (Operation AI Comply) & Texas v. Pieces Technologies",
     court: "FTC (administrative) / Texas AG",
@@ -1629,6 +1696,7 @@ const CASES = [
   },
   {
     id: "walters-v-openai",
+    commentary: [{"title": "ChatGPT Defeats Defamation Lawsuit Over Hallucination — Walters v. OpenAI", "source": "Eric Goldman, Technology & Marketing Law Blog", "url": "https://blog.ericgoldman.org/archives/2025/05/chatgpt-defeats-defamation-lawsuit-over-hallucination-walters-v-openai.htm", "type": "academic"}, {"title": "Georgia Court Dismisses Defamation Lawsuit Against OpenAI Over ChatGPT Output", "source": "Cleary Gottlieb", "url": "https://www.clearyiptechinsights.com/2025/05/georgia-court-dismisses-defamation-lawsuit-against-openai-over-chatgpt-output/", "type": "law-firm"}],
     citation: "Walters v. OpenAI, L.L.C., No. 23-A-04860-2 (Ga. Super. Ct., Gwinnett Cty., May 19, 2025)",
     name: "Walters v. OpenAI",
     court: "Ga. Super. Ct.",
@@ -1650,6 +1718,7 @@ const CASES = [
   },
   {
     id: "starbuck-v-google",
+    commentary: [{"title": "What Starbuck v. Google Reveals About AI Liability", "source": "The Regulatory Review (Penn)", "url": "https://www.theregreview.org/2025/12/22/andrews-what-starbuck-v-google-reveals-about-ai-liability/", "type": "academic"}, {"title": "Robby Starbuck's Lawsuit Alleging Google AI Defamed Him Can Go Forward", "source": "The Volokh Conspiracy (Reason)", "url": "https://reason.com/volokh/2026/07/24/conservative-commentator-robby-starbucks-lawsuit-alleging-google-ai-had-defamed-him-can-go-forward/", "type": "academic"}],
     citation: "Starbuck v. Google LLC (Del. Super. Ct., filed Oct. 22, 2025)",
     name: "Starbuck v. Google (and Starbuck v. Meta, settled)",
     court: "Del. Super. Ct.",
@@ -1670,6 +1739,7 @@ const CASES = [
   },
   {
     id: "canadian-news-v-openai",
+    commentary: [{"title": "A Real and Substantial Connection: Ontario Court Confirms Jurisdiction in AI Copyright Case", "source": "Loopstra Nixon", "url": "https://www.loopstranixon.com/insights/publication/a-real-and-substantial-connection--ontario-court-confirms-jurisdiction-in-ai-copyright-case", "type": "law-firm"}, {"title": "No Office, No Problem: Canadian Courts Assert Jurisdiction Over U.S. Companies for IP Infringement", "source": "Miller Canfield", "url": "https://www.millercanfield.com/resources-Canadian-Courts-Assert-Jurisdiction-Over-US-Companies-Intellectual-Property-Infringement.html", "type": "law-firm"}],
     citation: "Toronto Star Newspapers Ltd. v. OpenAI, Inc. (Ont. Sup. Ct. J., filed Nov. 2024)",
     name: "Canadian news publishers v. OpenAI (CBC, Torstar, Globe and Mail et al.)",
     court: "Ontario Superior Court",
@@ -1693,6 +1763,7 @@ const CASES = [
   /* ============ EUROPE ============ */
   {
     id: "getty-v-stability-uk",
+    commentary: [{"title": "Getty Images v. Stability AI: English High Court Rejects Secondary Copyright Claim", "source": "Latham & Watkins", "url": "https://www.lw.com/en/insights/getty-images-v-stability-ai-english-high-court-rejects-secondary-copyright-claim", "type": "law-firm"}, {"title": "Getty Images v Stability AI: What the High Court's Decision Means for Rights-Holders and AI Developers", "source": "Mayer Brown", "url": "https://www.mayerbrown.com/en/insights/publications/2025/11/getty-images-v-stability-ai-what-the-high-courts-decision-means-for-rights-holders-and-ai-developers", "type": "law-firm"}, {"title": "Getty Images v Stability: Long-awaited judgment rejects majority of Getty's claim", "source": "The IPKat", "url": "https://ipkitten.blogspot.com/2025/11/getty-images-v-stability-long-awaited.html", "type": "academic"}],
     citation: "Getty Images (US) Inc. v. Stability AI Ltd. [2025] EWHC 2863 (Ch); appeal pending",
     name: "Getty Images v. Stability AI (UK)",
     court: "UK High Court → Court of Appeal",
@@ -1714,6 +1785,7 @@ const CASES = [
   },
   {
     id: "gema-v-openai",
+    commentary: [{"title": "GEMA vs. OpenAI: Munich Regional Court I issues landmark copyright decision", "source": "CMS Germany", "url": "https://cms.law/en/deu/legal-updates/gema-vs.-openai-munich-regional-court-i-issues-landmark-copyright-decision", "type": "law-firm"}, {"title": "Germany delivers landmark copyright ruling against OpenAI: What it means for AI and IP", "source": "Norton Rose Fulbright (Inside Tech Law)", "url": "https://www.insidetechlaw.com/blog/2025/11/germany-delivers-landmark-copyright-ruling-against-openai-what-it-means-for-ai-and-ip", "type": "law-firm"}, {"title": "GEMA vs. OpenAI: Landmark ruling on AI language models and copyright law", "source": "Heuking", "url": "https://www.heuking.de/en/news-events/newsletter-articles/detail/gema-vs-openai-landmark-ruling-on-ai-language-models-and-copyright-law.html", "type": "law-firm"}],
     citation: "GEMA v. OpenAI, LG München I, 42 O 14139/24 (Nov. 11, 2025); appeal pending (OLG München)",
     name: "GEMA v. OpenAI",
     court: "Munich Regional Court I → OLG München",
@@ -1735,6 +1807,7 @@ const CASES = [
   },
   {
     id: "gema-v-suno",
+    commentary: [{"title": "GEMA notches a second transatlantic AI copyright win in Germany", "source": "Reed Smith", "url": "https://www.reedsmith.com/our-insights/blogs/viewpoints/102nfis/gema-notches-a-second-transatlantic-ai-copyright-win-in-germany/", "type": "law-firm"}, {"title": "GEMA v Suno: Munich court finds AI music training and outputs infringe copyright, even where training happened in the US", "source": "Bristows", "url": "https://inquisitiveminds.bristows.com/post/102ngsl/gema-v-suno-munich-court-finds-ai-music-training-and-outputs-infringe-copyright", "type": "law-firm"}],
     citation: "GEMA v. Suno AI, LG München I, 42 O 763/25 (July 31, 2026)",
     name: "GEMA v. Suno AI",
     court: "Munich Regional Court I",
@@ -1758,6 +1831,7 @@ const CASES = [
   /* ============ ASIA-PACIFIC ============ */
   {
     id: "ani-v-openai",
+    commentary: [{"title": "ANI v. OpenAI: User Rights, Fair Dealing, and the Future of AI in Indian Copyright Law (Part I)", "source": "SpicyIP", "url": "https://spicyip.com/2026/07/ani-v-openai-user-rights-fair-dealing-and-the-future-of-ai-in-indian-copyright-law-part-i.html", "type": "academic"}, {"title": "COPY, RIGHT? ANI Media Pvt. Ltd. v. Open AI OpCo LLC", "source": "S.S. Rana & Co.", "url": "https://ssrana.in/articles/copy-right-ani-media-pvt-ltd-v-open-ai-opco-llc/", "type": "law-firm"}],
     citation: "ANI Media Pvt. Ltd. v. OpenAI, Inc., CS(COMM) 1028/2024 (Delhi High Court)",
     name: "ANI Media v. OpenAI",
     court: "Delhi High Court",
@@ -1779,6 +1853,7 @@ const CASES = [
   },
   {
     id: "china-aigc-image-cases",
+    commentary: [{"title": "Beijing Internet Court Grants Copyright to AI-Generated Image for the First Time", "source": "Kluwer Copyright Blog", "url": "https://legalblogs.wolterskluwer.com/copyright-blog/beijing-internet-court-grants-copyright-to-ai-generated-image-for-the-first-time/", "type": "academic"}, {"title": "Ultraman AI Case in China: Defining Copyright Liability for Generative AI Providers", "source": "China IP SME Helpdesk (European Commission)", "url": "https://intellectual-property-helpdesk.ec.europa.eu/news-events/news/ultraman-ai-case-china-defining-copyright-liability-generative-ai-providers-2025-02-18_en", "type": "official"}, {"title": "Hangzhou Internet Court: Generative AI Output Infringes Copyright", "source": "Schwegman Lundberg & Woessner (National Law Review)", "url": "https://natlawreview.com/article/hangzhou-internet-court-generative-ai-output-infringes-copyright", "type": "law-firm"}],
     citation: "Li v. Liu, (2023) 京0491民初11279号 (Beijing Internet Ct.); Ultraman, (2024) 粤0192民初113号 (Guangzhou Internet Ct.); Hangzhou Internet Ct. (2024, aff'd)",
     name: "China's AI image cases: Li v. Liu & the Ultraman decisions",
     court: "Beijing, Guangzhou & Hangzhou Internet Courts",
@@ -1800,6 +1875,7 @@ const CASES = [
   },
   {
     id: "beijing-ai-voice-case",
+    commentary: [{"title": "China's Beijing Internet Court Recognizes Personality Rights in Generative AI Case", "source": "China IP Law Update (Schwegman)", "url": "https://www.chinaiplawupdate.com/2024/04/chinas-beijing-internet-court-recognizes-personality-rights-in-generative-ai-case/", "type": "law-firm"}, {"title": "China's First AI Voice Personality Rights Infringement Rulings and Implications", "source": "Marks & Clerk", "url": "https://www.marks-clerk.com/insights/latest-insights/102k392-china-s-first-ai-voice-personality-rights-infringement-rulings-and-implications/", "type": "law-firm"}],
     citation: "Beijing Internet Court, judgment of Apr. 23, 2024 (SPC 'typical case')",
     name: "China's first AI voice-rights case (Beijing Internet Court)",
     court: "Beijing Internet Court",
@@ -1856,10 +1932,19 @@ function matches(law) {
   if (!modalityHit(law.modalities, lawState.modality)) return false;
   if (lawState.status.size && !lawState.status.has(law.status)) return false;
   if (lawState.q) {
-    const hay = [law.name, law.jurisdiction, law.summary, law.statusDetail, (law.keyObligations || []).join(" "), law.penalties, law.citation].join(" ").toLowerCase();
+    const hay = [law.name, law.jurisdiction, law.summary, law.statusDetail, (law.keyObligations || []).join(" "), law.penalties, law.citation,
+      (law.commentary || []).map(c => c.title + " " + c.source).join(" ")].join(" ").toLowerCase();
     if (!hay.includes(lawState.q)) return false;
   }
   return true;
+}
+
+function commentaryBlock(items) {
+  if (!items || !items.length) return "";
+  const TYPE_TAG = { "academic": "academic", "think-tank": "think tank", "official": "official" };
+  return `<h4>Commentary &amp; analysis</h4><ul class="commentary">` + items.map(c =>
+    `<li><a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.title)}</a> <span class="c-src">— ${esc(c.source)}${TYPE_TAG[c.type] ? ` (${TYPE_TAG[c.type]})` : ""}</span></li>`
+  ).join("") + `</ul>`;
 }
 
 function lawCard(law) {
@@ -1887,6 +1972,7 @@ function lawCard(law) {
       ${obligations ? `<h4>Key obligations</h4><ul>${obligations}</ul>` : ""}
       ${law.penalties ? `<h4>Penalties</h4><p>${esc(law.penalties)}</p>` : ""}
       ${law.citation ? `<h4>Citation</h4><p class="cite">${esc(law.citation)}</p>` : ""}
+      ${commentaryBlock(law.commentary)}
       <div class="law-meta">
         ${law.officialLink ? `<a href="${esc(law.officialLink)}" target="_blank" rel="noopener">Official text ↗</a>` : ""}
         <span class="verified">Verified ${esc(law.lastVerified || "")}</span>
@@ -1920,7 +2006,8 @@ function matchesCase(c) {
   if (caseState.issue.size && !(c.issues || []).some(i => caseState.issue.has(i))) return false;
   if (caseState.q) {
     const hay = [c.name, c.court, c.jurisdiction, c.summary, c.statusDetail, c.significance, c.citation,
-      (c.keyHoldings || []).join(" "), (c.issues || []).map(i => ISSUE_LABEL[i] || i).join(" ")].join(" ").toLowerCase();
+      (c.keyHoldings || []).join(" "), (c.issues || []).map(i => ISSUE_LABEL[i] || i).join(" "),
+      (c.commentary || []).map(x => x.title + " " + x.source).join(" ")].join(" ").toLowerCase();
     if (!hay.includes(caseState.q)) return false;
   }
   return true;
@@ -1952,6 +2039,7 @@ function caseCard(c) {
       ${holdings ? `<h4>Key holdings</h4><ul>${holdings}</ul>` : ""}
       ${c.significance ? `<h4>Why it matters</h4><p>${esc(c.significance)}</p>` : ""}
       ${c.citation ? `<h4>Citation</h4><p class="cite">${esc(c.citation)}</p>` : ""}
+      ${commentaryBlock(c.commentary)}
       <div class="law-meta">
         ${c.officialLink ? `<a href="${esc(c.officialLink)}" target="_blank" rel="noopener">Docket / opinion ↗</a>` : ""}
         <span class="verified">Verified ${esc(c.lastVerified || "")}</span>

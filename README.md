@@ -22,6 +22,8 @@ All content lives in `index.html` in two clearly marked JavaScript arrays near t
 
 Every law and case entry carries a **`citation`** field — the formal legal citation (OJ citation, Public Law number, code section, docket number, or neutral citation) — shown in the card next to the `officialLink`. Where a precise codified cite couldn't be verified, the citation uses the bill/session form (e.g. "Tex. HB 149, 89th Leg. (2025)"), which is always accurate; upgrade to code sections when verified.
 
+Entries may also carry a **`commentary`** array — curated "Commentary & analysis" links (law-firm client alerts, academic articles, think-tank pieces): `{title, source, url, type}` where `type` is `law-firm` | `academic` | `think-tank` | `official`. Rule: every URL must be verified to load and to discuss the specific instrument before being added — never guess URLs. Keep it to 2–3 high-quality pieces per entry.
+
 Also update the **"Last reviewed"** date in the hero section (`id="last-updated"`) whenever entries change.
 
 Stats (law count, case count, jurisdiction count, in-force count) are computed automatically.
