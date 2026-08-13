@@ -5,8 +5,11 @@ A single-file static website tracking global laws AND court cases on generative 
 ## Files
 - `index.html` — the entire site: design, data, and logic in one self-contained file. No build step, no dependencies (the only external resource is Google Fonts).
 
+## Page structure
+The page is a two-tab interface — **Laws & Regulations** and **Case Law** — each tab with its own search box and filter pills (region, modality, status; the cases tab adds an issue filter). Tabs deep-link via `#laws` / `#cases`, and individual entries deep-link via `#<entry-id>` (auto-opens the right tab and card).
+
 ## How to update the tracker
-All content lives in `index.html` in three clearly marked JavaScript arrays near the bottom of the file:
+All content lives in `index.html` in two clearly marked JavaScript arrays near the bottom of the file:
 
 1. **`const LAWS = [...]`** — one object per law. To add a law, copy an existing entry and edit its fields:
    - `status`: `in-force` | `partially-in-force` | `enacted-not-yet-effective` | `proposed` | `guidance` | `enjoined`
@@ -18,7 +21,6 @@ All content lives in `index.html` in three clearly marked JavaScript arrays near
    - `modalities` and `region`: same values as laws
 
 Every law and case entry carries a **`citation`** field — the formal legal citation (OJ citation, Public Law number, code section, docket number, or neutral citation) — shown in the card next to the `officialLink`. Where a precise codified cite couldn't be verified, the citation uses the bill/session form (e.g. "Tex. HB 149, 89th Leg. (2025)"), which is always accurate; upgrade to code sections when verified.
-3. **`const THEMES = [...]`** — the "Key themes" cards.
 
 Also update the **"Last reviewed"** date in the hero section (`id="last-updated"`) whenever entries change.
 

@@ -73,12 +73,12 @@
   /* ---------- Filters ---------- */
   .filters { padding: 28px 0 8px; position: relative; }
   .search-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-  #search {
+  .search-row input[type="search"] {
     flex: 1; min-width: 240px;
     padding: 10px 14px; font-size: 15px; font-family: var(--sans);
     border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink);
   }
-  #search:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+  .search-row input[type="search"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
   .filter-groups { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
   .filter-group { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
   .filter-group .glabel { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); min-width: 72px; }
@@ -146,14 +146,27 @@
   .law-meta .verified { color: var(--ink-faint); }
   .empty { text-align: center; padding: 60px 0; color: var(--ink-faint); font-size: 15px; }
 
-  /* ---------- Themes ---------- */
-  .themes { padding: 56px 0; border-top: 1px solid var(--line); background: #f4f2ec; }
+  /* ---------- Tabs & panels ---------- */
   .section-title { font-family: var(--serif); font-size: 28px; font-weight: 700; letter-spacing: -.01em; }
-  .section-sub { color: var(--ink-soft); margin-top: 8px; max-width: 640px; font-size: 15.5px; }
-  .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 28px; }
-  .theme-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
-  .theme-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
-  .theme-card p { font-size: 14px; color: var(--ink-soft); }
+  .tabs { display: flex; gap: 4px; margin-top: 36px; border-bottom: 2px solid var(--line); }
+  .tab-btn { appearance: none; background: none; border: none; cursor: pointer;
+    font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink-faint);
+    padding: 10px 18px 12px; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+  .tab-btn:hover { color: var(--ink-soft); }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab-btn .tcount { font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: var(--ink-faint);
+    margin-left: 7px; background: var(--gray-bg); border-radius: 999px; padding: 2px 8px; vertical-align: 2px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .result-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .list-tools { display: flex; gap: 16px; }
+  .list-tools button { background: none; border: none; color: var(--accent); font-family: var(--sans);
+    font-size: 13px; font-weight: 500; cursor: pointer; padding: 0; }
+  .list-tools button:hover { text-decoration: underline; }
+  .to-top { position: fixed; right: 22px; bottom: 22px; width: 44px; height: 44px; border-radius: 999px;
+    background: var(--accent); color: #fff; border: none; font-size: 20px; cursor: pointer;
+    opacity: 0; pointer-events: none; transition: opacity .2s ease; box-shadow: 0 2px 12px rgba(26,35,50,.3); z-index: 60; }
+  .to-top.show { opacity: 1; pointer-events: auto; }
 
   /* ---------- About ---------- */
   .about { padding: 56px 0; }
@@ -173,6 +186,7 @@
     .about .cols { grid-template-columns: 1fr; }
     nav a { margin-left: 14px; font-size: 13px; }
     .stats { gap: 24px; }
+    .tab-btn { font-size: 17px; padding: 8px 12px 10px; }
   }
 </style>
 </head>
@@ -182,9 +196,8 @@
   <div class="wrap header-inner">
     <a class="brand" href="#"><span class="scales">⚖️</span>AI Law Brief</a>
     <nav>
-      <a href="#tracker">Laws</a>
+      <a href="#laws">Laws/Regulations</a>
       <a href="#cases">Case Law</a>
-      <a href="#themes">Key Themes</a>
       <a href="#about">About</a>
     </nav>
   </div>
@@ -204,70 +217,114 @@
   </div>
 </section>
 
-<section class="filters wrap" id="tracker">
-  <div class="search-row">
-    <input id="search" type="search" placeholder="Search laws, jurisdictions, obligations… (e.g. “deepfake”, “watermark”, “training data”)" aria-label="Search laws">
+<div class="wrap">
+  <div class="tabs" id="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="laws" role="tab">Laws &amp; Regulations<span class="tcount" id="tcount-laws"></span></button>
+    <button class="tab-btn" data-tab="cases" role="tab">Case Law<span class="tcount" id="tcount-cases"></span></button>
   </div>
-  <div class="filter-groups">
-    <div class="filter-group" id="fg-region">
-      <span class="glabel">Region</span>
-      <button class="pill active" data-v="all">All</button>
-      <button class="pill" data-v="Europe">Europe</button>
-      <button class="pill" data-v="Americas">Americas</button>
-      <button class="pill" data-v="Asia-Pacific">Asia-Pacific</button>
-      <button class="pill" data-v="Middle East">Middle East</button>
+</div>
+
+<section class="panel active wrap" id="panel-laws">
+  <div class="filters">
+    <p class="tracker-sub">Statutes, regulations, and governance frameworks that bind (or will bind) providers and deployers of generative AI, grouped by region.</p>
+    <div class="search-row" style="margin-top: 16px;">
+      <input id="search-laws" type="search" placeholder="Search laws &amp; regulations… (e.g. “deepfake”, “watermark”, “training data”)" aria-label="Search laws and regulations">
     </div>
-    <div class="filter-group" id="fg-modality">
-      <span class="glabel">Modality</span>
-      <button class="pill active" data-v="all">All</button>
-      <button class="pill" data-v="text">Text</button>
-      <button class="pill" data-v="image">Image</button>
-      <button class="pill" data-v="video">Video</button>
-      <button class="pill" data-v="audio">Audio &amp; voice</button>
+    <div class="filter-groups">
+      <div class="filter-group" id="fg-law-region">
+        <span class="glabel">Region</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="Europe">Europe</button>
+        <button class="pill" data-v="Americas">Americas</button>
+        <button class="pill" data-v="Asia-Pacific">Asia-Pacific</button>
+        <button class="pill" data-v="Middle East">Middle East</button>
+      </div>
+      <div class="filter-group" id="fg-law-modality">
+        <span class="glabel">Modality</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="text">Text</button>
+        <button class="pill" data-v="image">Image</button>
+        <button class="pill" data-v="video">Video</button>
+        <button class="pill" data-v="audio">Audio &amp; voice</button>
+      </div>
+      <div class="filter-group" id="fg-law-status">
+        <span class="glabel">Status</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="in-force">In force</button>
+        <button class="pill" data-v="partially-in-force">Partially in force</button>
+        <button class="pill" data-v="enacted-not-yet-effective">Enacted, not yet effective</button>
+        <button class="pill" data-v="proposed">Proposed</button>
+        <button class="pill" data-v="guidance">Guidance / voluntary</button>
+        <button class="pill" data-v="enjoined">Enjoined by court</button>
+      </div>
     </div>
-    <div class="filter-group" id="fg-status">
-      <span class="glabel">Law status</span>
-      <button class="pill active" data-v="all">All</button>
-      <button class="pill" data-v="in-force">In force</button>
-      <button class="pill" data-v="partially-in-force">Partially in force</button>
-      <button class="pill" data-v="enacted-not-yet-effective">Enacted, not yet effective</button>
-      <button class="pill" data-v="proposed">Proposed</button>
-      <button class="pill" data-v="guidance">Guidance / voluntary</button>
-      <button class="pill" data-v="enjoined">Enjoined by court</button>
+    <div class="result-row">
+      <div class="result-count" id="result-count"></div>
+      <div class="list-tools">
+        <button data-act="expand" data-list="law-list">Expand all</button>
+        <button data-act="collapse" data-list="law-list">Collapse all</button>
+      </div>
     </div>
   </div>
-  <div class="result-count" id="result-count"></div>
+  <div class="laws" id="law-list"></div>
 </section>
 
-<section class="wrap">
-  <h2 class="tracker-head" id="laws-section">Legislation &amp; Regulation</h2>
-  <p class="tracker-sub">Statutes, regulations, and governance frameworks that bind (or will bind) providers and deployers of generative AI, grouped by region.</p>
-</section>
-
-<section class="laws wrap" id="law-list"></section>
-
-<section class="wrap" id="cases">
-  <h2 class="tracker-head">Case Law</h2>
-  <p class="tracker-sub">Court decisions and pending litigation shaping generative AI — training data and fair use, output infringement, voice and likeness, product liability, and constitutional limits on AI regulation.</p>
-  <div class="filter-group" id="fg-casestatus" style="margin-top: 16px;">
-    <span class="glabel">Case status</span>
-    <button class="pill active" data-v="all">All</button>
-    <button class="pill" data-v="pending">Pending</button>
-    <button class="pill" data-v="decided">Decided</button>
-    <button class="pill" data-v="settled">Settled</button>
-    <button class="pill" data-v="on-appeal">On appeal</button>
+<section class="panel wrap" id="panel-cases">
+  <div class="filters">
+    <p class="tracker-sub">Court decisions and pending litigation shaping generative AI — training data and fair use, output infringement, voice and likeness, product liability, and constitutional limits on AI regulation.</p>
+    <div class="search-row" style="margin-top: 16px;">
+      <input id="search-cases" type="search" placeholder="Search cases… (e.g. “fair use”, “Anthropic”, “voice cloning”)" aria-label="Search cases">
+    </div>
+    <div class="filter-groups">
+      <div class="filter-group" id="fg-case-region">
+        <span class="glabel">Region</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="Europe">Europe</button>
+        <button class="pill" data-v="Americas">Americas</button>
+        <button class="pill" data-v="Asia-Pacific">Asia-Pacific</button>
+      </div>
+      <div class="filter-group" id="fg-case-modality">
+        <span class="glabel">Modality</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="text">Text</button>
+        <button class="pill" data-v="image">Image</button>
+        <button class="pill" data-v="video">Video</button>
+        <button class="pill" data-v="audio">Audio &amp; voice</button>
+      </div>
+      <div class="filter-group" id="fg-case-status">
+        <span class="glabel">Status</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="pending">Pending</button>
+        <button class="pill" data-v="decided">Decided</button>
+        <button class="pill" data-v="settled">Settled</button>
+        <button class="pill" data-v="on-appeal">On appeal</button>
+      </div>
+      <div class="filter-group" id="fg-case-issue">
+        <span class="glabel">Issue</span>
+        <button class="pill active" data-v="all">All</button>
+        <button class="pill" data-v="training-data">Training data</button>
+        <button class="pill" data-v="fair-use">Fair use</button>
+        <button class="pill" data-v="output-infringement">Output infringement</button>
+        <button class="pill" data-v="right-of-publicity">Right of publicity</button>
+        <button class="pill" data-v="voice-cloning">Voice cloning</button>
+        <button class="pill" data-v="defamation">Defamation</button>
+        <button class="pill" data-v="product-liability">Product liability</button>
+        <button class="pill" data-v="free-speech">Free speech</button>
+        <button class="pill" data-v="trademark">Trademark</button>
+        <button class="pill" data-v="dmca">DMCA</button>
+        <button class="pill" data-v="constitutional-challenge">Constitutional challenge</button>
+        <button class="pill" data-v="consumer-protection">Consumer protection</button>
+      </div>
+    </div>
+    <div class="result-row">
+      <div class="result-count" id="case-count"></div>
+      <div class="list-tools">
+        <button data-act="expand" data-list="case-list">Expand all</button>
+        <button data-act="collapse" data-list="case-list">Collapse all</button>
+      </div>
+    </div>
   </div>
-  <div class="result-count" id="case-count"></div>
-</section>
-
-<section class="laws wrap" id="case-list"></section>
-
-<section class="themes" id="themes">
-  <div class="wrap">
-    <h2 class="section-title">Key themes across jurisdictions</h2>
-    <p class="section-sub">Wherever you operate, generative-AI regulation keeps converging on the same handful of obligations.</p>
-    <div class="theme-grid" id="theme-grid"></div>
-  </div>
+  <div class="laws" id="case-list"></div>
 </section>
 
 <section class="about wrap" id="about">
@@ -290,6 +347,8 @@
     <strong>Not legal advice.</strong> AI Law Brief is an informational resource. It is general in nature, may not reflect the most recent developments, and does not create an attorney–client relationship. Consult qualified counsel in the relevant jurisdiction before acting.
   </div>
 </section>
+
+<button class="to-top" id="to-top" aria-label="Back to top">↑</button>
 
 <footer>
   <div class="wrap foot-inner">
@@ -1741,17 +1800,9 @@ const CASES = [
   },
 ];
 
-const THEMES = [
-  { t: "Labeling & disclosure of AI content", d: "The EU (AI Act Art. 50), China (Labeling Measures), South Korea, India (IT Rules 2026), Vietnam, and California now require AI-generated or manipulated content to be disclosed — machine-readable marking, visible labels, or both." },
-  { t: "Deepfakes & digital replicas", d: "The fastest-moving area: criminal and civil rules on non-consensual intimate imagery (US TAKE IT DOWN Act, UK, Australia), election deepfakes, unauthorized voice and likeness cloning (Tennessee ELVIS Act, Illinois, Denmark's copyright-style likeness right), and Italy's criminal deepfake offence." },
-  { t: "Training-data transparency", d: "The EU requires GPAI providers to publish training-content summaries and respect copyright opt-outs; California's AB 2013 requires public training-data documentation, retroactive to systems released since 2022." },
-  { t: "Frontier & model-level obligations", d: "Rules attaching to the model itself, not just its use: EU GPAI duties, California's SB 53 and New York's RAISE Act for frontier models, and China's algorithm filing and security-assessment regime." },
-  { t: "Courts & preemption fights", d: "US generative-AI law is being reshaped in court: California's election deepfake laws are enjoined, Colorado's AI Act was suspended and rewritten, and a federal preemption campaign is actively litigating against state AI laws." },
-  { t: "Divergence risk", d: "The same video generator can face licensing and filing in one market, labeling in a second, and near-zero obligations in a third. Multi-jurisdiction launches need a modality-by-modality compliance map." },
-];
-
 /* ---------- Rendering ---------- */
-const state = { q: "", region: "all", modality: "all", status: "all", caseStatus: "all" };
+const lawState = { q: "", region: "all", modality: "all", status: "all" };
+const caseState = { q: "", region: "all", modality: "all", caseStatus: "all", issue: "all" };
 const STATUS_LABEL = {
   "in-force": "In force",
   "partially-in-force": "Partially in force",
@@ -1774,12 +1825,12 @@ const ISSUE_LABEL = {
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
 function matches(law) {
-  if (state.region !== "all" && law.region !== state.region) return false;
-  if (state.modality !== "all" && !(law.modalities.includes("all") || law.modalities.includes(state.modality))) return false;
-  if (state.status !== "all" && law.status !== state.status) return false;
-  if (state.q) {
-    const hay = [law.name, law.jurisdiction, law.summary, law.statusDetail, (law.keyObligations || []).join(" "), law.penalties].join(" ").toLowerCase();
-    if (!hay.includes(state.q)) return false;
+  if (lawState.region !== "all" && law.region !== lawState.region) return false;
+  if (lawState.modality !== "all" && !(law.modalities.includes("all") || law.modalities.includes(lawState.modality))) return false;
+  if (lawState.status !== "all" && law.status !== lawState.status) return false;
+  if (lawState.q) {
+    const hay = [law.name, law.jurisdiction, law.summary, law.statusDetail, (law.keyObligations || []).join(" "), law.penalties, law.citation].join(" ").toLowerCase();
+    if (!hay.includes(lawState.q)) return false;
   }
   return true;
 }
@@ -1836,13 +1887,14 @@ function render() {
 }
 
 function matchesCase(c) {
-  if (state.region !== "all" && c.region !== state.region) return false;
-  if (state.modality !== "all" && !(c.modalities.includes("all") || c.modalities.includes(state.modality))) return false;
-  if (state.caseStatus !== "all" && c.caseStatus !== state.caseStatus) return false;
-  if (state.q) {
-    const hay = [c.name, c.court, c.jurisdiction, c.summary, c.statusDetail, c.significance,
+  if (caseState.region !== "all" && c.region !== caseState.region) return false;
+  if (caseState.modality !== "all" && !(c.modalities.includes("all") || c.modalities.includes(caseState.modality))) return false;
+  if (caseState.caseStatus !== "all" && c.caseStatus !== caseState.caseStatus) return false;
+  if (caseState.issue !== "all" && !(c.issues || []).includes(caseState.issue)) return false;
+  if (caseState.q) {
+    const hay = [c.name, c.court, c.jurisdiction, c.summary, c.statusDetail, c.significance, c.citation,
       (c.keyHoldings || []).join(" "), (c.issues || []).map(i => ISSUE_LABEL[i] || i).join(" ")].join(" ").toLowerCase();
-    if (!hay.includes(state.q)) return false;
+    if (!hay.includes(caseState.q)) return false;
   }
   return true;
 }
@@ -1899,11 +1951,6 @@ function renderCases() {
     `Showing ${filtered.length} of ${CASES.length} tracked cases`;
 }
 
-function renderThemes() {
-  document.getElementById("theme-grid").innerHTML =
-    THEMES.map(x => `<div class="theme-card"><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div>`).join("");
-}
-
 function renderStats() {
   document.getElementById("stat-laws").textContent = LAWS.length;
   document.getElementById("stat-cases").textContent = CASES.length;
@@ -1911,32 +1958,90 @@ function renderStats() {
     new Set([...LAWS.map(l => l.jurisdiction), ...CASES.map(c => c.jurisdiction)]).size;
   document.getElementById("stat-force").textContent =
     LAWS.filter(l => l.status === "in-force" || l.status === "partially-in-force").length;
+  document.getElementById("tcount-laws").textContent = LAWS.length;
+  document.getElementById("tcount-cases").textContent = CASES.length;
 }
 
 function wireFilters() {
-  for (const [gid, key] of [["fg-region", "region"], ["fg-modality", "modality"], ["fg-status", "status"], ["fg-casestatus", "caseStatus"]]) {
+  const groups = [
+    ["fg-law-region", lawState, "region", render],
+    ["fg-law-modality", lawState, "modality", render],
+    ["fg-law-status", lawState, "status", render],
+    ["fg-case-region", caseState, "region", renderCases],
+    ["fg-case-modality", caseState, "modality", renderCases],
+    ["fg-case-status", caseState, "caseStatus", renderCases],
+    ["fg-case-issue", caseState, "issue", renderCases],
+  ];
+  for (const [gid, st, key, redraw] of groups) {
     document.getElementById(gid).addEventListener("click", e => {
       const btn = e.target.closest(".pill");
       if (!btn) return;
       document.querySelectorAll(`#${gid} .pill`).forEach(p => p.classList.remove("active"));
       btn.classList.add("active");
-      state[key] = btn.dataset.v;
-      render();
-      renderCases();
+      st[key] = btn.dataset.v;
+      redraw();
     });
   }
-  document.getElementById("search").addEventListener("input", e => {
-    state.q = e.target.value.trim().toLowerCase();
+  document.getElementById("search-laws").addEventListener("input", e => {
+    lawState.q = e.target.value.trim().toLowerCase();
     render();
+  });
+  document.getElementById("search-cases").addEventListener("input", e => {
+    caseState.q = e.target.value.trim().toLowerCase();
     renderCases();
   });
 }
 
-renderThemes();
+/* ---------- Tabs, deep links & navigation helpers ---------- */
+function showTab(name, push = true) {
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
+  document.getElementById("panel-laws").classList.toggle("active", name === "laws");
+  document.getElementById("panel-cases").classList.toggle("active", name === "cases");
+  if (push) history.replaceState(null, "", "#" + name);
+}
+
+function initFromHash() {
+  const h = decodeURIComponent(location.hash.replace("#", ""));
+  if (!h || h === "laws" || h === "tracker") return;
+  if (h === "cases") { showTab("cases", false); return; }
+  if (h === "about") return;
+  const inCases = CASES.some(c => c.id === h);
+  if (inCases) showTab("cases", false);
+  else if (!LAWS.some(l => l.id === h)) return;
+  requestAnimationFrame(() => {
+    const el = document.getElementById(h);
+    if (el) { el.open = true; el.scrollIntoView(); }
+  });
+}
+
+function wireNavigation() {
+  document.getElementById("tabs").addEventListener("click", e => {
+    const b = e.target.closest(".tab-btn");
+    if (b) showTab(b.dataset.tab);
+  });
+  window.addEventListener("hashchange", () => {
+    const h = location.hash.replace("#", "");
+    if (h === "laws" || h === "cases") {
+      showTab(h, false);
+      document.getElementById("tabs").scrollIntoView({ behavior: "smooth" });
+    }
+  });
+  document.querySelectorAll(".list-tools button").forEach(b => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll(`#${b.dataset.list} details`).forEach(d => d.open = b.dataset.act === "expand");
+    });
+  });
+  const toTop = document.getElementById("to-top");
+  window.addEventListener("scroll", () => toTop.classList.toggle("show", window.scrollY > 600), { passive: true });
+  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+}
+
 renderStats();
 wireFilters();
+wireNavigation();
 render();
 renderCases();
+initFromHash();
 </script>
 </body>
 </html>
