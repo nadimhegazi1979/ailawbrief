@@ -38,8 +38,8 @@ To publish changes: run `./deploy.sh` (commits and pushes; Pages rebuilds in abo
 Entry statuses were verified against official sources in August 2026. Known watch items at that date:
 
 **Laws:**
-- **EU Digital Omnibus**: confirm the final Official Journal citation and exact Art. 50(2) transition wording.
-- **Denmark deepfake copyright amendment**: commencement date (reported Mar 31, 2026) should be confirmed against the consolidated act on retsinformation.dk.
+- **EU Digital Omnibus**: RESOLVED Aug 2026 — confirmed as Regulation (EU) 2026/1744, OJ 24.7.2026, in force Jul 27, 2026; cited on the EU AI Act entry.
+- **Denmark deepfake copyright amendment**: downgraded to "proposed" Aug 2026 — the bill appears to have lapsed when the Mar 2026 snap election dissolved parliament before final passage. Watch for reintroduction; confirm against retsinformation.dk.
 - **Spain**: still a bill; committee vote expected autumn 2026.
 - **Brazil PL 2338**: Chamber of Deputies vote anticipated around Aug 2026.
 - **Australia**: legislated "Australian Standards for AI" announced July 2026 — could flip from guidance to binding.
@@ -57,3 +57,4 @@ Entry statuses were verified against official sources in August 2026. Known watc
 - **Andersen v. Stability** — trial reportedly set Sep 8, 2026 (date from secondary sources; confirm on docket).
 - **GEMA v. OpenAI / v. Suno** — Munich appeals pending.
 - **xAI v. Weiser** — may be amended or mooted after Colorado replaced its AI Act.
+- **Reddit v. SerpApi/Perplexity** — added Aug 2026 after the Jul 31, 2026 MTD ruling; discovery phase ahead, watch for the docket number to upgrade the citation.

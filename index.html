@@ -367,12 +367,12 @@ const LAWS = [
   /* ================= EUROPE ================= */
   {
     id: "eu-ai-act",
-    citation: "Regulation (EU) 2024/1689 (AI Act), OJ L, 2024/1689, 12.7.2024",
+    citation: "Regulation (EU) 2024/1689 (AI Act), OJ L, 2024/1689, 12.7.2024, as amended by Regulation (EU) 2026/1744 (Digital Omnibus on AI), OJ L, 2026/1744, 24.7.2026",
     name: "EU AI Act (Regulation (EU) 2024/1689)",
     jurisdiction: "European Union",
     region: "Europe",
     status: "partially-in-force",
-    statusDetail: "GPAI obligations applied Aug 2, 2025. Article 50 transparency & deepfake rules applied Aug 2, 2026 (machine-readable marking extended to Dec 2, 2026 for systems already on the market). The June 2026 'Digital Omnibus' deferred high-risk rules to Dec 2027 (Annex III) and Aug 2028 (Annex I).",
+    statusDetail: "GPAI obligations applied Aug 2, 2025. Article 50 transparency & deepfake rules applied Aug 2, 2026 (machine-readable marking extended to Dec 2, 2026 for systems already on the market). The Digital Omnibus (Reg. (EU) 2026/1744, in force Jul 27, 2026) deferred high-risk rules to Dec 2, 2027 (Annex III) and Aug 2, 2028 (Annex I) and added new prohibited practices, including AI tools for generating non-consensual intimate imagery.",
     modalities: ["all"],
     summary: "The world's most comprehensive generative-AI regime. General-purpose AI model providers have owed documentation, copyright-policy and training-data-summary duties since August 2025, and as of August 2, 2026 AI-generated content must be machine-readably marked and deepfakes disclosed under Article 50. The Digital Omnibus deferred the high-risk rules but left the generative-AI transparency timeline essentially intact.",
     keyObligations: [
@@ -496,10 +496,10 @@ const LAWS = [
     name: "Denmark — Copyright Act deepfake amendment (§§ 65a / 73a)",
     jurisdiction: "Denmark",
     region: "Europe",
-    status: "in-force",
-    statusDetail: "New neighbouring right over likeness and voice, reported in force as of Mar 31, 2026 (exact commencement date pending confirmation in the consolidated act).",
+    status: "proposed",
+    statusDetail: "The bill was on track for a reported Mar 31, 2026 commencement, but a snap general election intervened (called Feb 26, held Mar 24, 2026) — under Danish procedure, bills not finally passed before dissolution lapse. Reintroduction expected; status pending confirmation in the consolidated Copyright Act.",
     modalities: ["image", "video", "audio"],
-    summary: "A world-first amendment giving every natural person a copyright-style right over realistic, digitally generated imitations of their face, appearance and voice. Making realistic AI imitations of a person publicly available without consent is prohibited, with protection lasting 50 years after death, and performers are separately protected against AI imitations of their performances.",
+    summary: "A world-first proposed amendment that would give every natural person a copyright-style right over realistic, digitally generated imitations of their face, appearance and voice. As drafted, making realistic AI imitations of a person publicly available without consent would be prohibited, with protection lasting 50 years after death, and performers separately protected against AI imitations of their performances.",
     keyObligations: [
       "No public dissemination of realistic AI-generated imitations of a person's appearance or voice without consent (§ 73a)",
       "Protection for performers against AI-generated imitations of their performances (§ 65a)",
@@ -1418,6 +1418,27 @@ const CASES = [
     ],
     significance: "Leading test of RAG-based AI search — whether real-time retrieval and summarization of news is infringement, distinct from training-data claims.",
     officialLink: "https://www.courtlistener.com/docket/69280523/dow-jones-company-inc-v-perplexity-ai-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "reddit-v-serpapi-perplexity",
+    citation: "Reddit, Inc. v. SerpApi, LLC et al. (S.D.N.Y., opinion July 31, 2026)",
+    name: "Reddit v. SerpApi & Perplexity AI",
+    court: "S.D.N.Y.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "July 31, 2026: Judge Engelmayer largely denied SerpApi's motion to dismiss — Reddit's core DMCA anti-circumvention claims proceed and a conspiracy between SerpApi and Perplexity was plausibly pleaded. The § 1201(b) trafficking claim against SerpApi and the unfair-competition/unjust-enrichment claims were dismissed. Heading to discovery.",
+    issues: ["dmca", "training-data"],
+    modalities: ["text"],
+    summary: "Reddit sued scraping service SerpApi and Perplexity AI, alleging Perplexity obtained Reddit content for its AI answers by routing collection through Google search results, with SerpApi as the technical middleman circumventing access controls. The July 2026 ruling lets the anti-circumvention theory proceed.",
+    keyHoldings: [
+      "DMCA § 1201(a) anti-circumvention claims plausibly pleaded and proceed",
+      "Conspiracy between SerpApi and Perplexity plausibly alleged",
+      "§ 1201(b) trafficking claim against SerpApi dismissed; unfair-competition and unjust-enrichment claims dismissed"
+    ],
+    significance: "Opens a second front against AI data acquisition — anti-circumvention liability for indirect scraping pipelines, independent of copyright infringement.",
+    officialLink: "https://www.law.com/newyorklawjournal/2026/07/31/reddits-dmca-claims-against-perplexity-serpapi-survive-ai-scraping-challenge/",
     lastVerified: "Aug 2026"
   },
   {
