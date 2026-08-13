@@ -5,6 +5,9 @@ set -e
 export PATH="$HOME/.local/bin:$PATH"
 cd "$(dirname "$0")"
 
+# The cloud routine also pushes to main — sync first so histories never diverge.
+git pull --rebase --autostash origin main
+
 git add -A
 if git diff --cached --quiet; then
   echo "No changes to deploy."
