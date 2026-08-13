@@ -28,7 +28,9 @@ Stats (law count, case count, jurisdiction count, in-force count) are computed a
 A scheduled task (`ailawbrief-daily-update`, 7:03 AM daily, managed in the Claude desktop app under "Scheduled") re-verifies watch items, scans for new laws and rulings, updates the arrays and the last-reviewed date, and runs `deploy.sh` if it exists. Runs happen while the app is open; a missed run fires at next launch.
 
 ## Publishing
-Any static host works. Upload `index.html` (e.g. Netlify, Cloudflare Pages, GitHub Pages, or GoDaddy hosting) and point the ailawbrief.com DNS at it.
+Deployed via **GitHub Pages** from https://github.com/nadimhegazi1979/ailawbrief (main branch, root). The `CNAME` file binds the custom domain ailawbrief.com; DNS at GoDaddy points the apex to GitHub Pages' A records and `www` to `nadimhegazi1979.github.io`.
+
+To publish changes: run `./deploy.sh` (commits and pushes; Pages rebuilds in about a minute). The daily scheduled task runs it automatically after content updates. Git pushes authenticate through the GitHub CLI (`~/.local/bin/gh`, token in the macOS keychain).
 
 ## Content status
 Entry statuses were verified against official sources in August 2026. Known watch items at that date:
