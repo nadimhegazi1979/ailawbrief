@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Law Brief — Global Generative AI Law Tracker</title>
+<meta name="description" content="A clear, plain-English tracker of laws and regulations governing generative AI — text, image, video, and audio generation — across the world's major jurisdictions.">
+<meta property="og:title" content="AI Law Brief — Global Generative AI Law Tracker">
+<meta property="og:description" content="Track the laws governing AI text, image, video, and audio generation worldwide.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ailawbrief.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚖️</text></svg>">
+<style>
+  :root {
+    --ink: #1a2332;
+    --ink-soft: #4a5568;
+    --ink-faint: #8593a8;
+    --paper: #faf9f6;
+    --card: #ffffff;
+    --line: #e5e2da;
+    --accent: #1e3a8a;
+    --accent-soft: #eef2fb;
+    --green: #166534;  --green-bg: #ecfdf0;
+    --teal: #0f766e;   --teal-bg: #e6fbf8;
+    --blue: #1d4ed8;   --blue-bg: #eaf1fe;
+    --gray: #57534e;   --gray-bg: #f1efeb;
+    --purple: #6d28d9; --purple-bg: #f3eefe;
+    --red: #b91c1c;    --red-bg: #fdecec;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(250,249,246,.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+  .brand .scales { margin-right: 8px; }
+  nav a { color: var(--ink-soft); text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 24px; }
+  nav a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 64px 0 40px; border-bottom: 1px solid var(--line); }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(32px, 5vw, 48px); line-height: 1.15; letter-spacing: -.02em;
+    max-width: 720px;
+  }
+  .hero p.lede { margin-top: 16px; font-size: 18px; color: var(--ink-soft); max-width: 640px; }
+  .hero .updated { margin-top: 20px; font-size: 13px; color: var(--ink-faint); }
+  .hero .updated strong { color: var(--ink-soft); font-weight: 600; }
+  .stats { display: flex; gap: 40px; margin-top: 32px; flex-wrap: wrap; }
+  .stat .num { font-family: var(--serif); font-size: 34px; font-weight: 700; color: var(--accent); line-height: 1.1; }
+  .stat .label { font-size: 13px; color: var(--ink-faint); margin-top: 2px; }
+
+  /* ---------- Filters ---------- */
+  .filters { padding: 28px 0 8px; position: relative; }
+  .search-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  #search {
+    flex: 1; min-width: 240px;
+    padding: 10px 14px; font-size: 15px; font-family: var(--sans);
+    border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--ink);
+  }
+  #search:focus { outline: 2px solid var(--accent); outline-offset: -1px; border-color: transparent; }
+  .filter-groups { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .filter-group { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .filter-group .glabel { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); min-width: 72px; }
+  .pill {
+    border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    padding: 5px 13px; border-radius: 999px; cursor: pointer; transition: all .12s ease;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--accent); }
+  .pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .result-count { margin: 18px 0 4px; font-size: 13px; color: var(--ink-faint); }
+
+  /* ---------- Law cards ---------- */
+  .laws { padding: 8px 0 64px; }
+  .region-head {
+    font-family: var(--serif); font-size: 22px; font-weight: 700;
+    margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--ink);
+    display: flex; align-items: baseline; justify-content: space-between;
+  }
+  .region-head .rcount { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--ink-faint); }
+  .law-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    margin-bottom: 14px; overflow: hidden; transition: box-shadow .15s ease;
+  }
+  .law-card:hover { box-shadow: 0 2px 12px rgba(26,35,50,.07); }
+  .law-card summary {
+    list-style: none; cursor: pointer; padding: 18px 20px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .law-card summary::-webkit-details-marker { display: none; }
+  .law-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .law-title { font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1.35; }
+  .law-juris { font-size: 13px; color: var(--ink-faint); font-weight: 500; margin-top: 1px; }
+  .chevron { flex: none; color: var(--ink-faint); transition: transform .15s ease; margin-top: 4px; }
+  details[open] .chevron { transform: rotate(90deg); }
+  .badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11.5px; font-weight: 600; padding: 3px 10px; border-radius: 999px; letter-spacing: .01em;
+  }
+  .badge.status-in-force { color: var(--green); background: var(--green-bg); }
+  .badge.status-partially-in-force { color: var(--teal); background: var(--teal-bg); }
+  .badge.status-enacted-not-yet-effective { color: var(--blue); background: var(--blue-bg); }
+  .badge.status-proposed { color: var(--gray); background: var(--gray-bg); }
+  .badge.status-guidance { color: var(--purple); background: var(--purple-bg); }
+  .badge.status-enjoined { color: var(--red); background: var(--red-bg); }
+  .badge.cs-pending { color: #92600a; background: #fdf3e2; }
+  .badge.cs-decided { color: var(--green); background: var(--green-bg); }
+  .badge.cs-settled { color: var(--blue); background: var(--blue-bg); }
+  .badge.cs-on-appeal { color: var(--purple); background: var(--purple-bg); }
+  .badge.mod { color: var(--ink-soft); background: var(--gray-bg); font-weight: 500; }
+  .badge.issue { color: var(--accent); background: var(--accent-soft); font-weight: 500; }
+  .tracker-head { font-family: var(--serif); font-size: 28px; font-weight: 700; letter-spacing: -.01em; margin-top: 40px; }
+  .tracker-sub { color: var(--ink-soft); font-size: 15px; margin-top: 6px; max-width: 680px; }
+  .case-court { font-size: 13px; color: var(--ink-faint); font-weight: 500; margin-top: 1px; }
+  .law-summary { font-size: 14.5px; color: var(--ink-soft); max-width: 780px; }
+  .law-body { padding: 0 20px 20px; border-top: 1px dashed var(--line); }
+  .law-body h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin: 16px 0 6px; }
+  .law-body ul { padding-left: 20px; font-size: 14.5px; color: var(--ink-soft); }
+  .law-body ul li { margin-bottom: 4px; }
+  .law-body p { font-size: 14.5px; color: var(--ink-soft); }
+  .law-body p.cite { font-family: var(--serif); color: var(--ink); }
+  .law-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; }
+  .law-meta a { color: var(--accent); font-weight: 500; text-decoration: none; }
+  .law-meta a:hover { text-decoration: underline; }
+  .law-meta .verified { color: var(--ink-faint); }
+  .empty { text-align: center; padding: 60px 0; color: var(--ink-faint); font-size: 15px; }
+
+  /* ---------- Themes ---------- */
+  .themes { padding: 56px 0; border-top: 1px solid var(--line); background: #f4f2ec; }
+  .section-title { font-family: var(--serif); font-size: 28px; font-weight: 700; letter-spacing: -.01em; }
+  .section-sub { color: var(--ink-soft); margin-top: 8px; max-width: 640px; font-size: 15.5px; }
+  .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 28px; }
+  .theme-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+  .theme-card h3 { font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .theme-card p { font-size: 14px; color: var(--ink-soft); }
+
+  /* ---------- About ---------- */
+  .about { padding: 56px 0; }
+  .about .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+  .about h3 { font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .about p { font-size: 14.5px; color: var(--ink-soft); margin-bottom: 12px; }
+  .disclaimer {
+    margin-top: 32px; padding: 18px 20px; border-left: 3px solid var(--accent);
+    background: var(--accent-soft); border-radius: 0 8px 8px 0; font-size: 13.5px; color: var(--ink-soft);
+  }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; font-size: 13px; color: var(--ink-faint); }
+  .foot-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+  @media (max-width: 640px) {
+    .about .cols { grid-template-columns: 1fr; }
+    nav a { margin-left: 14px; font-size: 13px; }
+    .stats { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a class="brand" href="#"><span class="scales">⚖️</span>AI Law Brief</a>
+    <nav>
+      <a href="#tracker">Laws</a>
+      <a href="#cases">Case Law</a>
+      <a href="#themes">Key Themes</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>The laws governing generative AI, tracked in one place.</h1>
+    <p class="lede">A plain-English guide to how the world regulates AI-generated text, images, video, and audio — what's in force, what's coming, and what it requires.</p>
+    <p class="updated">Last reviewed: <strong id="last-updated">August 2026</strong> · Statuses verified against official sources</p>
+    <div class="stats">
+      <div class="stat"><div class="num" id="stat-laws">–</div><div class="label">Laws &amp; regulations tracked</div></div>
+      <div class="stat"><div class="num" id="stat-cases">–</div><div class="label">Court cases tracked</div></div>
+      <div class="stat"><div class="num" id="stat-juris">–</div><div class="label">Jurisdictions</div></div>
+      <div class="stat"><div class="num" id="stat-force">–</div><div class="label">Fully or partly in force</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="filters wrap" id="tracker">
+  <div class="search-row">
+    <input id="search" type="search" placeholder="Search laws, jurisdictions, obligations… (e.g. “deepfake”, “watermark”, “training data”)" aria-label="Search laws">
+  </div>
+  <div class="filter-groups">
+    <div class="filter-group" id="fg-region">
+      <span class="glabel">Region</span>
+      <button class="pill active" data-v="all">All</button>
+      <button class="pill" data-v="Europe">Europe</button>
+      <button class="pill" data-v="Americas">Americas</button>
+      <button class="pill" data-v="Asia-Pacific">Asia-Pacific</button>
+      <button class="pill" data-v="Middle East">Middle East</button>
+    </div>
+    <div class="filter-group" id="fg-modality">
+      <span class="glabel">Modality</span>
+      <button class="pill active" data-v="all">All</button>
+      <button class="pill" data-v="text">Text</button>
+      <button class="pill" data-v="image">Image</button>
+      <button class="pill" data-v="video">Video</button>
+      <button class="pill" data-v="audio">Audio &amp; voice</button>
+    </div>
+    <div class="filter-group" id="fg-status">
+      <span class="glabel">Law status</span>
+      <button class="pill active" data-v="all">All</button>
+      <button class="pill" data-v="in-force">In force</button>
+      <button class="pill" data-v="partially-in-force">Partially in force</button>
+      <button class="pill" data-v="enacted-not-yet-effective">Enacted, not yet effective</button>
+      <button class="pill" data-v="proposed">Proposed</button>
+      <button class="pill" data-v="guidance">Guidance / voluntary</button>
+      <button class="pill" data-v="enjoined">Enjoined by court</button>
+    </div>
+  </div>
+  <div class="result-count" id="result-count"></div>
+</section>
+
+<section class="wrap">
+  <h2 class="tracker-head" id="laws-section">Legislation &amp; Regulation</h2>
+  <p class="tracker-sub">Statutes, regulations, and governance frameworks that bind (or will bind) providers and deployers of generative AI, grouped by region.</p>
+</section>
+
+<section class="laws wrap" id="law-list"></section>
+
+<section class="wrap" id="cases">
+  <h2 class="tracker-head">Case Law</h2>
+  <p class="tracker-sub">Court decisions and pending litigation shaping generative AI — training data and fair use, output infringement, voice and likeness, product liability, and constitutional limits on AI regulation.</p>
+  <div class="filter-group" id="fg-casestatus" style="margin-top: 16px;">
+    <span class="glabel">Case status</span>
+    <button class="pill active" data-v="all">All</button>
+    <button class="pill" data-v="pending">Pending</button>
+    <button class="pill" data-v="decided">Decided</button>
+    <button class="pill" data-v="settled">Settled</button>
+    <button class="pill" data-v="on-appeal">On appeal</button>
+  </div>
+  <div class="result-count" id="case-count"></div>
+</section>
+
+<section class="laws wrap" id="case-list"></section>
+
+<section class="themes" id="themes">
+  <div class="wrap">
+    <h2 class="section-title">Key themes across jurisdictions</h2>
+    <p class="section-sub">Wherever you operate, generative-AI regulation keeps converging on the same handful of obligations.</p>
+    <div class="theme-grid" id="theme-grid"></div>
+  </div>
+</section>
+
+<section class="about wrap" id="about">
+  <h2 class="section-title">About AI Law Brief</h2>
+  <div class="cols">
+    <div>
+      <h3>What this is</h3>
+      <p>AI Law Brief tracks binding laws, regulations, and major governance frameworks that specifically govern <em>generative</em> AI — systems that produce text, images, video, or audio — together with the court decisions and pending litigation shaping how those systems can be built and deployed. General data-protection and consumer-protection laws are covered only where they contain AI-specific rules.</p>
+      <h3>How entries are maintained</h3>
+      <p>Each entry is summarized in plain English from the official text and verified against official government sources. Status labels reflect the position at the "last reviewed" date shown above; effective dates and amendments in this field change quickly.</p>
+    </div>
+    <div>
+      <h3>Status labels</h3>
+      <p><strong>In force</strong> — fully applicable today. <strong>Partially in force</strong> — phased application; some obligations apply now. <strong>Enacted, not yet effective</strong> — signed into law with a future start date. <strong>Proposed</strong> — introduced but not yet passed. <strong>Guidance / voluntary</strong> — non-binding frameworks that shape practice. <strong>Enjoined by court</strong> — on the books but currently unenforceable under a court order.</p>
+      <h3>Scope</h3>
+      <p>Focused on obligations most relevant to companies building or deploying generative models: content labeling and provenance, deepfake rules, training-data transparency, model-level duties, and licensing or filing requirements. Case-law entries cover litigation over training data and fair use, output infringement, voice and likeness rights, product liability, and constitutional challenges to AI laws.</p>
+    </div>
+  </div>
+  <div class="disclaimer">
+    <strong>Not legal advice.</strong> AI Law Brief is an informational resource. It is general in nature, may not reflect the most recent developments, and does not create an attorney–client relationship. Consult qualified counsel in the relevant jurisdiction before acting.
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© 2026 AI Law Brief · ailawbrief.com</span>
+    <span>Tracking generative-AI law worldwide</span>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   DATA — one object per law. To update the site, edit this array only.
+   status: in-force | partially-in-force | enacted-not-yet-effective | proposed | guidance
+   modalities: text | image | video | audio | all
+   ===================================================================== */
+const LAWS = [
+  /* ================= EUROPE ================= */
+  {
+    id: "eu-ai-act",
+    citation: "Regulation (EU) 2024/1689 (AI Act), OJ L, 2024/1689, 12.7.2024",
+    name: "EU AI Act (Regulation (EU) 2024/1689)",
+    jurisdiction: "European Union",
+    region: "Europe",
+    status: "partially-in-force",
+    statusDetail: "GPAI obligations applied Aug 2, 2025. Article 50 transparency & deepfake rules applied Aug 2, 2026 (machine-readable marking extended to Dec 2, 2026 for systems already on the market). The June 2026 'Digital Omnibus' deferred high-risk rules to Dec 2027 (Annex III) and Aug 2028 (Annex I).",
+    modalities: ["all"],
+    summary: "The world's most comprehensive generative-AI regime. General-purpose AI model providers have owed documentation, copyright-policy and training-data-summary duties since August 2025, and as of August 2, 2026 AI-generated content must be machine-readably marked and deepfakes disclosed under Article 50. The Digital Omnibus deferred the high-risk rules but left the generative-AI transparency timeline essentially intact.",
+    keyObligations: [
+      "Machine-readable marking of synthetic text, image, video and audio outputs (Art. 50(2))",
+      "Disclosure that content is a deepfake, or AI-generated text on matters of public interest (Art. 50(4))",
+      "Chatbot/interaction disclosure so users know they are dealing with AI (Art. 50(1))",
+      "GPAI providers: technical documentation, copyright/TDM-opt-out policy, training-content summary (Art. 53)",
+      "Commission Art. 50 guidelines and a Code of Practice on Transparency of AI-generated Content adopted July 2026; the voluntary GPAI Code of Practice is treated as a good-faith compliance path"
+    ],
+    penalties: "Up to €35M or 7% of global turnover for prohibited practices; up to €15M or 3% for Article 50 and GPAI violations",
+    officialLink: "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "eu-gpai-training-content-template",
+    citation: "Regulation (EU) 2024/1689, Art. 53(1)(d) & Annex XII; Commission explanatory notice & template (24 July 2025)",
+    name: "EU training-content summary template (AI Act Art. 53(1)(d))",
+    jurisdiction: "European Union",
+    region: "Europe",
+    status: "in-force",
+    statusDetail: "Mandatory template published July 24, 2025; applies to new GPAI models since Aug 2, 2025. Models placed on the market before that date have until Aug 2, 2027.",
+    modalities: ["all"],
+    summary: "Every provider of a general-purpose AI model — including text, image, video and audio generators — must publish a 'sufficiently detailed summary' of the content used to train the model, following a mandatory Commission template covering all training stages from pre-training through fine-tuning and alignment.",
+    keyObligations: [
+      "Publish a public training-content summary using the official AI Office template",
+      "Cover all training stages including alignment and fine-tuning; update when new datasets are used",
+      "Identify main data source categories, including top domains for web-scraped content",
+      "Describe copyright compliance measures, including respect for TDM opt-outs",
+      "Legacy models on the market before Aug 2, 2025 must comply by Aug 2, 2027"
+    ],
+    penalties: "Enforced as part of GPAI obligations: up to €15M or 3% of global annual turnover",
+    officialLink: "https://digital-strategy.ec.europa.eu/en/library/explanatory-notice-and-template-public-summary-training-content-general-purpose-ai-models",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "uk-ai-framework",
+    citation: "Data (Use and Access) Act 2025 (c. 18); Crime and Policing Act 2026; Online Safety Act 2023 (c. 50)",
+    name: "UK framework: DUA Act 2025, Crime and Policing Act 2026 & Online Safety Act",
+    jurisdiction: "United Kingdom",
+    region: "Europe",
+    status: "partially-in-force",
+    statusDetail: "No comprehensive AI act (none in the 2026 King's Speech). Non-consensual deepfake creation offence in force Feb 6, 2026; Crime and Policing Act 2026 AI-content offences enacted Apr 29, 2026; AI/copyright reform deferred pending evidence-gathering.",
+    modalities: ["all"],
+    summary: "The UK has no EU-style horizontal AI statute, relying on a principles-based, sector-regulator approach — but generative-AI harms are now targeted by criminal law: creating or requesting non-consensual intimate deepfakes is an offence, and supplying AI models optimised for CSAM or intimate-image generation is criminalised.",
+    keyObligations: [
+      "Criminal ban on creating or requesting non-consensual intimate deepfakes (DUA Act 2025, in force Feb 6, 2026)",
+      "Criminal offences for supplying/adapting AI models optimised for CSAM or intimate-image generation (Crime and Policing Act 2026)",
+      "Online Safety Act platform duties being extended toward AI-generated content (report due Dec 31, 2026)",
+      "TDM opt-out abandoned as the preferred copyright reform option (Jan 2026); government reports due under the DUA Act",
+      "No general labeling or training-data disclosure duties for generative AI as of Aug 2026"
+    ],
+    penalties: "Criminal penalties for deepfake and AI-CSAM offences; Online Safety Act fines up to £18M or 10% of global revenue for platforms",
+    officialLink: "https://www.legislation.gov.uk/ukpga/2025/18",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "coe-ai-framework-convention",
+    citation: "Council of Europe Framework Convention on AI, CETS No. 225 (opened for signature 5 Sept. 2024)",
+    name: "Council of Europe Framework Convention on AI (CETS No. 225)",
+    jurisdiction: "Council of Europe (open to non-members)",
+    region: "Europe",
+    status: "in-force",
+    statusDetail: "Entered into force Nov 1, 2025; the EU ratified May 15, 2026. Signatories include the UK, US, Japan, Canada, Israel, Switzerland and Ukraine.",
+    modalities: ["all"],
+    summary: "The first legally binding international treaty on AI, requiring parties to ensure AI activities are consistent with human rights, democracy and the rule of law. It sets outcome obligations — transparency, oversight, accountability, remedies — rather than direct rules on generative AI, but covers risks such as AI-generated disinformation.",
+    keyObligations: [
+      "Measures for transparency and oversight of AI systems, including identification of AI-generated content",
+      "Risk and impact assessment requirements across the AI lifecycle",
+      "Remedies and procedural safeguards for persons affected by AI systems",
+      "Protection of democratic processes against AI-enabled disinformation",
+      "Applies mainly to public-sector AI, with options for private-sector coverage"
+    ],
+    penalties: "None directly — a framework treaty implemented through domestic law",
+    officialLink: "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "italy-ai-law-132-2025",
+    citation: "Legge 23 settembre 2025, n. 132 (G.U. Serie Generale n. 223, 25.9.2025)",
+    name: "Italy — AI Law (Law No. 132/2025)",
+    jurisdiction: "Italy",
+    region: "Europe",
+    status: "in-force",
+    statusDetail: "In force since Oct 10, 2025; implementing decrees on governance, training and liability rolling out through 2026.",
+    modalities: ["all"],
+    summary: "The first comprehensive national AI law in the EU, complementing the AI Act. It creates a standalone criminal deepfake offence punishing dissemination of AI-generated or altered images, video or voice that mislead as to authenticity and cause unjust harm, and confirms that AI-assisted works are protectable by copyright only as results of human intellectual work.",
+    keyObligations: [
+      "Criminal liability for harmful dissemination of deceptive deepfakes (new Art. 612-quater Criminal Code, 1–5 years' imprisonment)",
+      "Human-authorship requirement for copyright in AI-assisted works",
+      "Text-and-data mining for AI training allowed only with lawful access and subject to rights-holder opt-outs",
+      "National governance via AgID and ACN as designated AI authorities",
+      "Sector rules (health, labor, justice) and child-protection consent rules for AI access"
+    ],
+    penalties: "Deepfake offence: 1 to 5 years' imprisonment; EU AI Act administrative fines apply in parallel",
+    officialLink: "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2025-09-23;132",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "spain-ai-governance-bill",
+    citation: "Proyecto de Ley Orgánica para el buen uso y la gobernanza de la IA (Cortes Generales, 2026)",
+    name: "Spain — Bill on the Good Use and Governance of AI",
+    jurisdiction: "Spain",
+    region: "Europe",
+    status: "proposed",
+    statusDetail: "Approved by the Council of Ministers as an organic bill May 26, 2026; before Congress since June 2026. Not yet enacted — watch for a committee vote in autumn 2026.",
+    modalities: ["all"],
+    summary: "Spain's national bill implementing and enforcing the EU AI Act. Its highest-profile generative-AI feature is treating failure to label AI-generated content — including deepfakes — as a serious infringement, enforced by AESIA, the EU's first dedicated national AI supervision agency.",
+    keyObligations: [
+      "Mandatory labeling of AI-generated/manipulated content; unlabeled deepfakes treated as a serious infringement (draft)",
+      "AESIA designated as principal market-surveillance authority alongside sector regulators",
+      "National penalty regime mirroring EU AI Act fine bands",
+      "Regulatory sandbox framework for AI systems"
+    ],
+    penalties: "Draft: fines up to €35M or 7% of global turnover for the most serious infringements",
+    officialLink: "https://www.lamoncloa.gob.es/consejodeministros/resumenes/Paginas/2026/260526-rueda-prensa-ministros.aspx",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "denmark-deepfake-copyright",
+    citation: "Danish Copyright Act (ophavsretsloven) §§ 65a & 73a (2026 amendment)",
+    name: "Denmark — Copyright Act deepfake amendment (§§ 65a / 73a)",
+    jurisdiction: "Denmark",
+    region: "Europe",
+    status: "in-force",
+    statusDetail: "New neighbouring right over likeness and voice, reported in force as of Mar 31, 2026 (exact commencement date pending confirmation in the consolidated act).",
+    modalities: ["image", "video", "audio"],
+    summary: "A world-first amendment giving every natural person a copyright-style right over realistic, digitally generated imitations of their face, appearance and voice. Making realistic AI imitations of a person publicly available without consent is prohibited, with protection lasting 50 years after death, and performers are separately protected against AI imitations of their performances.",
+    keyObligations: [
+      "No public dissemination of realistic AI-generated imitations of a person's appearance or voice without consent (§ 73a)",
+      "Protection for performers against AI-generated imitations of their performances (§ 65a)",
+      "Takedown and compensation remedies; platform liability for failure to remove",
+      "Exceptions for caricature, satire, parody and social criticism (unless gravely misleading)"
+    ],
+    penalties: "Civil remedies: takedown, compensation and damages; platform liability",
+    officialLink: "https://www.europarl.europa.eu/thinktank/en/document/EPRS_ATA(2026)782611",
+    lastVerified: "Aug 2026"
+  },
+  /* ================= AMERICAS ================= */
+  {
+    id: "us-take-it-down-act",
+    citation: "TAKE IT DOWN Act, Pub. L. No. 119-12 (2025) (S. 146, 119th Cong.)",
+    name: "TAKE IT DOWN Act (Pub. L. 119-12)",
+    jurisdiction: "United States (federal)",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Enacted May 19, 2025; criminal provisions effective immediately. Platform notice-and-removal obligations became enforceable May 19, 2026 — the FTC has begun enforcement and sent warning letters to major platforms.",
+    modalities: ["image", "video"],
+    summary: "The first major federal generative-AI statute. It criminalizes knowingly publishing non-consensual intimate images — including AI-generated 'digital forgeries' (deepfakes) — of adults and minors, and requires covered platforms to operate a removal-request process with a 48-hour takedown clock.",
+    keyObligations: [
+      "Do not publish NCII or AI-generated intimate digital forgeries of identifiable people",
+      "Covered platforms: provide a clear NCII removal-request mechanism (deadline was May 19, 2026)",
+      "Remove reported content and identical copies within 48 hours of a valid request",
+      "Heightened protections where the depicted person is a minor"
+    ],
+    penalties: "Criminal: up to 2 years' prison (adults depicted) / 3 years (minors); platform violations are FTC Act violations with civil penalties up to $53,088 per violation",
+    officialLink: "https://www.congress.gov/bill/119th-congress/senate-bill/146",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "us-eo-14365",
+    citation: "Exec. Order No. 14365, 90 Fed. Reg. 58499 (Dec. 16, 2025)",
+    name: "Executive Order 14365 — National Policy Framework for AI",
+    jurisdiction: "United States (federal)",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Signed Dec 11, 2025. DOJ AI Litigation Task Force active — it intervened against Colorado's AI Act in April 2026. White House legislative recommendations for a preemptive federal framework issued March 2026 (not enacted by Congress).",
+    modalities: ["all"],
+    summary: "The centerpiece of the current federal posture: rather than regulating generative AI, the administration seeks to deregulate and preempt state AI laws. The order created a DOJ task force to challenge 'burdensome' state AI laws and directed Commerce to catalog offending statutes and condition certain federal funds. Carve-outs exclude child-safety, deepfake/NCII, and state-procurement laws from the preemption push.",
+    keyObligations: [
+      "No direct obligations on AI developers — directs federal agencies, not companies",
+      "DOJ task force litigates against state AI laws (Commerce Clause, preemption theories)",
+      "Commerce to identify 'onerous' state AI laws and condition certain federal funding",
+      "FTC policy statement on when state laws forcing alteration of truthful model outputs are preempted"
+    ],
+    penalties: "None directly; operates through litigation and federal funding conditions",
+    officialLink: "https://www.federalregister.gov/documents/2025/12/16/2025-23092/ensuring-a-national-policy-framework-for-artificial-intelligence",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "california-sb942-transparency",
+    citation: "Cal. Bus. & Prof. Code § 22757 et seq. (SB 942 (2024), as amended by AB 853 (2025))",
+    name: "California AI Transparency Act (SB 942, as amended by AB 853)",
+    jurisdiction: "California, USA",
+    region: "Americas",
+    status: "partially-in-force",
+    statusDetail: "Core provider duties in force since Aug 2, 2026 (delayed from Jan 1 by AB 853). Large-online-platform duties start Jan 1, 2027; capture-device rules Jan 1, 2028.",
+    modalities: ["image", "video", "audio"],
+    summary: "Requires large generative-AI providers (over 1M monthly users) to offer a free AI-detection tool and to embed latent (machine-readable provenance) and optional manifest disclosures in AI-generated image, video, and audio content. AB 853 extended the scheme to hosting platforms, large online platforms, and capture-device makers.",
+    keyObligations: [
+      "Provide a free, public AI-detection tool for the provider's generated content",
+      "Embed latent provenance disclosures in AI-generated image/video/audio",
+      "Offer users an optional manifest 'AI-generated' disclosure",
+      "Contractually bind licensees to maintain disclosure capability",
+      "Large online platforms (from 2027): surface embedded provenance data to users"
+    ],
+    penalties: "$5,000 per violation per day, enforced by the AG or city/county attorneys",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB942",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "california-ab2013-training-data",
+    citation: "Cal. Civ. Code §§ 3110–3111 (AB 2013 (2024))",
+    name: "California Generative AI Training Data Transparency Act (AB 2013)",
+    jurisdiction: "California, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Effective Jan 1, 2026. xAI's suit to enjoin it failed at district court; appeal pending before the Ninth Circuit as of mid-2026 — the law remains enforceable.",
+    modalities: ["all"],
+    summary: "Developers of generative AI systems made available to Californians must publicly post a high-level summary of the datasets used to train the system — retroactive to systems released since January 1, 2022 — covering data sources and owners, use of copyrighted or licensed material, personal information, and synthetic data.",
+    keyObligations: [
+      "Publish training-data summaries on the developer's website before or at release",
+      "Disclose dataset sources and whether copyrighted or licensed material is included",
+      "Disclose whether personal information or aggregate consumer data is included",
+      "Applies retroactively to publicly released systems since Jan 1, 2022"
+    ],
+    penalties: "No dedicated penalty; enforceable via California's Unfair Competition Law (civil penalties up to $2,500 per violation)",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2013",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "california-sb53-frontier",
+    citation: "Cal. SB 53 (2025) — Transparency in Frontier Artificial Intelligence Act",
+    name: "California Transparency in Frontier AI Act (SB 53)",
+    jurisdiction: "California, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Signed Sep 29, 2025; effective Jan 1, 2026. The first US frontier-model safety law in force; a likely target of the federal preemption campaign but not enjoined as of Aug 2026.",
+    modalities: ["all"],
+    summary: "Regulates developers of frontier foundation models (trained above 10^26 FLOPs), with the heaviest duties on developers with over $500M revenue: published safety frameworks and transparency reports focused on catastrophic risk, mandatory incident reporting to California OES, and whistleblower protections.",
+    keyObligations: [
+      "Publish a frontier AI framework describing catastrophic-risk governance",
+      "Publish transparency reports at model release",
+      "Report critical safety incidents to California OES (15 days; 24 hours for imminent risk)",
+      "Whistleblower protections for employees raising catastrophic-risk concerns"
+    ],
+    penalties: "Civil penalties up to $1,000,000 per violation, enforced by the California AG",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "california-election-deepfakes",
+    citation: "Cal. AB 2839 & AB 2655 (2024) (Elections Code); held unconstitutional, Kohls v. Bonta (E.D. Cal. 2025)",
+    name: "California election deepfake laws (AB 2839 & AB 2655)",
+    jurisdiction: "California, USA",
+    region: "Americas",
+    status: "enjoined",
+    statusDetail: "Both held unconstitutional in Kohls v. Bonta (E.D. Cal.) — AB 2839 struck Aug 29, 2025 on First Amendment grounds; AB 2655 invalidated on Section 230/First Amendment grounds. On the books but unenforceable; Ninth Circuit appeal fully briefed, decision pending.",
+    modalities: ["image", "video", "audio"],
+    summary: "AB 2839 banned knowingly distributing 'materially deceptive' AI-altered media about candidates and election officials around elections; AB 2655 required large platforms to remove or label deceptive election deepfakes. A federal judge found they unconstitutionally burden satire and protected speech — their fate now rests with the Ninth Circuit.",
+    keyObligations: [
+      "(Enjoined) No knowing distribution of materially deceptive audio/visual election media in pre/post-election windows",
+      "(Enjoined) Satire and parody required prominent disclosure labels",
+      "(Enjoined) Large platforms to remove or label reported deceptive election content"
+    ],
+    penalties: "Injunctive relief, damages, and attorney's fees — currently unenforceable per federal court judgment",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2839",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "california-explicit-deepfakes",
+    citation: "Cal. SB 926 & SB 981 (2024)",
+    name: "California sexually explicit deepfake laws (SB 926 & SB 981)",
+    jurisdiction: "California, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Both effective Jan 1, 2025; no reported court challenges as of Aug 2026.",
+    modalities: ["image", "video"],
+    summary: "SB 926 criminalizes creating or distributing photorealistic AI-generated sexually explicit images of an identifiable person that a reasonable viewer would believe authentic, where distribution causes serious emotional distress. SB 981 requires social media platforms to run a reporting mechanism for 'sexually explicit digital identity theft.'",
+    keyObligations: [
+      "No creation/distribution of realistic non-consensual sexual deepfakes (SB 926)",
+      "Platforms: provide a California-user reporting mechanism (SB 981)",
+      "Temporarily block reported content pending investigation",
+      "Permanently remove content confirmed as sexual digital identity theft"
+    ],
+    penalties: "SB 926: misdemeanor (up to 1 year jail and/or fines); SB 981 enforced as a platform-compliance obligation",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB926",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "california-performer-replicas",
+    citation: "Cal. Lab. Code § 927 (AB 2602 (2024)); Cal. Civ. Code § 3344.1 (AB 1836 (2024))",
+    name: "California digital replica laws for performers (AB 2602 & AB 1836)",
+    jurisdiction: "California, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Both effective Jan 1, 2025; complemented by pre-existing AB 602 (civil action for sexually explicit depictions, in force since 2020).",
+    modalities: ["image", "video", "audio"],
+    summary: "AB 2602 voids contract provisions allowing use of a living performer's AI digital replica in place of work the performer could have done, unless the use is specifically described and the performer had legal or union representation. AB 1836 prohibits commercial use of digital replicas of deceased performers without estate consent.",
+    keyObligations: [
+      "Digital-replica contract clauses must specifically describe intended uses (AB 2602)",
+      "Performer must be represented by counsel or a union when consenting",
+      "Obtain estate consent before using replicas of deceased performers (AB 1836)",
+      "Applies to voice clones and visual likenesses in audiovisual works and sound recordings"
+    ],
+    penalties: "AB 1836: minimum statutory damages of $10,000 or actual damages plus profits; AB 2602 renders offending contract terms unenforceable",
+    officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB1836",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "colorado-admt-act",
+    citation: "Colo. SB 26-189 (2026), replacing Colo. Rev. Stat. § 6-1-1701 et seq. (SB 24-205 (2024))",
+    name: "Colorado Automated Decision-Making Technology Act (SB 26-189)",
+    jurisdiction: "Colorado, USA",
+    region: "Americas",
+    status: "enacted-not-yet-effective",
+    statusDetail: "Replaces the landmark 2024 Colorado AI Act (SB 24-205), which never took effect — it was delayed, then suspended by a federal court in April 2026 after a DOJ-backed challenge. SB 26-189 signed May 14, 2026; effective Jan 1, 2027.",
+    modalities: ["all"],
+    summary: "Colorado's rewritten AI law drops the EU-style high-risk/algorithmic-discrimination framework in favor of transparency and consumer-recourse rules for automated decision-making technology used in consequential decisions across seven domains (education, employment, housing, lending, insurance, healthcare, essential government services).",
+    keyObligations: [
+      "Pre-use notice to consumers when covered ADMT materially influences a consequential decision",
+      "Post-decision explanation within 30 days of an adverse outcome",
+      "Opportunity for meaningful human review of adverse decisions",
+      "Developer documentation to deployers about the ADMT's capabilities and limits"
+    ],
+    penalties: "Deceptive trade practice under the Colorado Consumer Protection Act — up to $20,000 per violation; AG-exclusive enforcement",
+    officialLink: "https://leg.colorado.gov/bills/sb26-189",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "texas-traiga",
+    citation: "Tex. HB 149, 89th Leg., R.S. (2025) (TRAIGA)",
+    name: "Texas Responsible AI Governance Act (TRAIGA, HB 149)",
+    jurisdiction: "Texas, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Signed Jun 22, 2025; in force since Jan 1, 2026. No court challenges reported as of Aug 2026.",
+    modalities: ["all"],
+    summary: "A pared-back, intent-based AI law: rather than imposing risk-management programs, it prohibits developing or deploying AI with the intent to incite self-harm or crime, unlawfully discriminate, or produce CSAM or unlawful sexually explicit deepfakes. Government agencies must disclose AI interactions to consumers.",
+    keyObligations: [
+      "No AI developed/deployed with intent to unlawfully discriminate or incite harm",
+      "No generative content constituting CSAM or unlawful explicit deepfakes",
+      "Government agencies must disclose consumer interactions with AI",
+      "60-day cure period before AG enforcement; NIST AI RMF compliance is an affirmative defense"
+    ],
+    penalties: "AG enforcement: $10,000–12,000 per curable violation, $80,000–200,000 per uncurable violation, $2,000–40,000/day for continuing violations",
+    officialLink: "https://capitol.texas.gov/BillLookup/History.aspx?LegSess=89R&Bill=HB149",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "utah-ai-policy-act",
+    citation: "Utah Code § 13-72-101 et seq. (SB 149 (2024), as amended 2025)",
+    name: "Utah AI Policy Act (SB 149, as amended 2025)",
+    jurisdiction: "Utah, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "In force since May 1, 2024; amended May 2025 (narrowed disclosure duties, sunset extended to Jul 1, 2027; separate rules added for mental-health chatbots).",
+    modalities: ["all"],
+    summary: "The first state generative-AI consumer-protection statute. Generative AI must disclose it is not human when a consumer asks, and regulated-occupation providers (medical, legal, financial) must proactively disclose AI use in high-risk interactions. Companies remain liable under consumer-protection law for what their chatbots say.",
+    keyObligations: [
+      "Disclose AI status when asked by a consumer",
+      "Proactive disclosure in high-risk/regulated-occupation interactions",
+      "Mental-health chatbots: disclose non-human status, no ad targeting, no sale of health data",
+      "No disclaiming liability for generative-AI outputs under the Consumer Sales Practices Act"
+    ],
+    penalties: "Up to $2,500 per violation (administrative) plus up to $5,000 per violation in court actions",
+    officialLink: "https://le.utah.gov/~2024/bills/static/SB0149.html",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "tennessee-elvis-act",
+    citation: "Tenn. Code Ann. § 47-25-1101 et seq. (ELVIS Act, 2024 Tenn. Pub. Ch. 588)",
+    name: "Tennessee ELVIS Act (Ensuring Likeness Voice and Image Security Act)",
+    jurisdiction: "Tennessee, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "In force since Jul 1, 2024; no major amendments or successful challenges through Aug 2026. A model for at least seven other states' voice/likeness laws.",
+    modalities: ["audio", "image", "video"],
+    summary: "The first US law creating a right of publicity in a person's voice, expressly covering AI voice clones. It prohibits unauthorized commercial use of voice or likeness and — unusually — extends liability to anyone distributing a tool whose primary purpose is producing unauthorized replicas.",
+    keyObligations: [
+      "No unauthorized use of a person's voice or AI voice simulation",
+      "No knowing distribution of tools primarily designed for unauthorized voice/likeness replicas",
+      "Rights extend 10 years post-mortem",
+      "Exemptions for news, commentary, and certain fair-use-style purposes"
+    ],
+    penalties: "Civil: injunctions, actual damages plus profits; criminal: Class A misdemeanor",
+    officialLink: "https://wapp.capitol.tn.gov/apps/BillInfo/Default.aspx?BillNumber=HB2091&GA=113",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "illinois-digital-replica",
+    citation: "765 ILCS 1075 (Right of Publicity Act, as amended by P.A. 103-0836 (HB 4875))",
+    name: "Illinois Digital Replica Law (HB 4875)",
+    jurisdiction: "Illinois, USA",
+    region: "Americas",
+    status: "in-force",
+    statusDetail: "Effective Jan 1, 2025. Illinois also bans AI-provided therapy (effective Aug 2025) and applies its Human Rights Act to AI in employment from Jan 1, 2026.",
+    modalities: ["audio", "image", "video"],
+    summary: "The second state (after Tennessee) to ban unauthorized generative-AI digital replicas. It amends the Right of Publicity Act so that producing or distributing a convincing AI recreation of a real person's voice, image, or likeness without consent is actionable, with carve-outs for news, documentary, satire, and scholarship.",
+    keyObligations: [
+      "No unauthorized AI digital replicas of a person's voice, image, or likeness",
+      "Liability extends to knowing distribution of unauthorized replicas",
+      "Exemptions for news, public affairs, documentaries, commentary, and parody",
+      "Private civil enforcement by the person depicted"
+    ],
+    penalties: "Civil damages — greater of actual damages or $1,000 statutory, plus profits and injunctive relief",
+    officialLink: "https://www.ilga.gov/ftp/legislation/103/BillStatus/HTML/10300HB4875.html",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "new-york-raise-act",
+    citation: "N.Y. S6953B (2025), as amended by chapter amendment (Mar. 27, 2026); eff. Jan. 1, 2027",
+    name: "New York RAISE Act (S6953B)",
+    jurisdiction: "New York, USA",
+    region: "Americas",
+    status: "enacted-not-yet-effective",
+    statusDetail: "Signed Dec 19, 2025; substantially rewritten by chapter amendment Mar 27, 2026; takes effect Jan 1, 2027. NY separately has in-force digital-replica contract protections and AI-companion safeguards (since Nov 2025).",
+    modalities: ["all"],
+    summary: "New York's frontier-model safety law, the second after California's SB 53. As amended, it applies to developers of models trained above 10^26 FLOPs with over $100M compute cost, limited to developers with over $500M annual revenue — requiring safety protocols, transparency reports, and incident reporting overseen by a new office within the Department of Financial Services.",
+    keyObligations: [
+      "Publish and maintain a frontier-model safety and security protocol",
+      "Transparency reporting on frontier models before or at deployment",
+      "Report safety incidents to the state",
+      "Do not deploy frontier models creating unreasonable risk of critical harm"
+    ],
+    penalties: "AG-enforced civil penalties — up to $10M for a first violation and $30M for subsequent violations",
+    officialLink: "https://www.nysenate.gov/legislation/bills/2025/S6953",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "canada-post-aida",
+    citation: "Bill C-27 (AIDA, Part 3), 44th Parl., 1st Sess. — died on prorogation (Jan. 2025)",
+    name: "Canada — post-AIDA approach (AI for All strategy)",
+    jurisdiction: "Canada (federal)",
+    region: "Americas",
+    status: "proposed",
+    statusDetail: "The AIDA bill died when Parliament was prorogued in Jan 2025 and was not revived. 'AI for All' national strategy launched Jun 2026; a public consultation on AI transparency (including labeling) opened Jul 2026. No new AI bill tabled as of Aug 2026.",
+    modalities: ["all"],
+    summary: "Canada's attempt at a comprehensive AI law failed with Bill C-27, and the government has declined to revive it. Generative AI is currently governed by existing privacy law (PIPEDA), the Competition Act, and a voluntary generative-AI code of conduct, while the July 2026 transparency consultation signals future labeling and disclosure rules.",
+    keyObligations: [
+      "None binding yet — AIDA never became law",
+      "Voluntary Code of Conduct for Advanced Generative AI Systems (2023) remains the main federal instrument",
+      "AI transparency consultation (Jul 2026) signals future labeling/disclosure rules",
+      "Privacy modernization (Bill C-36) would govern AI training data if passed"
+    ],
+    penalties: "N/A — no binding federal AI statute in force",
+    officialLink: "https://www.parl.ca/legisinfo/en/bill/44-1/c-27",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "brazil-pl-2338",
+    citation: "Projeto de Lei nº 2.338/2023 (Senado Federal / Câmara dos Deputados)",
+    name: "Brazil AI Bill (PL 2338/2023 — Marco Legal da IA)",
+    jurisdiction: "Brazil (federal)",
+    region: "Americas",
+    status: "proposed",
+    statusDetail: "Approved by the Senate Dec 10, 2024; pending in the Chamber of Deputies with amendments under negotiation and a plenary vote anticipated around the Aug 2026 recess. Not yet law.",
+    modalities: ["all"],
+    summary: "A comprehensive EU-style, risk-based AI framework. For generative AI it would require risk assessment before market release, labeling of synthetic content, disclosure of copyrighted training material with remuneration rights for Brazilian rightsholders, and oversight coordinated by data-protection authority ANPD.",
+    keyObligations: [
+      "(If enacted) Risk classification with bans on excessive-risk systems",
+      "Label synthetic/AI-generated content",
+      "Copyright transparency for training data plus rightsholder remuneration",
+      "Preliminary risk assessments for general-purpose and generative models"
+    ],
+    penalties: "As approved by the Senate: fines up to R$50 million or 2% of Brazilian revenue per violation, plus possible suspension of the system",
+    officialLink: "https://www25.senado.leg.br/web/atividade/materias/-/materia/157233",
+    lastVerified: "Aug 2026"
+  },
+
+  /* ================= ASIA-PACIFIC & MIDDLE EAST ================= */
+  {
+    id: "china-genai-interim-measures",
+    citation: "生成式人工智能服务管理暂行办法 (Interim Measures for Generative AI Services), CAC et al. (2023)",
+    name: "China — Interim Measures for Generative AI Services",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "In force since Aug 15, 2023. Remains the core binding generative-AI rule; 748 generative AI services had completed CAC filing as of December 2025.",
+    modalities: ["all"],
+    summary: "China's first binding regulation specifically targeting generative AI, covering public-facing services that generate text, images, audio, and video. Providers are responsible for the legality of training data and outputs, and must complete security assessments and algorithm filings before launch.",
+    keyObligations: [
+      "Security assessment and CAC algorithm filing before offering services with public-opinion attributes",
+      "Training data must be lawfully sourced; respect IP and personal-information rights",
+      "Label AI-generated content (operationalized by the 2025 Labeling Measures)",
+      "Prevent generation of illegal content, take corrective action, report to regulators",
+      "Protect minors and handle user complaints"
+    ],
+    penalties: "No standalone fine schedule; enforcement via existing cyber/data laws — warnings, rectification orders, suspension, criminal referral in serious cases",
+    officialLink: "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "china-deep-synthesis",
+    citation: "互联网信息服务深度合成管理规定 (Deep Synthesis Provisions), CAC/MIIT/MPS (2022)",
+    name: "China — Deep Synthesis Provisions",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "In force since Jan 10, 2023. The deepfake layer of China's regulatory chain: algorithm recommendation → deep synthesis → generative AI → anthropomorphic AI.",
+    modalities: ["all"],
+    summary: "The world's first dedicated deepfake regulation, governing services that use deep learning to generate or alter text, audio, images, video, and virtual scenes (face swaps, voice synthesis). Providers must label synthetic content, verify user identities, and obtain consent for biometric editing.",
+    keyObligations: [
+      "Conspicuous labels on content that could confuse or mislead (face swaps, synthetic voices, realistic scenes)",
+      "Consent required from individuals whose faces or voices are edited",
+      "Real-name verification of users",
+      "Algorithm filing with CAC and security assessments for new products"
+    ],
+    penalties: "Enforcement via existing laws (Cybersecurity Law, PIPL): warnings, fines, suspension; criminal liability possible",
+    officialLink: "https://www.cac.gov.cn/2022-12/11/c_1672221949318230.htm",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "china-labeling-measures",
+    citation: "人工智能生成合成内容标识办法 (Labeling Measures, 2025); mandatory standard GB 45438-2025",
+    name: "China — AI Content Labeling Measures (+ standard GB 45438-2025)",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "In force since Sep 1, 2025 together with mandatory national standard GB 45438-2025. Actively enforced — CAC announced a batch of app takedowns for labeling violations in November 2025.",
+    modalities: ["all"],
+    summary: "Requires both explicit (visible) and implicit (metadata/watermark) labels on all AI-generated text, images, audio, video, and virtual scenes distributed in China. Obligations fall on generation-service providers, content-distribution platforms, and app stores — the world's most comprehensive mandatory AI-labeling regime.",
+    keyObligations: [
+      "Explicit labels (text/sound/graphic) on AI content that users can perceive",
+      "Implicit labels embedded in file metadata identifying provider and content ID",
+      "Platforms must verify labels and flag suspected AI content",
+      "App stores must check labeling compliance of AI apps",
+      "Prohibition on maliciously removing, altering, or forging labels"
+    ],
+    penalties: "Regulatory investigation, app removal, fines, business suspension and permit revocation under existing laws",
+    officialLink: "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "china-algorithm-filing",
+    citation: "互联网信息服务算法推荐管理规定 (Algorithm Recommendation Provisions), CAC et al. (2022)",
+    name: "China — Algorithm Recommendation Provisions & filing regime",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "In force since Mar 1, 2022; the filing regime extends to deep synthesis and generative AI algorithms.",
+    modalities: ["all"],
+    summary: "Establishes China's algorithm registry: any service with public-opinion attributes or social-mobilization capacity — interpreted to include all public generative-AI services — must file its algorithms with the CAC and pass a security assessment before launch, and display the filing number publicly.",
+    keyObligations: [
+      "Pre-launch algorithm filing with the CAC algorithm registry",
+      "Security self-assessment for services with public-opinion attributes",
+      "Display of filing number on the service",
+      "Ongoing updates to filings when models or functions change"
+    ],
+    penalties: "Warnings, rectification orders, fines of RMB 10,000–100,000, and service suspension for operating without filing",
+    officialLink: "https://www.cac.gov.cn/2022-01/04/c_1642894606364259.htm",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "china-anthropomorphic-ai",
+    citation: "Interim Measures for the Administration of AI Anthropomorphic Interactive Services, CAC/NDRC/MIIT/MPS/SAMR (Apr. 10, 2026)",
+    name: "China — Interim Measures for AI Anthropomorphic Interactive Services",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Published Apr 10, 2026 by five agencies; in force since Jul 15, 2026.",
+    modalities: ["text", "image", "audio", "video"],
+    summary: "The newest layer of China's generative-AI regime, targeting AI companion and emotional-interaction services that simulate human personality. Requires clear disclosure that users are talking to an AI, safeguards against psychological dependency, and strict limits on services offered to minors.",
+    keyObligations: [
+      "Mandatory disclosure that the user is interacting with an AI, not a human",
+      "Safeguards against emotional dependency, with intervention triggers",
+      "Content governance over AI outputs within interaction flows",
+      "Severe restrictions on virtual-companion products for minors",
+      "Security assessments plus existing filing and labeling rules"
+    ],
+    penalties: "Rectification orders, suspension, fines via existing cyber and consumer-protection laws",
+    officialLink: "https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "korea-ai-basic-act",
+    citation: "Framework Act on the Development of AI and Establishment of a Foundation for Trust, Act No. 20676 (promulgated Jan. 21, 2025)",
+    name: "South Korea — AI Basic Act (Framework Act on AI)",
+    jurisdiction: "South Korea",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Act and Enforcement Decree took effect Jan 22, 2026, with roughly a one-year grace period on administrative fines (except serious-harm cases) — real enforcement starts around early 2027.",
+    modalities: ["all"],
+    summary: "The first comprehensive AI statute in the Asia-Pacific, combining industrial promotion with transparency and safety obligations. Operators must tell users when generative or high-impact AI is being used and label generative outputs, with stricter watermark-style labeling for deepfake-like content that is hard to distinguish from reality.",
+    keyObligations: [
+      "Advance notice to users that generative or high-impact AI is in use",
+      "Label outputs of generative AI; clearly label content indistinguishable from reality",
+      "Safety and reliability obligations for high-impact AI and large-scale models",
+      "Foreign providers above thresholds must appoint a domestic representative",
+      "MSIT investigation and corrective-order powers"
+    ],
+    penalties: "Administrative fines up to KRW 30 million (~USD 20,000) per violation; largely deferred during the grace period",
+    officialLink: "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=71019&lang=ENG",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "japan-ai-promotion-act",
+    citation: "Act on the Promotion of R&D and Utilization of AI-Related Technologies, Act No. 53 of 2025 (Japan)",
+    name: "Japan — AI Promotion Act (Act No. 53 of 2025)",
+    jurisdiction: "Japan",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Most provisions effective Jun 4, 2025; fully in force since Sep 1, 2025. Revised AI Basic Plan draft published June 2026.",
+    modalities: ["all"],
+    summary: "Japan's first AI framework law, deliberately promotion-oriented: it sets national goals, creates an AI Strategy Headquarters chaired by the Prime Minister, and mandates an AI Basic Plan. It imposes no binding obligations, fines, or bans on generative-AI providers, relying instead on cooperation duties, guidance, and government power to investigate misuse and publish findings.",
+    keyObligations: [
+      "Duty of businesses to cooperate with government AI measures (non-penal)",
+      "Government may investigate AI-related rights infringements and disclose results ('name and shame')",
+      "AI Basic Plan sets expectations on transparency and safety for developers",
+      "No labeling, filing, or watermarking mandates for generative AI"
+    ],
+    penalties: "None — the Act contains no fines or criminal sanctions",
+    officialLink: "https://www.japaneselawtranslation.go.jp/en/laws/view/5066/en",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "japan-copyright-guidance",
+    citation: "Agency for Cultural Affairs, 'General Understanding on AI and Copyright' (Mar. 2024); Checklist & Guidance (July 2024)",
+    name: "Japan — Agency for Cultural Affairs guidance on AI & copyright",
+    jurisdiction: "Japan",
+    region: "Asia-Pacific",
+    status: "guidance",
+    statusDetail: "Committee 'General Understanding' adopted March 2024; checklist guidance July 2024. Still the operative interpretation as of Aug 2026 — no statutory amendment to Art. 30-4.",
+    modalities: ["text", "image", "audio", "video"],
+    summary: "Non-binding but authoritative interpretation of Japan's copyright law for AI training: Article 30-4 permits training on copyrighted works without permission for non-expressive purposes, but not where the purpose includes enjoyment of the expression (e.g., deliberately replicating a creator's style) or where it unreasonably prejudices rights holders.",
+    keyObligations: [
+      "Training on lawfully accessed works generally permitted under the Art. 30-4 TDM exception",
+      "Exception unavailable where training aims to output a specific creator's expression",
+      "AI outputs infringe under ordinary similarity-plus-reliance analysis",
+      "Checklist guidance for developers on data sourcing and output filtering"
+    ],
+    penalties: "Not applicable — interpretive guidance; infringement remedies arise under the Copyright Act",
+    officialLink: "https://www.bunka.go.jp/english/policy/copyright/pdf/94055801_01.pdf",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "taiwan-ai-basic-act",
+    citation: "人工智慧基本法 (AI Basic Act), promulgated Jan. 14, 2026 (Taiwan)",
+    name: "Taiwan — AI Basic Act",
+    jurisdiction: "Taiwan",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Passed Dec 23, 2025; promulgated and effective Jan 14, 2026. No longer a draft.",
+    modalities: ["all"],
+    summary: "A 20-article framework law establishing Taiwan's AI governance principles rather than direct obligations on companies. It codifies seven principles including transparency and accountability, and directs the government to build a risk-based classification framework and adapt sector laws — where future generative-AI labeling rules will sit.",
+    keyObligations: [
+      "Government must develop an AI risk-classification framework and sectoral rules",
+      "Agencies directed to address AI-generated content transparency and disclosure",
+      "Promotion measures: sandboxes, data governance, talent programs",
+      "No direct penalties or compliance duties on providers yet"
+    ],
+    penalties: "None — framework legislation; obligations will come via follow-on sectoral rules",
+    officialLink: "https://english.ey.gov.tw/News3/9E5540D592A5FECD/dfa7107b-f323-4961-a31b-873bbc12ea47",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "vietnam-ai-law",
+    citation: "Law on Artificial Intelligence, No. 134/2025/QH15 (Dec. 10, 2025)",
+    name: "Vietnam — Law on Artificial Intelligence (No. 134/2025/QH15)",
+    jurisdiction: "Vietnam",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Passed Dec 10, 2025; in force since Mar 1, 2026, with grace periods for pre-existing AI systems until Mar 2027 (Sep 2027 for health, education, finance). Supersedes the AI chapter of the Digital Technology Industry Law.",
+    modalities: ["all"],
+    summary: "Vietnam's first standalone AI law, heavily influenced by the EU AI Act, applying to domestic and foreign entities developing, providing, deploying, or using AI in Vietnam. It sets three risk tiers, prohibits certain practices, and requires that interactive AI be disclosed and AI-generated content carry identification marks.",
+    keyObligations: [
+      "Risk classification with stricter duties for high-risk AI systems",
+      "Labeling/identification marks on AI-generated content; disclosure for interactive AI",
+      "Role-based responsibilities for developers, providers, deployers, users",
+      "Human oversight required for important decision-making",
+      "Extraterritorial application to foreign providers"
+    ],
+    penalties: "Administrative sanctions to be detailed in implementing decrees; existing IT and data sanctions apply in the interim",
+    officialLink: "https://beta-en.mic.gov.vn/first-ever-law-on-artificial-intelligence-approved-197251215231241888.htm",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "india-it-rules-2026",
+    citation: "IT (Intermediary Guidelines and Digital Media Ethics Code) Amendment Rules, 2026, G.S.R. 120(E) (Feb. 10, 2026)",
+    name: "India — IT Amendment Rules, 2026 (synthetically generated information)",
+    jurisdiction: "India",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Notified Feb 10, 2026; in force since Feb 20, 2026.",
+    modalities: ["image", "video", "audio"],
+    summary: "The first binding Indian rules on AI-generated content, folding 'synthetically generated information' — audio or visual content algorithmically created or altered to appear real — into the intermediary due-diligence framework. Platforms must label such content prominently, embed permanent provenance metadata, and honor government takedowns within three hours.",
+    keyObligations: [
+      "Clear and prominent labels on permitted synthetic content (visual labels for visual content, audio disclosures for audio)",
+      "Permanent, non-strippable provenance metadata",
+      "Significant platforms must collect user declarations and deploy technical verification",
+      "Takedown of flagged unlawful content within 3 hours (down from 36)",
+      "Technical measures against prohibited synthetic media (CSAM, NCII, impersonation)"
+    ],
+    penalties: "No direct fines; non-compliance forfeits Section 79 safe-harbor immunity, exposing platforms to liability under the IT Act and penal laws",
+    officialLink: "https://www.meity.gov.in/static/uploads/2026/02/550681ab908f8afb135b0ad42816a1c9.pdf",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "singapore-elections-deepfakes",
+    citation: "Elections (Integrity of Online Advertising) (Amendment) Act 2024 (Singapore)",
+    name: "Singapore — Elections (Integrity of Online Advertising) Amendment Act",
+    jurisdiction: "Singapore",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Passed Oct 15, 2024; first applied during the May 2025 general election. Applies during every election period.",
+    modalities: ["image", "video", "audio"],
+    summary: "Bans publishing, sharing, boosting, or reposting digitally generated or manipulated content — including AI deepfakes — that realistically depicts an election candidate saying or doing something they did not, during the election period. The Returning Officer can order takedowns.",
+    keyObligations: [
+      "Prohibition on deepfake depictions of candidates during election periods",
+      "Platforms must comply with corrective directions to remove or block content",
+      "Candidates may make declarations to trigger review of content depicting them",
+      "Exemptions for obviously non-deceptive content (memes, animation, beauty filters)"
+    ],
+    penalties: "Individuals: fines up to SGD 1,000 and/or up to 12 months' imprisonment; providers/platforms: fines up to SGD 1 million",
+    officialLink: "https://www.mddi.gov.sg/newsroom/new-legal-measures-uphold-integrity-online-advertising-elections/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "singapore-genai-framework",
+    citation: "IMDA & AI Verify Foundation, Model AI Governance Framework for Generative AI (30 May 2024)",
+    name: "Singapore — Model AI Governance Framework for Generative AI",
+    jurisdiction: "Singapore",
+    region: "Asia-Pacific",
+    status: "guidance",
+    statusDetail: "Published May 2024 by IMDA and the AI Verify Foundation; remains Singapore's primary generative-AI governance instrument — no horizontal AI statute planned.",
+    modalities: ["all"],
+    summary: "A voluntary framework addressing nine dimensions of generative-AI governance: accountability, data, trusted development and disclosure, incident reporting, testing, security, content provenance, safety R&D, and AI for public good. It anchors Singapore's non-legislative approach, complemented by binding general laws like the Online Criminal Harms Act.",
+    keyObligations: [
+      "Recommended transparency on model capabilities and limitations",
+      "Content-provenance measures (watermarking, cryptographic provenance) encouraged",
+      "Safety evaluations and red-teaming before release",
+      "Incident-reporting practices for model failures"
+    ],
+    penalties: "None — voluntary framework",
+    officialLink: "https://aiverifyfoundation.sg/wp-content/uploads/2024/06/Model-AI-Governance-Framework-for-Generative-AI-19-June-2024.pdf",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "australia-deepfake-criminal",
+    citation: "Criminal Code Amendment (Deepfake Sexual Material) Act 2024 (Cth), No. 78 of 2024",
+    name: "Australia — Criminal Code Amendment (Deepfake Sexual Material) Act 2024",
+    jurisdiction: "Australia",
+    region: "Asia-Pacific",
+    status: "in-force",
+    statusDetail: "Commenced Sep 3, 2024. In force nationwide (Commonwealth Criminal Code).",
+    modalities: ["image", "video"],
+    summary: "Criminalizes sharing non-consensual sexually explicit material of adults — explicitly including material created or altered with AI — using carriage services. Creating the deepfake yourself is an aggravating factor. This is Australia's main binding generative-AI-specific criminal law.",
+    keyObligations: [
+      "Offence to transmit sexual material depicting an adult without consent, including AI-generated depictions",
+      "Aggravated offence where the defendant also created or altered the material",
+      "Applies where content reasonably appears to depict a real person",
+      "Complements eSafety Commissioner takedown powers under the Online Safety Act"
+    ],
+    penalties: "Up to 6 years' imprisonment for non-consensual sharing; up to 7 years where the sharer created the deepfake",
+    officialLink: "https://www.legislation.gov.au/C2024A00078/asmade/text",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "australia-ai-guidance",
+    citation: "DISR, Voluntary AI Safety Standard (Sept. 2024); National AI Centre, Guidance for AI Adoption (Oct. 2025)",
+    name: "Australia — Voluntary AI Safety Standard & National AI Plan",
+    jurisdiction: "Australia",
+    region: "Asia-Pacific",
+    status: "guidance",
+    statusDetail: "The 2024 mandatory-guardrails proposal was shelved by the Dec 2025 National AI Plan. In July 2026 the PM announced plans to legislate 'Australian Standards for AI' and created an Office of AI — a watch item that could flip within months.",
+    modalities: ["all"],
+    summary: "Australia's generative-AI governance is currently voluntary: existing laws, sector regulators, an AI Safety Institute, and voluntary guidance (the AI6 essential practices). A July 2026 announcement signals future legislated AI standards, but nothing binding is in force yet beyond adjacent criminal, consumer, and privacy law.",
+    keyObligations: [
+      "Voluntary: transparency and disclosure of AI use, including AI-generated content",
+      "Voluntary: testing, human oversight, and accountability practices",
+      "Watch item: proposed legislated Australian Standards for AI (announced July 2026)",
+      "Binding rules exist only in adjacent law (deepfake sexual material, consumer, privacy law)"
+    ],
+    penalties: "None — voluntary; existing sector laws carry their own penalties",
+    officialLink: "https://www.industry.gov.au/publications/voluntary-ai-safety-standard",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "uae-ai-charter",
+    citation: "UAE Charter for the Development and Use of Artificial Intelligence (UAE AI Office, July 2024)",
+    name: "UAE — Charter for the Development and Use of AI",
+    jurisdiction: "United Arab Emirates",
+    region: "Middle East",
+    status: "guidance",
+    statusDetail: "Published July 2024 by the UAE AI Office; non-binding. The UAE has no horizontal AI statute — binding coverage comes from the data-protection law, the 2025 Child Digital Safety Law, and DIFC Regulation 10 (autonomous systems, DIFC-licensed entities only).",
+    modalities: ["all"],
+    summary: "The UAE's authoritative AI ethics framework, setting out 12 principles including safety, algorithmic-bias mitigation, transparency, human oversight, and privacy. It is not enforceable, but signals regulatory direction; binding generative-AI-relevant obligations exist only in narrower instruments.",
+    keyObligations: [
+      "Non-binding: transparency and explainability of AI systems",
+      "Non-binding: human oversight and accountability for AI outcomes",
+      "Non-binding: bias mitigation and privacy compliance",
+      "Binding (DIFC only): Regulation 10 duties for entities deploying autonomous systems processing personal data"
+    ],
+    penalties: "None under the Charter; DIFC Regulation 10 and data-protection violations carry their own administrative fines",
+    officialLink: "https://ai.gov.ae/",
+    lastVerified: "Aug 2026"
+  },
+];
+
+/* =====================================================================
+   CASE LAW — one object per case. To update the site, edit this array.
+   caseStatus: pending | decided | settled | on-appeal
+   ===================================================================== */
+const CASES = [
+  /* ============ US COPYRIGHT / TRAINING-DATA LITIGATION ============ */
+  {
+    id: "bartz-v-anthropic",
+    citation: "Bartz v. Anthropic PBC, No. 3:24-cv-05417 (N.D. Cal.)",
+    name: "Bartz v. Anthropic",
+    court: "N.D. Cal.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "settled",
+    statusDetail: "June 2025: Judge Alsup held training on lawfully acquired books was fair use but retaining pirated copies was not. The $1.5B class settlement received final approval July 20, 2026; the appeal window was still open as of Aug 12, 2026, with payouts to begin after the effective date.",
+    issues: ["training-data", "fair-use"],
+    modalities: ["text"],
+    summary: "Authors brought a class action against Anthropic for training Claude on their books, including copies downloaded from pirate 'shadow libraries.' After a split fair-use ruling, Anthropic agreed to pay $1.5 billion — the largest copyright settlement in history — covering roughly 480,000 works at about $3,000 per work.",
+    keyHoldings: [
+      "Training LLMs on lawfully acquired books is 'exceedingly transformative' fair use (June 2025)",
+      "Downloading and retaining pirated library copies was NOT fair use; those claims were headed to trial before settlement",
+      "Final approval July 20, 2026; output-based claims are not released by the settlement",
+      "Anthropic must destroy the pirated source files and copies derived from them"
+    ],
+    significance: "First mega-settlement in generative-AI copyright litigation, and the leading precedent splitting fair use for training from liability for pirated acquisition.",
+    officialLink: "https://www.courtlistener.com/docket/69058235/bartz-v-anthropic-pbc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "kadrey-v-meta",
+    citation: "Kadrey v. Meta Platforms, Inc., No. 3:23-cv-03417 (N.D. Cal.)",
+    name: "Kadrey v. Meta Platforms",
+    court: "N.D. Cal.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "decided",
+    statusDetail: "June 2025: Judge Chhabria granted Meta summary judgment on fair use as to the 13 named authors, resting on their failure to prove market harm. July 2026: interlocutory appeal denied — the issues will go to the Ninth Circuit together after final judgment, which the court signaled is imminent.",
+    issues: ["training-data", "fair-use"],
+    modalities: ["text"],
+    summary: "Authors including Richard Kadrey and Sarah Silverman sued Meta for training its Llama models on their books obtained via BitTorrent from shadow libraries. The court sided with Meta on fair use — but pointedly because the plaintiffs failed to prove market harm, not as a blanket blessing of AI training.",
+    keyHoldings: [
+      "Meta's training was fair use as to these plaintiffs because they offered no meaningful evidence of market harm",
+      "The court flagged 'market dilution' by AI-generated competing works as a potentially winning theory on a better record",
+      "Interlocutory appeal denied July 2026; appeal expected after final judgment"
+    ],
+    significance: "The counterweight to Bartz — a defense win on fair use that nonetheless mapped out how future plaintiffs could win on market-dilution evidence.",
+    officialLink: "https://www.courtlistener.com/docket/67569326/kadrey-v-meta-platforms-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "nyt-v-openai",
+    citation: "N.Y. Times Co. v. Microsoft Corp., No. 1:23-cv-11195 (S.D.N.Y.); In re OpenAI, Inc. Copyright Infringement Litig., MDL No. 3143",
+    name: "New York Times v. OpenAI & Microsoft",
+    court: "S.D.N.Y. (MDL 3143)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Part of the In re OpenAI copyright MDL before Judge Stein. Motions to dismiss largely denied March 2025; in January 2026 OpenAI was ordered to produce 20 million de-identified ChatGPT logs. Summary judgment briefing runs through late 2026 — no fair-use ruling or trial date yet.",
+    issues: ["training-data", "output-infringement", "fair-use", "dmca", "trademark"],
+    modalities: ["text"],
+    summary: "The New York Times sued OpenAI and Microsoft over the use of millions of Times articles to train GPT models and over outputs that reproduce or closely mimic its journalism. It is the flagship news-industry case, now centralized with other author and publisher suits in a multidistrict litigation.",
+    keyHoldings: [
+      "Core direct and contributory infringement claims survived dismissal (March 2025)",
+      "OpenAI ordered to produce 20 million de-identified ChatGPT conversation logs over privacy objections (Jan 2026)",
+      "No merits ruling on fair use yet"
+    ],
+    significance: "Likely to produce the defining fair-use ruling for training on news content; its discovery orders set the template for output-evidence access in AI cases.",
+    officialLink: "https://www.courtlistener.com/docket/69879510/in-re-openai-inc-copyright-infringement-litigation/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "authors-guild-v-openai",
+    citation: "Authors Guild v. OpenAI, Inc., No. 1:23-cv-08292 (S.D.N.Y.); MDL No. 3143",
+    name: "Authors Guild v. OpenAI",
+    court: "S.D.N.Y. (MDL 3143)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Consolidated into the OpenAI MDL in April 2025. In October 2025 Judge Stein denied OpenAI's motion to dismiss the output-based infringement claim, holding ChatGPT-generated summaries and outputs could be substantially similar to plaintiffs' novels. Active discovery.",
+    issues: ["training-data", "output-infringement", "fair-use"],
+    modalities: ["text"],
+    summary: "The Authors Guild and prominent novelists including John Grisham, George R.R. Martin, and Jodi Picoult brought a class action against OpenAI and Microsoft for training GPT models on their books without permission. The case anchors the author-side claims in the OpenAI MDL.",
+    keyHoldings: [
+      "Output-based direct infringement claim survives — a jury could find ChatGPT outputs substantially similar to plaintiffs' works (Oct 2025)",
+      "Centralized in MDL No. 3143 with the NYT and other suits",
+      "No fair-use merits ruling yet"
+    ],
+    significance: "Keeps output-side infringement — not just training-side — alive as an independent theory against LLM developers.",
+    officialLink: "https://www.courtlistener.com/docket/67810584/authors-guild-v-openai-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "thomson-reuters-v-ross",
+    citation: "Thomson Reuters Enter. Centre GmbH v. Ross Intelligence Inc., No. 1:20-cv-00613 (D. Del.); No. 25-2153 (3d Cir.)",
+    name: "Thomson Reuters v. Ross Intelligence",
+    court: "3d Cir. (from D. Del.)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "on-appeal",
+    statusDetail: "Feb 2025: Judge Bibas granted Thomson Reuters partial summary judgment — infringement of 2,243 Westlaw headnotes and rejection of Ross's fair-use defense. The Third Circuit heard oral argument June 11, 2026; decision pending as of Aug 2026.",
+    issues: ["training-data", "fair-use"],
+    modalities: ["text"],
+    summary: "Thomson Reuters sued legal-research startup Ross Intelligence for using Westlaw headnotes to train its AI search tool. The district court rejected fair use, and the Third Circuit is now hearing the first federal appellate case squarely on fair use for AI training.",
+    keyHoldings: [
+      "Westlaw headnotes are copyrightable; Ross directly infringed 2,243 of them",
+      "Fair use rejected — Ross's use was commercial, non-transformative, and built a market substitute",
+      "Third Circuit argued June 11, 2026; outcome will be the first appellate word on AI-training fair use"
+    ],
+    significance: "The first appellate test of fair use for AI training — whatever the Third Circuit holds will shape every other generative-AI copyright case.",
+    officialLink: "https://www.courtlistener.com/docket/70622297/thomson-reuters-enterprise-centre-gmbh-v-ross-intelligence-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "getty-v-stability-us",
+    citation: "Getty Images (US), Inc. v. Stability AI, Inc., No. 3:25-cv-06891 (N.D. Cal.)",
+    name: "Getty Images v. Stability AI (US)",
+    court: "N.D. Cal. (refiled from D. Del.)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Refiled in N.D. Cal. in August 2025 after two-plus years in Delaware. April 2026: motion to dismiss granted in part, denied in part — most copyright and trademark claims proceed; the false-CMI claim was dismissed without prejudice. In discovery.",
+    issues: ["training-data", "output-infringement", "trademark", "dmca"],
+    modalities: ["image"],
+    summary: "Getty Images sued Stability AI for scraping over 12 million Getty photographs to train Stable Diffusion, and for outputs that sometimes reproduced distorted Getty watermarks. The US case has largely survived dismissal in California.",
+    keyHoldings: [
+      "Most claims (copyright infringement, Lanham Act) survived dismissal (April 2026)",
+      "False-CMI DMCA claim dismissed without prejudice — intent to conceal infringement not pleaded",
+      "No merits ruling on fair use yet"
+    ],
+    significance: "The leading US image-training case, with the watermark outputs giving it an unusually strong trademark angle.",
+    officialLink: "https://www.courtlistener.com/docket/71112094/getty-images-us-inc-v-stability-ai-ltd/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "andersen-v-stability",
+    citation: "Andersen v. Stability AI Ltd., No. 3:23-cv-00201 (N.D. Cal.)",
+    name: "Andersen v. Stability AI, Midjourney, DeviantArt & Runway",
+    court: "N.D. Cal.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "August 2024: Judge Orrick allowed direct and induced copyright infringement (and Lanham Act claims against Midjourney) to proceed; DMCA claims dismissed with prejudice. Trial reportedly set for September 8, 2026 — which would make it the first generative-AI training case tried to a jury.",
+    issues: ["training-data", "output-infringement", "trademark"],
+    modalities: ["image"],
+    summary: "Visual artists Sarah Andersen, Kelly McKernan, Karla Ortiz and others brought a proposed class action against Stability AI, Midjourney, DeviantArt, and Runway, alleging their artworks were scraped into the LAION dataset and used to train image generators that can imitate their styles.",
+    keyHoldings: [
+      "Direct infringement claims plausible against model trainers; induced infringement claims also proceed",
+      "Court found it plausible that Stable Diffusion was built in a way that 'invokes' protected expression from training images",
+      "DMCA § 1202 claims dismissed with prejudice"
+    ],
+    significance: "First artists' class action against image generators; poised to become the first generative-AI training case to reach a jury.",
+    officialLink: "https://www.courtlistener.com/docket/66732129/andersen-v-stability-ai-ltd/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "concord-v-anthropic",
+    citation: "Concord Music Grp., Inc. v. Anthropic PBC, No. 5:24-cv-03811 (N.D. Cal.); second action filed Jan. 2026",
+    name: "Concord Music Group v. Anthropic",
+    court: "N.D. Cal.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Not resolved by Anthropic's book settlement. A January 2025 stipulation requires lyric-output guardrails; a preliminary injunction against training was denied March 2025. A second, larger suit filed January 2026 seeks over $3B for allegedly torrented lyrics of 20,000+ songs; partial summary judgment motion on fair use pending.",
+    issues: ["training-data", "output-infringement", "fair-use"],
+    modalities: ["text"],
+    summary: "Music publishers Concord, Universal Music Publishing, and ABKCO sued Anthropic for training Claude on copyrighted song lyrics and for outputs reproducing them. A second, much larger suit filed in January 2026 targets Anthropic's alleged downloading of lyrics from pirate libraries.",
+    keyHoldings: [
+      "Stipulated order requires Anthropic to maintain guardrails preventing Claude from outputting copyrighted lyrics (Jan 2025)",
+      "Preliminary injunction against training on lyrics denied — no irreparable harm shown (March 2025)",
+      "No fair-use merits ruling yet"
+    ],
+    significance: "The lyrics front of the training-data wars — notably NOT resolved by Anthropic's $1.5B book settlement, and expanding rather than settling.",
+    officialLink: "https://blogs.law.gwu.edu/mcir/case/concord-music-group-et-al-v-anthropic-pbc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "umg-v-suno",
+    citation: "UMG Recordings, Inc. v. Suno, Inc., No. 1:24-cv-11611 (D. Mass.)",
+    name: "UMG Recordings v. Suno",
+    court: "D. Mass.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed June 2024 by the major labels. Warner settled with Suno and struck a licensing deal in November 2025; UMG and Sony continue litigating, with settlement talks reported at an impasse in April 2026. No merits rulings as of Aug 2026.",
+    issues: ["training-data", "fair-use", "output-infringement"],
+    modalities: ["audio"],
+    summary: "The major record labels sued AI music generator Suno for training on their sound recordings without a license. Warner has since settled and licensed its catalog, but Universal and Sony are still litigating — making this the remaining bellwether on whether music-AI training is fair use.",
+    keyHoldings: [
+      "No merits rulings yet",
+      "Warner Music settled with a go-forward licensing deal (Nov 2025); UMG and Sony claims continue",
+      "Suno's fair-use defense is the central contested issue"
+    ],
+    significance: "With Udio largely settled, this is the live test case for fair use in AI music training.",
+    officialLink: "https://www.courtlistener.com/docket/68878608/umg-recordings-inc-v-suno-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "umg-v-udio",
+    citation: "UMG Recordings, Inc. v. Uncharted Labs, Inc., No. 1:24-cv-04777 (S.D.N.Y.)",
+    name: "UMG Recordings v. Uncharted Labs (Udio)",
+    court: "S.D.N.Y.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "settled",
+    statusDetail: "UMG settled in October 2025 (compensation plus licensing for a 2026 'walled garden' AI music platform trained on licensed catalog); Warner settled in November 2025. Sony Music has not settled and its claims continue. Musicians' union AFM sued UMG and Warner in 2026 over the settlement terms.",
+    issues: ["training-data", "fair-use", "output-infringement"],
+    modalities: ["audio"],
+    summary: "The major labels sued AI music generator Udio in June 2024 for training on copyrighted recordings. Rather than litigate to judgment, Universal and Warner converted the dispute into licensing deals under which Udio relaunches as a licensed, closed platform — the first major-label licensing template for generative music.",
+    keyHoldings: [
+      "No merits rulings — resolved by settlement before any fair-use decision",
+      "UMG and Warner settlements pair compensation with forward-looking licenses; Udio's 2026 model trains only on licensed music",
+      "Sony Music's claims remain pending"
+    ],
+    significance: "Proof-of-concept that generative-AI copyright suits can end in industry-wide licensing markets rather than court rulings.",
+    officialLink: "https://www.musicbusinessworldwide.com/universal-music-settles-udio-lawsuit-strikes-deal-for-licensed-ai-music-platform/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "disney-v-midjourney",
+    citation: "Disney Enters., Inc. v. Midjourney, Inc., No. 2:25-cv-05275 (C.D. Cal.) (consolidated)",
+    name: "Disney & Universal v. Midjourney (consol. with Warner Bros.)",
+    court: "C.D. Cal.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed June 2025; Warner Bros.' September 2025 suit was consolidated into it in November 2025. In discovery, with a live fight over how much the studios must disclose about their own internal generative-AI use. No merits rulings.",
+    issues: ["training-data", "output-infringement"],
+    modalities: ["image", "video"],
+    summary: "Disney, Universal/DreamWorks, and later Warner Bros. sued Midjourney for training on their films and for generating images and video of characters like Darth Vader, Shrek, and Superman on demand. It is Hollywood's first direct copyright assault on an image and video generator.",
+    keyHoldings: [
+      "No merits rulings yet",
+      "Cases consolidated November 2025 with the Disney action as lead",
+      "Discovery fight over the studios' own internal generative-AI use is the live battleground"
+    ],
+    significance: "Hollywood's character-output theory tests whether generating recognizable protected characters is infringement regardless of how training is judged.",
+    officialLink: "https://www.courtlistener.com/docket/70513159/disney-enterprises-inc-v-midjourney-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "dow-jones-v-perplexity",
+    citation: "Dow Jones & Co. v. Perplexity AI, Inc., No. 1:24-cv-07984 (S.D.N.Y.)",
+    name: "Dow Jones & NYP Holdings v. Perplexity AI",
+    court: "S.D.N.Y.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "August 2025: Perplexity's jurisdiction, venue, and transfer motions denied. Active discovery through 2026, with the works at issue expanded to 336; a jury trial is anticipated but not yet scheduled.",
+    issues: ["training-data", "output-infringement", "trademark"],
+    modalities: ["text"],
+    summary: "News Corp's Dow Jones (Wall Street Journal) and NYP Holdings (New York Post) sued Perplexity AI over its 'answer engine,' alleging it copies their journalism into a retrieval index and outputs full or paraphrased articles, sometimes with fabricated attribution.",
+    keyHoldings: [
+      "SDNY has personal jurisdiction over Perplexity; venue proper; transfer to California denied (Aug 2025)",
+      "Works at issue expanded to 336",
+      "No merits rulings on infringement or fair use yet"
+    ],
+    significance: "Leading test of RAG-based AI search — whether real-time retrieval and summarization of news is infringement, distinct from training-data claims.",
+    officialLink: "https://www.courtlistener.com/docket/69280523/dow-jones-company-inc-v-perplexity-ai-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "doe-v-github",
+    citation: "Doe v. GitHub, Inc., No. 4:22-cv-06823 (N.D. Cal.); No. 24-6136 (9th Cir.)",
+    name: "Doe v. GitHub, Microsoft & OpenAI (Copilot)",
+    court: "9th Cir. (from N.D. Cal.)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "on-appeal",
+    statusDetail: "The district court dismissed DMCA § 1202(b) claims under an 'identicality' requirement and certified an interlocutory appeal. The Ninth Circuit heard oral argument February 11, 2026 on whether § 1202(b) requires identical copies; decision pending as of Aug 2026.",
+    issues: ["dmca", "training-data", "output-infringement"],
+    modalities: ["text"],
+    summary: "Anonymous open-source developers sued GitHub, Microsoft, and OpenAI over Copilot, alleging it reproduces licensed code without required attribution and strips copyright-management information. The surviving core is the DMCA § 1202(b) question now before the Ninth Circuit.",
+    keyHoldings: [
+      "District court: DMCA § 1202(b) liability requires output identical to the original work — Copilot's modified snippets did not qualify",
+      "Question certified and argued to the Ninth Circuit February 2026; ruling pending",
+      "Most other claims previously dismissed"
+    ],
+    significance: "The appellate answer on DMCA identicality will determine whether CMI-stripping claims are viable against nearly every generative model.",
+    officialLink: "https://githubcopilotlitigation.com/case-updates.html",
+    lastVerified: "Aug 2026"
+  },
+
+  /* ============ US CONSTITUTIONAL, LIABILITY & PERSONALITY CASES ============ */
+  {
+    id: "kohls-v-bonta",
+    citation: "Kohls v. Bonta, No. 2:24-cv-02527 (E.D. Cal.); No. 25-6138 (9th Cir.)",
+    name: "Kohls v. Bonta",
+    court: "9th Cir. (from E.D. Cal.)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "on-appeal",
+    statusDetail: "The district court struck down AB 2839 as a First Amendment violation and held AB 2655 preempted by Section 230 (final judgment Aug 2025). California's appeal was fully briefed by March 2026; no Ninth Circuit decision as of Aug 2026.",
+    issues: ["free-speech", "constitutional-challenge"],
+    modalities: ["video"],
+    summary: "Christopher Kohls, a creator of AI parody videos of Kamala Harris (joined by The Babylon Bee, Rumble and others), sued California's Attorney General to block two 2024 election-deepfake laws. The district court struck down both statutes, and the state appealed.",
+    keyHoldings: [
+      "AB 2839 discriminates based on content, viewpoint, and speaker and targets constitutionally protected speech",
+      "AB 2655's platform takedown/labeling duties are preempted by Section 230",
+      "Satire and parody, including AI-generated, remain protected political speech"
+    ],
+    significance: "Leading test of whether states can regulate AI election deepfakes consistent with the First Amendment; the first such law struck down.",
+    officialLink: "https://www.courtlistener.com/docket/69172215/kohls-v-bonta/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "xai-v-weiser",
+    citation: "xAI Corp. v. Weiser (D. Colo., filed Apr. 9, 2026)",
+    name: "xAI v. Weiser",
+    court: "D. Colo.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed April 2026; the DOJ intervened in support of xAI on April 24, 2026 — the first federal intervention against a state AI law. Enforcement of the Colorado AI Act was suspended April 27, 2026, and Colorado then repealed and replaced the Act with the narrower SB 26-189 (effective Jan 1, 2027).",
+    issues: ["free-speech", "constitutional-challenge"],
+    modalities: ["all"],
+    summary: "xAI sued the Colorado Attorney General to block SB 24-205, the first comprehensive US state AI anti-discrimination law, claiming it compelled speech and burdened AI development. The DOJ joined on xAI's side, enforcement was suspended, and Colorado replaced the law.",
+    keyHoldings: [
+      "No merits rulings yet",
+      "Court granted a joint motion suspending enforcement of the Colorado AI Act (April 2026)"
+    ],
+    significance: "The federal executive branch siding with an AI company against state AI regulation — the challenge effectively forced Colorado to rewrite its landmark AI Act.",
+    officialLink: "https://clearinghouse.net/case/48129/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "xai-v-bonta",
+    citation: "xAI Corp. v. Bonta (C.D. Cal.; 9th Cir. appeal argued July 2026)",
+    name: "xAI v. Bonta",
+    court: "9th Cir. (from C.D. Cal.)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "on-appeal",
+    statusDetail: "March 2026: preliminary injunction against AB 2013 denied — xAI not likely to succeed on the merits; the law took effect Jan 1, 2026 and remains enforceable. The Ninth Circuit heard the appeal in July 2026; decision pending while the merits case continues below.",
+    issues: ["free-speech", "constitutional-challenge", "training-data"],
+    modalities: ["all"],
+    summary: "xAI sued California's Attorney General to block AB 2013, which requires generative-AI developers to publish summaries of their training datasets. xAI calls it compelled speech and a trade-secrets-destroying disclosure regime; California defends it as regulation of commercial speech.",
+    keyHoldings: [
+      "Preliminary injunction denied — xAI not likely to succeed on First Amendment/due process claims (March 2026)",
+      "No appellate ruling yet; Ninth Circuit argument held July 2026"
+    ],
+    significance: "The first federal appellate test of an AI training-data transparency law; the outcome will shape the constitutionality of state AI transparency laws generally.",
+    officialLink: "https://knightcolumbia.org/cases/xai-v-bonta",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "lehrman-v-lovo",
+    citation: "Lehrman v. Lovo, Inc., No. 1:24-cv-03770 (S.D.N.Y.)",
+    name: "Lehrman v. Lovo, Inc.",
+    court: "S.D.N.Y.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "July 2025 ruling dismissed Lanham Act and most copyright claims but sustained New York right-of-publicity, consumer-protection, contract, and one voice-recording copyright claim. Fact discovery closed January 2026; expert phase through 2026.",
+    issues: ["voice-cloning", "right-of-publicity", "training-data"],
+    modalities: ["audio"],
+    summary: "Voice actors Paul Lehrman and Linnea Sage allege Lovo obtained their voice recordings via Fiverr under false pretenses, then cloned and sold their AI voices without consent. It is the leading US case on whether existing law protects performers from AI voice cloning.",
+    keyHoldings: [
+      "Voice attributes per se are not copyrightable, and federal copyright preempts some state claims",
+      "New York's statutory right of publicity covers unauthorized AI voice clones used commercially",
+      "Contract and consumer-protection (deceptive practices) claims adequately pleaded"
+    ],
+    significance: "First major decision mapping which legal theories actually work against AI voice cloning — publicity and contract, not copyright in a voice.",
+    officialLink: "https://www.courtlistener.com/docket/68535780/lehrman-v-lovo-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "garcia-v-character-ai",
+    citation: "Garcia v. Character Techs., Inc., No. 6:24-cv-01903 (M.D. Fla.)",
+    name: "Garcia v. Character Technologies",
+    court: "M.D. Fla.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "settled",
+    statusDetail: "May 2025: the court largely denied dismissal — declining to treat chatbot output as protected First Amendment speech at this stage and allowing product-liability, negligence, and wrongful-death claims against Character.AI and Google to proceed. A mediated settlement in principle was disclosed January 2026, resolving this and four related family cases; terms confidential.",
+    issues: ["product-liability", "free-speech"],
+    modalities: ["text"],
+    summary: "Megan Garcia sued Character Technologies, its founders, and Google after her 14-year-old son died by suicide following intense emotional involvement with a Character.AI chatbot. The court let design-defect and negligence claims proceed, and the defendants settled before trial.",
+    keyHoldings: [
+      "The court refused to hold that LLM output is protected speech at the dismissal stage",
+      "An AI chatbot app can be a 'product' subject to strict product-liability and design-defect doctrine",
+      "A duty of care was plausibly owed given foreseeable risks of anthropomorphic AI marketed to minors"
+    ],
+    significance: "First US court to treat a chatbot as a product and reject a First Amendment defense for AI output; the template for the wave of AI safety suits.",
+    officialLink: "https://www.courtlistener.com/docket/69300919/garcia-v-character-technologies-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "raine-v-openai",
+    citation: "Raine v. OpenAI, Inc., No. CGC-25-628528 (Cal. Super. Ct., S.F. Cty.)",
+    name: "Raine v. OpenAI",
+    court: "Cal. Super. Ct. (San Francisco)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed August 2025 over a 16-year-old's April 2025 suicide. The amended complaint alleges OpenAI removed ChatGPT's categorical suicide-topic refusal rule before GPT-4o's launch; OpenAI answered in November 2025 denying causation. In early discovery; roughly seven similar suits were filed against OpenAI in November 2025.",
+    issues: ["product-liability"],
+    modalities: ["text"],
+    summary: "Matthew and Maria Raine sued OpenAI and Sam Altman for wrongful death, alleging ChatGPT coached their teenage son on suicide methods and that safety guardrails were deliberately weakened for engagement. It is the flagship wrongful-death case against a frontier-model developer.",
+    keyHoldings: [
+      "No merits rulings yet"
+    ],
+    significance: "Will test whether the product-liability and negligence theories validated against Character.AI extend to general-purpose LLMs.",
+    officialLink: "https://en.wikipedia.org/wiki/Raine_v._OpenAI",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "millette-v-openai",
+    citation: "Millette v. OpenAI, Inc., No. 5:24-cv-04710 (N.D. Cal.), consol. in MDL No. 3143 (S.D.N.Y.)",
+    name: "Millette v. OpenAI (YouTube transcripts class actions)",
+    court: "S.D.N.Y. (MDL 3143)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed August 2024 over OpenAI's alleged transcription of millions of YouTube videos for training; folded into the OpenAI copyright MDL in 2025 and now stayed (as the renamed Petryazhna action) pending the consolidated class case. Parallel suits against Google and Nvidia proceed separately.",
+    issues: ["training-data"],
+    modalities: ["text", "video"],
+    summary: "YouTube creators brought class actions alleging OpenAI (and separately Google and Nvidia) scraped and transcribed their videos without consent to train AI models. The OpenAI case survives as a stayed copyright claim inside the OpenAI multidistrict litigation.",
+    keyHoldings: [
+      "No merits rulings yet",
+      "State-law unjust-enrichment theories over training data were reshaped after courts found similar claims preempted by the Copyright Act"
+    ],
+    significance: "Tests whether video and transcript scraping for AI training is actionable — and shows state-law workarounds collapsing into copyright.",
+    officialLink: "https://www.courtlistener.com/docket/69012680/millette-v-openai-inc/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "us-ai-enforcement",
+    citation: "In re Rytr LLC, FTC File No. 232-3052 (order set aside Dec. 2025); Texas v. Pieces Techs. (AVC, Sept. 2024)",
+    name: "FTC v. Rytr (Operation AI Comply) & Texas v. Pieces Technologies",
+    court: "FTC (administrative) / Texas AG",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "settled",
+    statusDetail: "Texas settled with Pieces Technologies (Sept 2024) over accuracy claims for its healthcare generative AI — the first state AG generative-AI settlement. The FTC's Operation AI Comply produced consent orders including Rytr, DoNotPay ($193K), and accessiBe ($1M) — but in December 2025 the FTC reopened and set aside the Rytr order, citing the administration's AI Action Plan.",
+    issues: ["consumer-protection"],
+    modalities: ["text"],
+    summary: "US regulators used consumer-protection law against AI companies: Texas over hallucination-rate marketing claims in hospitals, and the FTC over an AI tool that generated fake reviews and over deceptive AI-capability claims. The FTC's 2025 reversal on Rytr signals a deregulatory turn in federal AI enforcement.",
+    keyHoldings: [
+      "Deceptive AI accuracy and capability claims are actionable under existing consumer-protection statutes",
+      "The Rytr consent order was vacated by the FTC in December 2025",
+      "DoNotPay barred from unsubstantiated 'AI lawyer' claims; accessiBe paid $1M over AI accessibility-compliance claims"
+    ],
+    significance: "Defines the enforcement baseline for AI marketing claims — and its partial rollback marks the 2025–26 federal policy shift toward AI-friendly enforcement.",
+    officialLink: "https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-announces-crackdown-deceptive-ai-claims-schemes",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "walters-v-openai",
+    citation: "Walters v. OpenAI, L.L.C., No. 23-A-04860-2 (Ga. Super. Ct., Gwinnett Cty., May 19, 2025)",
+    name: "Walters v. OpenAI",
+    court: "Ga. Super. Ct.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "decided",
+    statusDetail: "Summary judgment for OpenAI, May 2025 — the first US merits ruling on AI 'hallucination' defamation. No appeal identified as of Aug 2026.",
+    issues: ["defamation"],
+    modalities: ["text"],
+    summary: "Radio host Mark Walters sued OpenAI after ChatGPT falsely told a journalist that Walters had been accused of embezzling from a gun-rights group. The Georgia court dismissed the case on summary judgment.",
+    keyHoldings: [
+      "No defamatory meaning to a reasonable reader given ChatGPT's disclaimers and the user's admitted disbelief of the output",
+      "Public-figure plaintiff failed to show actual malice",
+      "OpenAI's safety efforts and warnings negated negligence"
+    ],
+    significance: "First decision squarely rejecting defamation liability for LLM hallucinations — though on facts later cases may distinguish.",
+    officialLink: "https://www.loeb.com/en/insights/publications/2025/05/walters-v-openai-llc",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "starbuck-v-google",
+    citation: "Starbuck v. Google LLC (Del. Super. Ct., filed Oct. 22, 2025)",
+    name: "Starbuck v. Google (and Starbuck v. Meta, settled)",
+    court: "Del. Super. Ct.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Starbuck settled his parallel AI-defamation suit against Meta in August 2025 (undisclosed terms). In the Google case (filed October 2025, $15M+ demand), the court denied Google's motion to dismiss on July 24, 2026, sending the defamation claims to discovery.",
+    issues: ["defamation"],
+    modalities: ["text"],
+    summary: "Conservative activist Robby Starbuck sued Meta and then Google after their AI systems generated false claims about him. Meta settled; the Google suit survived dismissal and is in discovery.",
+    keyHoldings: [
+      "Google case: defamation claims over AI-generated statements are plausibly pleaded and may proceed (July 2026)",
+      "Meta case: settled pre-ruling — the first known settlement of an AI-hallucination defamation claim"
+    ],
+    significance: "The first AI defamation case to clear dismissal against a major developer, testing publisher-style liability for model outputs after Walters went the other way.",
+    officialLink: "https://reason.com/volokh/2026/07/24/conservative-commentator-robby-starbucks-lawsuit-alleging-google-ai-had-defamed-him-can-go-forward/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "canadian-news-v-openai",
+    citation: "Toronto Star Newspapers Ltd. v. OpenAI, Inc. (Ont. Sup. Ct. J., filed Nov. 2024)",
+    name: "Canadian news publishers v. OpenAI (CBC, Torstar, Globe and Mail et al.)",
+    court: "Ontario Superior Court",
+    jurisdiction: "Canada",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "November 2025: the court dismissed OpenAI's jurisdictional challenge, holding Ontario has jurisdiction over the copyright and scraping claims even though training occurred abroad. Merits phase proceeding.",
+    issues: ["training-data"],
+    modalities: ["text"],
+    summary: "Canada's major news organizations sued OpenAI in Ontario for scraping and training on their journalism without permission or payment. The case cleared its first big hurdle when the court kept it in Canada over OpenAI's objections.",
+    keyHoldings: [
+      "Ontario courts have jurisdiction over foreign AI developers whose training allegedly used Canadian works",
+      "Parallel US litigation is no bar to Canadian claims proceeding",
+      "No merits rulings yet"
+    ],
+    significance: "Canada's first major AI copyright case; the jurisdiction ruling means AI developers can't confine training-data litigation to US courts.",
+    officialLink: "https://www.cbc.ca/news/canada/toronto/openai-new-publishers-lawsuit-ontario-9.6995520",
+    lastVerified: "Aug 2026"
+  },
+
+  /* ============ EUROPE ============ */
+  {
+    id: "getty-v-stability-uk",
+    citation: "Getty Images (US) Inc. v. Stability AI Ltd. [2025] EWHC 2863 (Ch); appeal pending",
+    name: "Getty Images v. Stability AI (UK)",
+    court: "UK High Court → Court of Appeal",
+    jurisdiction: "United Kingdom",
+    region: "Europe",
+    caseStatus: "on-appeal",
+    statusDetail: "Judgment November 4, 2025: Getty dropped its primary training/output copyright claims mid-trial (training occurred outside the UK); the court rejected secondary infringement — model weights are not an 'infringing copy' — and found only narrow trademark infringement over Getty watermarks in outputs. Getty has permission to appeal the secondary-infringement point; appeal pending.",
+    issues: ["training-data", "output-infringement", "trademark"],
+    modalities: ["image"],
+    summary: "Getty Images sued Stability AI in London claiming Stable Diffusion was trained on millions of its photos and reproduced its watermarks. The UK's first generative-AI trial ended mostly in Stability's favor, with the key question — are model weights infringing copies? — now headed to the Court of Appeal.",
+    keyHoldings: [
+      "An AI model's weights do not 'store' the training works and are not infringing copies under UK secondary-infringement provisions",
+      "Training outside the UK left primary infringement claims unsustainable in the UK forum",
+      "Limited trademark infringement where outputs reproduced Getty/iStock watermarks"
+    ],
+    significance: "The leading common-law ruling that trained model weights are not themselves infringing copies — now the central question of the UK appeal.",
+    officialLink: "https://www.judiciary.uk/judgments/getty-images-v-stability-ai/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "gema-v-openai",
+    citation: "GEMA v. OpenAI, LG München I, 42 O 14139/24 (Nov. 11, 2025); appeal pending (OLG München)",
+    name: "GEMA v. OpenAI",
+    court: "Munich Regional Court I → OLG München",
+    jurisdiction: "Germany",
+    region: "Europe",
+    caseStatus: "on-appeal",
+    statusDetail: "November 11, 2025 judgment for GEMA: ChatGPT's memorization and reproduction of nine famous German song lyrics infringes reproduction and communication rights; injunction, information duties, and damages liability ordered. OpenAI's appeal is pending before the Munich Court of Appeal.",
+    issues: ["training-data", "output-infringement"],
+    modalities: ["text"],
+    summary: "German music collecting society GEMA sued OpenAI over ChatGPT reproducing protected song lyrics. The Munich court delivered Europe's first ruling holding an AI developer directly liable for both memorization inside the model and infringing outputs.",
+    keyHoldings: [
+      "Memorization of protected works inside model weights is itself an act of reproduction",
+      "The EU/German text-and-data-mining exception does not cover reproductions retained in and output by the model",
+      "OpenAI, not its users, is liable for infringing outputs"
+    ],
+    significance: "First European merits decision against a frontier AI developer — directly contradicting the UK Getty reasoning on what a model 'contains.'",
+    officialLink: "https://www.twobirds.com/en/insights/2025/landmark-ruling-of-the-munich-regional-court-(gema-v-openai)-on-copyright-and-ai-training",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "gema-v-suno",
+    citation: "GEMA v. Suno AI, LG München I, 42 O 763/25 (July 31, 2026)",
+    name: "GEMA v. Suno AI",
+    court: "Munich Regional Court I",
+    jurisdiction: "Germany",
+    region: "Europe",
+    caseStatus: "decided",
+    statusDetail: "Judgment July 31, 2026: GEMA largely won injunctive relief, revenue disclosure, and a declaration of damages liability against AI music generator Suno. First-instance ruling, appealable.",
+    issues: ["training-data", "output-infringement"],
+    modalities: ["audio"],
+    summary: "GEMA sued US music-generation service Suno after it produced outputs closely resembling famous songs in GEMA's repertoire. The Munich court handed rightsholders their second German win over a generative-AI company in nine months.",
+    keyHoldings: [
+      "Training and output reproduction of protected musical works without a license infringes copyright",
+      "The text-and-data-mining exception does not shelter commercial AI music generation",
+      "Injunction, disclosure of revenues, and declaratory damages entitlement awarded"
+    ],
+    significance: "Extends the GEMA v. OpenAI logic from lyrics to music generation — Germany is emerging as the strongest pro-rightsholder forum globally.",
+    officialLink: "https://www.reedsmith.com/our-insights/blogs/viewpoints/102nfis/gema-notches-a-second-transatlantic-ai-copyright-win-in-germany/",
+    lastVerified: "Aug 2026"
+  },
+
+  /* ============ ASIA-PACIFIC ============ */
+  {
+    id: "ani-v-openai",
+    citation: "ANI Media Pvt. Ltd. v. OpenAI, Inc., CS(COMM) 1028/2024 (Delhi High Court)",
+    name: "ANI Media v. OpenAI",
+    court: "Delhi High Court",
+    jurisdiction: "India",
+    region: "Asia-Pacific",
+    caseStatus: "pending",
+    statusDetail: "July 24, 2026: the court dismissed ANI's interim injunction application, holding prima facie that training on ANI's content can qualify as fair dealing under India's Copyright Act, while confirming Delhi's territorial jurisdiction. The findings are expressly preliminary; the full suit proceeds.",
+    issues: ["training-data", "output-infringement", "fair-use"],
+    modalities: ["text"],
+    summary: "Indian news agency ANI sued OpenAI claiming ChatGPT was trained on its news content and reproduced or falsely attributed reporting to it. India's first AI copyright case produced a preliminary win for OpenAI at the injunction stage.",
+    keyHoldings: [
+      "No interim injunction — ANI failed to show prima facie irreparable harm",
+      "AI training may prima facie fall within India's fair-dealing and research exceptions (preliminary, not a merits holding)",
+      "Delhi High Court has territorial jurisdiction over OpenAI despite its foreign location"
+    ],
+    significance: "First Indian judicial word on AI training and copyright, aligning India provisionally with the pro-training-use camp.",
+    officialLink: "https://chambers.com/articles/delhi-high-courts-ani-v-openai-shaping-ai-copyright-law-in-india",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "china-aigc-image-cases",
+    citation: "Li v. Liu, (2023) 京0491民初11279号 (Beijing Internet Ct.); Ultraman, (2024) 粤0192民初113号 (Guangzhou Internet Ct.); Hangzhou Internet Ct. (2024, aff'd)",
+    name: "China's AI image cases: Li v. Liu & the Ultraman decisions",
+    court: "Beijing, Guangzhou & Hangzhou Internet Courts",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    caseStatus: "decided",
+    statusDetail: "Li v. Liu (Nov 2023, final): a Stable Diffusion image was held copyrightable given the prompter's creative input. Guangzhou Ultraman (Feb 2024): first ruling holding a generative-AI service provider liable for infringing outputs. Hangzhou Ultraman (Sept 2024, affirmed Dec 2024): a platform hosting user-trained character models committed contributory infringement.",
+    issues: ["output-infringement", "training-data"],
+    modalities: ["image"],
+    summary: "A cluster of Chinese Internet Court decisions set the world's earliest rules for AI images: a human prompter can own copyright in an AI-generated image, while AI platforms are liable when their services generate — or help users generate — images of protected characters. Damages are small but the duty-of-care standards are now entrenched.",
+    keyHoldings: [
+      "AI-generated images can be copyrighted works where the human user contributes sufficient creative input (Li v. Liu)",
+      "Generative-AI service providers breach a duty of care by outputting substantially similar copies of protected characters (Guangzhou)",
+      "Platforms enabling user model-training on protected works are contributorily liable (Hangzhou, affirmed on appeal)"
+    ],
+    significance: "China built the first working liability framework for AI image generation — opposite the US Copyright Office on authorship, and stricter than the West on platform duties.",
+    officialLink: "https://intellectual-property-helpdesk.ec.europa.eu/news-events/news/ultraman-ai-case-china-defining-copyright-liability-generative-ai-providers-2025-02-18_en",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "beijing-ai-voice-case",
+    citation: "Beijing Internet Court, judgment of Apr. 23, 2024 (SPC 'typical case')",
+    name: "China's first AI voice-rights case (Beijing Internet Court)",
+    court: "Beijing Internet Court",
+    jurisdiction: "China",
+    region: "Asia-Pacific",
+    caseStatus: "decided",
+    statusDetail: "Decided April 2024: using a dubbing artist's recordings to build and sell an AI text-to-speech voice without consent infringed voice personality rights under the Civil Code; an apology plus RMB 250,000 was awarded. Later designated a 'typical case' by the Supreme People's Court, cementing its precedential weight.",
+    issues: ["voice-cloning", "right-of-publicity"],
+    modalities: ["audio"],
+    summary: "A professional dubbing artist discovered an AI clone of their voice being sold across major apps and sued the companies that licensed the recordings into an AI voice product. The court held that voice-personality protection extends to AI-generated imitations.",
+    keyHoldings: [
+      "Civil Code personality rights in a natural person's voice extend to recognizably similar AI-generated voices",
+      "Licensing voice recordings does not authorize AI cloning without the speaker's specific consent",
+      "Apology and RMB 250,000 compensation ordered"
+    ],
+    significance: "The world's first judgment squarely protecting individuals against unconsented AI voice cloning — the Chinese counterpart to Lehrman v. Lovo.",
+    officialLink: "https://english.bjinternetcourt.gov.cn/2024-04/24/c_706.htm",
+    lastVerified: "Aug 2026"
+  },
+];
+
+const THEMES = [
+  { t: "Labeling & disclosure of AI content", d: "The EU (AI Act Art. 50), China (Labeling Measures), South Korea, India (IT Rules 2026), Vietnam, and California now require AI-generated or manipulated content to be disclosed — machine-readable marking, visible labels, or both." },
+  { t: "Deepfakes & digital replicas", d: "The fastest-moving area: criminal and civil rules on non-consensual intimate imagery (US TAKE IT DOWN Act, UK, Australia), election deepfakes, unauthorized voice and likeness cloning (Tennessee ELVIS Act, Illinois, Denmark's copyright-style likeness right), and Italy's criminal deepfake offence." },
+  { t: "Training-data transparency", d: "The EU requires GPAI providers to publish training-content summaries and respect copyright opt-outs; California's AB 2013 requires public training-data documentation, retroactive to systems released since 2022." },
+  { t: "Frontier & model-level obligations", d: "Rules attaching to the model itself, not just its use: EU GPAI duties, California's SB 53 and New York's RAISE Act for frontier models, and China's algorithm filing and security-assessment regime." },
+  { t: "Courts & preemption fights", d: "US generative-AI law is being reshaped in court: California's election deepfake laws are enjoined, Colorado's AI Act was suspended and rewritten, and a federal preemption campaign is actively litigating against state AI laws." },
+  { t: "Divergence risk", d: "The same video generator can face licensing and filing in one market, labeling in a second, and near-zero obligations in a third. Multi-jurisdiction launches need a modality-by-modality compliance map." },
+];
+
+/* ---------- Rendering ---------- */
+const state = { q: "", region: "all", modality: "all", status: "all", caseStatus: "all" };
+const STATUS_LABEL = {
+  "in-force": "In force",
+  "partially-in-force": "Partially in force",
+  "enacted-not-yet-effective": "Enacted · not yet effective",
+  "proposed": "Proposed",
+  "guidance": "Guidance / voluntary",
+  "enjoined": "Enjoined by court",
+};
+const MOD_LABEL = { text: "Text", image: "Image", video: "Video", audio: "Audio", all: "All modalities" };
+const REGION_ORDER = ["Europe", "Americas", "Asia-Pacific", "Middle East"];
+const CASE_STATUS_LABEL = { "pending": "Pending", "decided": "Decided", "settled": "Settled", "on-appeal": "On appeal" };
+const ISSUE_LABEL = {
+  "training-data": "Training data", "output-infringement": "Output infringement", "fair-use": "Fair use",
+  "dmca": "DMCA", "right-of-publicity": "Right of publicity", "defamation": "Defamation",
+  "product-liability": "Product liability", "free-speech": "Free speech", "trademark": "Trademark",
+  "constitutional-challenge": "Constitutional challenge", "voice-cloning": "Voice cloning",
+  "consumer-protection": "Consumer protection",
+};
+
+function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+
+function matches(law) {
+  if (state.region !== "all" && law.region !== state.region) return false;
+  if (state.modality !== "all" && !(law.modalities.includes("all") || law.modalities.includes(state.modality))) return false;
+  if (state.status !== "all" && law.status !== state.status) return false;
+  if (state.q) {
+    const hay = [law.name, law.jurisdiction, law.summary, law.statusDetail, (law.keyObligations || []).join(" "), law.penalties].join(" ").toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function lawCard(law) {
+  const mods = law.modalities.map(m => `<span class="badge mod">${esc(MOD_LABEL[m] || m)}</span>`).join("");
+  const obligations = (law.keyObligations || []).map(o => `<li>${esc(o)}</li>`).join("");
+  return `
+  <details class="law-card" id="${esc(law.id)}">
+    <summary>
+      <div class="law-top">
+        <div>
+          <div class="law-title">${esc(law.name)}</div>
+          <div class="law-juris">${esc(law.jurisdiction)}</div>
+        </div>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="badges">
+        <span class="badge status-${esc(law.status)}">${esc(STATUS_LABEL[law.status] || law.status)}</span>
+        ${mods}
+      </div>
+      <div class="law-summary">${esc(law.summary)}</div>
+    </summary>
+    <div class="law-body">
+      <h4>Status</h4>
+      <p>${esc(law.statusDetail)}</p>
+      ${obligations ? `<h4>Key obligations</h4><ul>${obligations}</ul>` : ""}
+      ${law.penalties ? `<h4>Penalties</h4><p>${esc(law.penalties)}</p>` : ""}
+      ${law.citation ? `<h4>Citation</h4><p class="cite">${esc(law.citation)}</p>` : ""}
+      <div class="law-meta">
+        ${law.officialLink ? `<a href="${esc(law.officialLink)}" target="_blank" rel="noopener">Official text ↗</a>` : ""}
+        <span class="verified">Verified ${esc(law.lastVerified || "")}</span>
+      </div>
+    </div>
+  </details>`;
+}
+
+function render() {
+  const list = document.getElementById("law-list");
+  const filtered = LAWS.filter(matches);
+  const byRegion = {};
+  for (const law of filtered) (byRegion[law.region] ??= []).push(law);
+
+  let html = "";
+  for (const region of REGION_ORDER) {
+    const laws = byRegion[region];
+    if (!laws || !laws.length) continue;
+    html += `<h2 class="region-head">${esc(region)}<span class="rcount">${laws.length} ${laws.length === 1 ? "entry" : "entries"}</span></h2>`;
+    html += laws.map(lawCard).join("");
+  }
+  list.innerHTML = html || `<div class="empty">No laws match these filters. Try clearing a filter or two.</div>`;
+  document.getElementById("result-count").textContent =
+    `Showing ${filtered.length} of ${LAWS.length} tracked laws & frameworks`;
+}
+
+function matchesCase(c) {
+  if (state.region !== "all" && c.region !== state.region) return false;
+  if (state.modality !== "all" && !(c.modalities.includes("all") || c.modalities.includes(state.modality))) return false;
+  if (state.caseStatus !== "all" && c.caseStatus !== state.caseStatus) return false;
+  if (state.q) {
+    const hay = [c.name, c.court, c.jurisdiction, c.summary, c.statusDetail, c.significance,
+      (c.keyHoldings || []).join(" "), (c.issues || []).map(i => ISSUE_LABEL[i] || i).join(" ")].join(" ").toLowerCase();
+    if (!hay.includes(state.q)) return false;
+  }
+  return true;
+}
+
+function caseCard(c) {
+  const issues = (c.issues || []).map(i => `<span class="badge issue">${esc(ISSUE_LABEL[i] || i)}</span>`).join("");
+  const mods = c.modalities.map(m => `<span class="badge mod">${esc(MOD_LABEL[m] || m)}</span>`).join("");
+  const holdings = (c.keyHoldings || []).map(h => `<li>${esc(h)}</li>`).join("");
+  return `
+  <details class="law-card" id="${esc(c.id)}">
+    <summary>
+      <div class="law-top">
+        <div>
+          <div class="law-title">${esc(c.name)}</div>
+          <div class="case-court">${esc(c.court)} · ${esc(c.jurisdiction)}</div>
+        </div>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="badges">
+        <span class="badge cs-${esc(c.caseStatus)}">${esc(CASE_STATUS_LABEL[c.caseStatus] || c.caseStatus)}</span>
+        ${issues}${mods}
+      </div>
+      <div class="law-summary">${esc(c.summary)}</div>
+    </summary>
+    <div class="law-body">
+      <h4>Status</h4>
+      <p>${esc(c.statusDetail)}</p>
+      ${holdings ? `<h4>Key holdings</h4><ul>${holdings}</ul>` : ""}
+      ${c.significance ? `<h4>Why it matters</h4><p>${esc(c.significance)}</p>` : ""}
+      ${c.citation ? `<h4>Citation</h4><p class="cite">${esc(c.citation)}</p>` : ""}
+      <div class="law-meta">
+        ${c.officialLink ? `<a href="${esc(c.officialLink)}" target="_blank" rel="noopener">Docket / opinion ↗</a>` : ""}
+        <span class="verified">Verified ${esc(c.lastVerified || "")}</span>
+      </div>
+    </div>
+  </details>`;
+}
+
+function renderCases() {
+  const list = document.getElementById("case-list");
+  const filtered = CASES.filter(matchesCase);
+  const byRegion = {};
+  for (const c of filtered) (byRegion[c.region] ??= []).push(c);
+
+  let html = "";
+  for (const region of REGION_ORDER) {
+    const cs = byRegion[region];
+    if (!cs || !cs.length) continue;
+    html += `<h2 class="region-head">${esc(region)}<span class="rcount">${cs.length} ${cs.length === 1 ? "case" : "cases"}</span></h2>`;
+    html += cs.map(caseCard).join("");
+  }
+  list.innerHTML = html || `<div class="empty">No cases match these filters. Try clearing a filter or two.</div>`;
+  document.getElementById("case-count").textContent =
+    `Showing ${filtered.length} of ${CASES.length} tracked cases`;
+}
+
+function renderThemes() {
+  document.getElementById("theme-grid").innerHTML =
+    THEMES.map(x => `<div class="theme-card"><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p></div>`).join("");
+}
+
+function renderStats() {
+  document.getElementById("stat-laws").textContent = LAWS.length;
+  document.getElementById("stat-cases").textContent = CASES.length;
+  document.getElementById("stat-juris").textContent =
+    new Set([...LAWS.map(l => l.jurisdiction), ...CASES.map(c => c.jurisdiction)]).size;
+  document.getElementById("stat-force").textContent =
+    LAWS.filter(l => l.status === "in-force" || l.status === "partially-in-force").length;
+}
+
+function wireFilters() {
+  for (const [gid, key] of [["fg-region", "region"], ["fg-modality", "modality"], ["fg-status", "status"], ["fg-casestatus", "caseStatus"]]) {
+    document.getElementById(gid).addEventListener("click", e => {
+      const btn = e.target.closest(".pill");
+      if (!btn) return;
+      document.querySelectorAll(`#${gid} .pill`).forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      state[key] = btn.dataset.v;
+      render();
+      renderCases();
+    });
+  }
+  document.getElementById("search").addEventListener("input", e => {
+    state.q = e.target.value.trim().toLowerCase();
+    render();
+    renderCases();
+  });
+}
+
+renderThemes();
+renderStats();
+wireFilters();
+render();
+renderCases();
+</script>
+</body>
+</html>
