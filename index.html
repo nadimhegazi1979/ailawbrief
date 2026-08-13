@@ -1800,9 +1800,11 @@ const CASES = [
   },
 ];
 
-/* ---------- Rendering ---------- */
-const lawState = { q: "", region: "all", modality: "all", status: "all" };
-const caseState = { q: "", region: "all", modality: "all", caseStatus: "all", issue: "all" };
+/* ---------- Rendering ----------
+   Pill filters are multi-select: an empty Set means "All"; values within a
+   group combine as OR, groups combine as AND. */
+const lawState = { q: "", region: new Set(), modality: new Set(), status: new Set() };
+const caseState = { q: "", region: new Set(), modality: new Set(), caseStatus: new Set(), issue: new Set() };
 const STATUS_LABEL = {
   "in-force": "In force",
   "partially-in-force": "Partially in force",
@@ -1824,10 +1826,14 @@ const ISSUE_LABEL = {
 
 function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
+function modalityHit(mods, sel) {
+  return sel.size === 0 || mods.includes("all") || mods.some(m => sel.has(m));
+}
+
 function matches(law) {
-  if (lawState.region !== "all" && law.region !== lawState.region) return false;
-  if (lawState.modality !== "all" && !(law.modalities.includes("all") || law.modalities.includes(lawState.modality))) return false;
-  if (lawState.status !== "all" && law.status !== lawState.status) return false;
+  if (lawState.region.size && !lawState.region.has(law.region)) return false;
+  if (!modalityHit(law.modalities, lawState.modality)) return false;
+  if (lawState.status.size && !lawState.status.has(law.status)) return false;
   if (lawState.q) {
     const hay = [law.name, law.jurisdiction, law.summary, law.statusDetail, (law.keyObligations || []).join(" "), law.penalties, law.citation].join(" ").toLowerCase();
     if (!hay.includes(lawState.q)) return false;
@@ -1887,10 +1893,10 @@ function render() {
 }
 
 function matchesCase(c) {
-  if (caseState.region !== "all" && c.region !== caseState.region) return false;
-  if (caseState.modality !== "all" && !(c.modalities.includes("all") || c.modalities.includes(caseState.modality))) return false;
-  if (caseState.caseStatus !== "all" && c.caseStatus !== caseState.caseStatus) return false;
-  if (caseState.issue !== "all" && !(c.issues || []).includes(caseState.issue)) return false;
+  if (caseState.region.size && !caseState.region.has(c.region)) return false;
+  if (!modalityHit(c.modalities, caseState.modality)) return false;
+  if (caseState.caseStatus.size && !caseState.caseStatus.has(c.caseStatus)) return false;
+  if (caseState.issue.size && !(c.issues || []).some(i => caseState.issue.has(i))) return false;
   if (caseState.q) {
     const hay = [c.name, c.court, c.jurisdiction, c.summary, c.statusDetail, c.significance, c.citation,
       (c.keyHoldings || []).join(" "), (c.issues || []).map(i => ISSUE_LABEL[i] || i).join(" ")].join(" ").toLowerCase();
@@ -1973,12 +1979,16 @@ function wireFilters() {
     ["fg-case-issue", caseState, "issue", renderCases],
   ];
   for (const [gid, st, key, redraw] of groups) {
-    document.getElementById(gid).addEventListener("click", e => {
+    const group = document.getElementById(gid);
+    group.addEventListener("click", e => {
       const btn = e.target.closest(".pill");
       if (!btn) return;
-      document.querySelectorAll(`#${gid} .pill`).forEach(p => p.classList.remove("active"));
-      btn.classList.add("active");
-      st[key] = btn.dataset.v;
+      const set = st[key];
+      if (btn.dataset.v === "all") set.clear();          // "All" clears specific picks
+      else if (set.has(btn.dataset.v)) set.delete(btn.dataset.v);  // click again to toggle off
+      else set.add(btn.dataset.v);
+      group.querySelectorAll(".pill").forEach(p =>
+        p.classList.toggle("active", p.dataset.v === "all" ? set.size === 0 : set.has(p.dataset.v)));
       redraw();
     });
   }
@@ -1997,7 +2007,7 @@ function showTab(name, push = true) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === name));
   document.getElementById("panel-laws").classList.toggle("active", name === "laws");
   document.getElementById("panel-cases").classList.toggle("active", name === "cases");
-  if (push) history.replaceState(null, "", "#" + name);
+  if (push) try { history.replaceState(null, "", "#" + name); } catch (e) { /* sandboxed previews disallow this */ }
 }
 
 function initFromHash() {

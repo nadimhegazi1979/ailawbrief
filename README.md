@@ -6,7 +6,7 @@ A single-file static website tracking global laws AND court cases on generative 
 - `index.html` — the entire site: design, data, and logic in one self-contained file. No build step, no dependencies (the only external resource is Google Fonts).
 
 ## Page structure
-The page is a two-tab interface — **Laws & Regulations** and **Case Law** — each tab with its own search box and filter pills (region, modality, status; the cases tab adds an issue filter). Tabs deep-link via `#laws` / `#cases`, and individual entries deep-link via `#<entry-id>` (auto-opens the right tab and card).
+The page is a two-tab interface — **Laws & Regulations** and **Case Law** — each tab with its own search box and filter pills (region, modality, status; the cases tab adds an issue filter). Pills are multi-select: values within a group combine as OR (e.g. "text + video"), groups combine as AND, "All" is exclusive with specific picks, and clicking an active pill toggles it off (empty selection reverts to All). Tabs deep-link via `#laws` / `#cases`, and individual entries deep-link via `#<entry-id>` (auto-opens the right tab and card).
 
 ## How to update the tracker
 All content lives in `index.html` in two clearly marked JavaScript arrays near the bottom of the file:
