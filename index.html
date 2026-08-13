@@ -3,12 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Law Brief — Global Generative AI Law Tracker</title>
-<meta name="description" content="A clear, plain-English tracker of laws and regulations governing generative AI — text, image, video, and audio generation — across the world's major jurisdictions.">
-<meta property="og:title" content="AI Law Brief — Global Generative AI Law Tracker">
-<meta property="og:description" content="Track the laws governing AI text, image, video, and audio generation worldwide.">
+<title>AI Law Brief — Global Generative AI Law & Case Tracker</title>
+<meta name="description" content="A plain-English tracker of the laws, regulations, and court cases governing generative AI worldwide — the EU AI Act, US federal and state laws, China's labeling rules, deepfake and voice-cloning laws, and AI copyright litigation — with formal citations, official sources, and curated commentary. Verified daily.">
+<link rel="canonical" href="https://ailawbrief.com/">
+<meta property="og:title" content="AI Law Brief — Global Generative AI Law & Case Tracker">
+<meta property="og:description" content="The laws and court cases governing AI text, image, video, and audio generation worldwide — statuses, citations, and official sources, verified daily.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ailawbrief.com">
+<meta property="og:url" content="https://ailawbrief.com/">
+<meta property="og:site_name" content="AI Law Brief">
+<meta property="og:image" content="https://ailawbrief.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Law Brief — Global Generative AI Law & Case Tracker">
+<meta name="twitter:description" content="The laws and court cases governing generative AI worldwide — statuses, citations, official sources. Verified daily.">
+<meta name="twitter:image" content="https://ailawbrief.com/og.png">
+<meta name="theme-color" content="#faf9f6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2155,12 +2163,80 @@ function wireNavigation() {
   toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
+/* ---------- SEO / AEO: structured data generated from the live data ---------- */
+function injectStructuredData() {
+  const lastReviewed = document.getElementById("last-updated").textContent.trim();
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://ailawbrief.com/#website",
+        "url": "https://ailawbrief.com/",
+        "name": "AI Law Brief",
+        "description": "A plain-English tracker of the laws, regulations, and court cases governing generative AI worldwide, with formal citations and links to official sources.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Dataset",
+        "@id": "https://ailawbrief.com/#dataset",
+        "name": "Global Generative AI Law & Case Tracker",
+        "url": "https://ailawbrief.com/",
+        "description": `Tracks ${LAWS.length} laws and regulations and ${CASES.length} court cases governing generative AI (text, image, video, and audio generation) across ${new Set([...LAWS, ...CASES].map(e => e.jurisdiction)).size} jurisdictions. Each entry includes legal status, plain-English summary, key obligations or holdings, a formal legal citation, a link to the official text or docket, and curated commentary. Statuses verified against official sources; last reviewed ${lastReviewed}.`,
+        "keywords": ["AI law", "generative AI regulation", "EU AI Act", "AI copyright litigation", "deepfake laws", "AI training data", "fair use", "voice cloning law", "AI content labeling", "frontier AI regulation"],
+        "creator": { "@type": "Organization", "name": "AI Law Brief", "url": "https://ailawbrief.com/" },
+        "isAccessibleForFree": true
+      },
+      {
+        "@type": "ItemList",
+        "name": "Laws & regulations governing generative AI",
+        "numberOfItems": LAWS.length,
+        "itemListElement": LAWS.map((l, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "item": {
+            "@type": "Legislation",
+            "name": l.name,
+            "legislationIdentifier": l.citation,
+            "legislationJurisdiction": l.jurisdiction,
+            "description": l.summary,
+            "url": "https://ailawbrief.com/#" + l.id,
+            "sameAs": l.officialLink
+          }
+        }))
+      },
+      {
+        "@type": "ItemList",
+        "name": "Court cases shaping generative AI law",
+        "numberOfItems": CASES.length,
+        "itemListElement": CASES.map((c, i) => ({
+          "@type": "ListItem",
+          "position": i + 1,
+          "item": {
+            "@type": "LegalCase",
+            "name": c.name,
+            "identifier": c.citation,
+            "description": c.summary,
+            "url": "https://ailawbrief.com/#" + c.id,
+            "sameAs": c.officialLink
+          }
+        }))
+      }
+    ]
+  };
+  const tag = document.createElement("script");
+  tag.type = "application/ld+json";
+  tag.textContent = JSON.stringify(graph);
+  document.head.appendChild(tag);
+}
+
 renderStats();
 wireFilters();
 wireNavigation();
 render();
 renderCases();
 initFromHash();
+injectStructuredData();
 </script>
 </body>
 </html>

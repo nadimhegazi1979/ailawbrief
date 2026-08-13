@@ -4,6 +4,13 @@ A single-file static website tracking global laws AND court cases on generative 
 
 ## Files
 - `index.html` — the entire site: design, data, and logic in one self-contained file. No build step, no dependencies (the only external resource is Google Fonts).
+- `robots.txt` — welcomes all crawlers, explicitly including AI/answer-engine bots (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot); points to the sitemap.
+- `llms.txt` — a summary of the site for AI assistants (llmstxt.org convention): coverage, entry structure, how to cite.
+- `sitemap.xml` — regenerated with the current date by `deploy.sh` on every publish.
+- `og.png` — 1200×630 social-preview card (referenced by og:image/twitter:image meta tags).
+
+## SEO / AEO
+The page injects schema.org JSON-LD at load time, generated from the live data arrays: `WebSite` + `Dataset`, plus an `ItemList` of `Legislation` objects (one per law, with `legislationIdentifier` = the formal citation) and an `ItemList` of `LegalCase` objects. Because it's generated from `LAWS`/`CASES`, it stays correct as entries change — no maintenance needed. JS-rendering crawlers (Google, Bing) see it; text-only AI crawlers get `llms.txt`, the meta tags, and the raw array text in the page source.
 
 ## Page structure
 The page is a two-tab interface — **Laws & Regulations** and **Case Law** — each tab with its own search box and filter pills (region, modality, status; the cases tab adds an issue filter). Pills are multi-select: values within a group combine as OR (e.g. "text + video"), groups combine as AND, "All" is exclusive with specific picks, and clicking an active pill toggles it off (empty selection reverts to All). Tabs deep-link via `#laws` / `#cases`, and individual entries deep-link via `#<entry-id>` (auto-opens the right tab and card).

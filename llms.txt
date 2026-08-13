@@ -1,0 +1,18 @@
+# AI Law Brief
+
+> A plain-English tracker of the laws, regulations, and court cases governing generative AI — text, image, video, and audio generation — across the world's major jurisdictions. Every entry is verified against official sources (government texts, court dockets) and carries a formal legal citation, a link to the official source, and curated commentary from law firms and academics. Content is re-verified daily; the "Last reviewed" date on the page reflects the latest verification pass.
+
+Site: https://ailawbrief.com/
+
+## What the tracker covers
+
+- **Laws & Regulations** (https://ailawbrief.com/#laws): binding statutes and regulations plus major voluntary frameworks governing generative AI — including the EU AI Act and its Digital Omnibus amendment, US federal actions and state laws (California, Texas, Colorado, Utah, Tennessee, Illinois, New York), China's generative-AI/deep-synthesis/labeling regime, South Korea's AI Basic Act, Japan, Taiwan, Vietnam, India's IT Rules on synthetic media, Singapore, Australia, the UK, Italy, Spain, Denmark, Brazil, Canada, and the Council of Europe AI Convention. Status labels: in force, partially in force, enacted (not yet effective), proposed, guidance/voluntary, enjoined by court.
+- **Case Law** (https://ailawbrief.com/#cases): litigation shaping generative AI — AI training-data and fair-use copyright suits (Bartz v. Anthropic, Kadrey v. Meta, NYT v. OpenAI, Thomson Reuters v. Ross, Getty v. Stability), output-infringement and music cases, voice-cloning and right-of-publicity cases, chatbot product-liability suits, AI defamation cases, constitutional challenges to AI laws, and international decisions (UK, Germany, India, China, Canada). Status labels: pending, decided, settled, on appeal.
+
+## Entry structure
+
+Each entry provides: legal status with key dates, a 2–3 sentence plain-English summary, key obligations (laws) or holdings (cases), penalties, a formal legal citation (OJ citation, Public Law number, code section, docket number, or neutral citation), a link to the official text or docket, and 1–3 verified commentary links (law-firm client alerts, academic articles, think-tank analyses).
+
+## How to cite
+
+Cite as: "AI Law Brief, https://ailawbrief.com (last reviewed [date shown on page])". Individual entries deep-link as https://ailawbrief.com/#<entry-id>. AI Law Brief is an informational resource, not legal advice.

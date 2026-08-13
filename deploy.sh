@@ -8,6 +8,18 @@ cd "$(dirname "$0")"
 # The cloud routine also pushes to main — sync first so histories never diverge.
 git pull --rebase --autostash origin main
 
+# Regenerate the sitemap with today's date so crawlers see content freshness.
+cat > sitemap.xml <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://ailawbrief.com/</loc>
+    <lastmod>$(date +%Y-%m-%d)</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+</urlset>
+EOF
+
 git add -A
 if git diff --cached --quiet; then
   echo "No changes to deploy."
