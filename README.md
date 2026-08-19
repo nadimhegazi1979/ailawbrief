@@ -39,7 +39,9 @@ Also update the **"Last reviewed"** date in the hero section (`id="last-updated"
 Stats (law count, case count, jurisdiction count, in-force count) are computed automatically.
 
 ## Automatic daily updates
-A scheduled task (`ailawbrief-daily-update`, 7:03 AM daily, managed in the Claude desktop app under "Scheduled") re-verifies watch items, scans for new laws and rulings, updates the arrays and the last-reviewed date, and runs `deploy.sh` if it exists. Runs happen while the app is open; a missed run fires at next launch.
+Primary: a **GitHub Actions workflow** (`.github/workflows/daily-update.yml`) runs daily at 14:00 UTC (7:00 AM Pacific) on GitHub's servers — independent of any local machine. It uses `anthropics/claude-code-action` with an Anthropic API key stored as the `ANTHROPIC_API_KEY` repository secret, re-verifies watch items, scans for developments, updates the data arrays, and publishes via `deploy.sh`. Trigger manually from the Actions tab ("Run workflow") or `gh workflow run daily-update.yml`.
+
+(Legacy: a Claude-desktop-app scheduled task `ailawbrief-daily-update` exists but is disabled — it only ran while the app was open. A paused claude.ai cloud routine also exists, blocked on enterprise GitHub App access.)
 
 ## Publishing
 Deployed via **GitHub Pages** from https://github.com/nadimhegazi1979/ailawbrief (main branch, root). The `CNAME` file binds the custom domain ailawbrief.com; DNS at GoDaddy points the apex to GitHub Pages' A records and `www` to `nadimhegazi1979.github.io`.

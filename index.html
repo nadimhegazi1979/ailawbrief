@@ -257,7 +257,7 @@
   <div class="wrap">
     <h1>The laws governing generative AI, tracked in one place.</h1>
     <p class="lede">A plain-English guide to how the world regulates AI-generated text, images, video, and audio — what's in force, what's coming, and what it requires.</p>
-    <p class="updated">Last reviewed: <strong id="last-updated">August 13, 2026</strong> · Statuses verified against official sources</p>
+    <p class="updated">Last reviewed: <strong id="last-updated">August 16, 2026</strong> · Statuses verified against official sources</p>
     <div class="stats">
       <div class="stat"><div class="num" id="stat-laws">–</div><div class="label">Laws &amp; regulations tracked</div></div>
       <div class="stat"><div class="num" id="stat-states">–</div><div class="label">US states covered</div></div>
@@ -1332,7 +1332,7 @@ const CASES = [
     jurisdiction: "United States",
     region: "Americas",
     caseStatus: "decided",
-    statusDetail: "June 2025: Judge Chhabria granted Meta summary judgment on fair use as to the 13 named authors, resting on their failure to prove market harm. July 2026: interlocutory appeal denied — the issues will go to the Ninth Circuit together after final judgment, which the court signaled is imminent.",
+    statusDetail: "June 2025: Judge Chhabria granted Meta summary judgment on fair use as to the 13 named authors, resting on their failure to prove market harm. July 2026: interlocutory appeal denied — the issues will go to the Ninth Circuit together after final judgment. Aug 11, 2026: in the related consolidated author cases, the court ordered a second Zuckerberg deposition by Aug 26 and granted Meta discovery on the new contributory claim.",
     issues: ["training-data", "fair-use"],
     modalities: ["text"],
     summary: "Authors including Richard Kadrey and Sarah Silverman sued Meta for training its Llama models on their books obtained via BitTorrent from shadow libraries. The court sided with Meta on fair use — but pointedly because the plaintiffs failed to prove market harm, not as a blanket blessing of AI training.",
@@ -1585,6 +1585,27 @@ const CASES = [
     ],
     significance: "Opens a second front against AI data acquisition — anti-circumvention liability for indirect scraping pipelines, independent of copyright infringement.",
     officialLink: "https://www.law.com/newyorklawjournal/2026/07/31/reddits-dmca-claims-against-perplexity-serpapi-survive-ai-scraping-challenge/",
+    lastVerified: "Aug 2026"
+  },
+  {
+    id: "xai-v-ellison",
+    citation: "X.AI LLC v. Ellison, No. 0:26-cv-03425 (D. Minn.)",
+    name: "xAI v. Ellison",
+    court: "D. Minn.",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed July 27, 2026, challenging Minnesota's HF 1606 nudification-tool ban. July 31: Judge Frank denied xAI's TRO bid, citing its delay in seeking relief — the ban took effect August 1 and remains in force. Preliminary-injunction hearing set for August 19, 2026.",
+    issues: ["free-speech", "constitutional-challenge"],
+    modalities: ["image"],
+    summary: "xAI sued Minnesota's Attorney General claiming the state's first-in-nation ban on AI 'nudification' tools violates the First Amendment as an overbroad, content-based speech restriction. The court refused to block the law before it took effect, making this the first state generative-AI statute to survive an initial xAI challenge.",
+    keyHoldings: [
+      "TRO denied — xAI's delay in seeking relief weighed against emergency intervention (July 31, 2026)",
+      "The nudification ban (civil penalties up to $500,000 per violation) is in force pending the PI hearing",
+      "No merits ruling yet"
+    ],
+    significance: "The third xAI constitutional challenge to a state AI law — and the first where the law took effect on schedule; a bellwether for whether NCII-tool bans survive First Amendment scrutiny.",
+    officialLink: "https://www.courtlistener.com/docket/73678486/xai-llc-v-ellison/",
     lastVerified: "Aug 2026"
   },
   {
@@ -2013,7 +2034,7 @@ const STATES = [
   {"code": "MD", "name": "Maryland", "level": "deepfake-only", "summary": "Deepfake NCII, election, and impersonation laws arrived 2025-2026; no chatbot or comprehensive AI statute.", "laws": [{"name": "NCII law (SB 360)", "year": 2025, "status": "in-force", "note": "NCII crime and civil action cover computer-generated images"}, {"name": "Election deepfake law (SB 141)", "year": 2026, "status": "in-force", "note": "Prohibits election deepfakes intended to deceive voters"}, {"name": "Deepfake impersonation law (SB 8)", "year": 2026, "status": "enacted", "note": "Impersonation crime with private right of action; effective Oct 2026"}]},
   {"code": "MA", "name": "Massachusetts", "level": "deepfake-only", "summary": "Only enacted statute is the 2024 revenge-porn law covering sexual deepfakes; 2026 election-deepfake and synthetic-CSAM measures stalled in the legislature.", "laws": [{"name": "Act to Prevent Abuse and Exploitation (H.4744)", "year": 2024, "status": "in-force", "note": "Criminalizes nonconsensual intimate images including deepfakes"}, {"name": "Election misinformation bill (H.5093)", "year": 2026, "status": "proposed", "note": "Passed House Feb 2026; died when Senate formal sessions ended"}, {"name": "Synthetic CSAM amendment", "year": 2026, "status": "proposed", "note": "Senate-passed July 2026; awaiting House conference"}]},
   {"code": "MI", "name": "Michigan", "level": "deepfake-only", "summary": "Election-ad AI disclosure and deceptive-media laws plus 2025 intimate-deepfake crimes; a minors' companion-chatbot bill awaits the House.", "laws": [{"name": "Political AI disclaimer law (HB 5141)", "year": 2023, "status": "in-force", "note": "Disclosure on AI-generated political ads"}, {"name": "Materially deceptive election media law (HB 5144)", "year": 2023, "status": "in-force", "note": "Bans undisclosed election deepfakes within 90 days"}, {"name": "Protection from Intimate Deep Fakes Act (PA 11-12)", "year": 2025, "status": "in-force", "note": "Criminal and civil liability for sexual deepfakes"}, {"name": "Kids ethical AI chatbot bill (SB 760)", "year": 2026, "status": "proposed", "note": "Passed Senate May 2026; pending in House"}]},
-  {"code": "MN", "name": "Minnesota", "level": "deepfake-only", "summary": "Pioneering 2023 election and sexual deepfake crimes, expanded in 2024, plus the nation's first nudification-tool ban effective August 2026.", "laws": [{"name": "Deepfake crimes law (HF 1370)", "year": 2023, "status": "in-force", "note": "Criminalizes sexual and election deepfakes; election provision under challenge"}, {"name": "Election deepfake amendments (HF 4772)", "year": 2024, "status": "in-force", "note": "Broader coverage; convicted candidates forfeit office"}, {"name": "Nudification technology ban (HF 1606)", "year": 2026, "status": "in-force", "note": "First-in-nation ban on nudification apps; $500,000 penalties"}]},
+  {"code": "MN", "name": "Minnesota", "level": "deepfake-only", "summary": "Pioneering 2023 election and sexual deepfake crimes, expanded in 2024, plus the nation's first nudification-tool ban effective August 2026.", "laws": [{"name": "Deepfake crimes law (HF 1370)", "year": 2023, "status": "in-force", "note": "Criminalizes sexual and election deepfakes; election provision under challenge"}, {"name": "Election deepfake amendments (HF 4772)", "year": 2024, "status": "in-force", "note": "Broader coverage; convicted candidates forfeit office"}, {"name": "Nudification technology ban (HF 1606)", "year": 2026, "status": "in-force", "note": "First-in-nation ban, in force Aug 1; survived xAI TRO bid"}]},
   {"code": "MS", "name": "Mississippi", "level": "deepfake-only", "summary": "Criminalizes harmful deepfake 'digitizations' and computer-generated child sexual imagery; a 2026 AI name-likeness-voice right died in the House.", "laws": [{"name": "Wrongful dissemination of digitizations (SB 2577)", "year": 2024, "status": "in-force", "note": "Criminalizes deepfakes intended to harm or deter voting"}, {"name": "Walker Montgomery Protecting Children Online Act (HB 1126)", "year": 2024, "status": "in-force", "note": "Covers computer-generated explicit images of minors"}, {"name": "Right to Name, Likeness and Voice Act (SB 2046)", "year": 2026, "status": "proposed", "note": "AI identity property right; passed Senate, died in House"}]},
   {"code": "MO", "name": "Missouri", "level": "deepfake-only", "summary": "First deepfake statutes, signed 2026, make nonconsensual AI-generated intimate depictions a felony from August 28, 2026.", "laws": [{"name": "Protection of children omnibus (HB 2273)", "year": 2026, "status": "enacted", "note": "Felony for nonconsensual intimate digital depictions; effective Aug 28, 2026"}, {"name": "Public safety omnibus (HB 2637)", "year": 2026, "status": "enacted", "note": "Parallel intimate-depiction and cyberstalking provisions"}, {"name": "Taylor Swift Act (SB 1117)", "year": 2026, "status": "proposed", "note": "Civil deepfake cause of action; not confirmed passed"}]},
   {"code": "MT", "name": "Montana", "level": "targeted", "summary": "First-in-nation Right to Compute Act plus election-deepfake, sexual-deepfake, and digital-replica likeness laws, among others.", "laws": [{"name": "Right to Compute Act (SB 212)", "year": 2025, "status": "in-force", "note": "Protects computation rights; risk plans for AI-run critical infrastructure"}, {"name": "Name, voice, and likeness law (HB 513)", "year": 2025, "status": "in-force", "note": "Property right against unauthorized digital replicas"}, {"name": "Election synthetic media law (SB 25)", "year": 2025, "status": "in-force", "note": "Restricts undisclosed deepfakes in election communications"}, {"name": "Sexual deepfake criminalization (HB 514)", "year": 2025, "status": "in-force", "note": "Criminalizes fabricated sexually explicit images"}]},
@@ -2048,6 +2069,8 @@ const STATES = [
    text, and the id of the related entry (law, case, or state).
    ===================================================================== */
 const RECENT = [
+  { d: "Aug 11", t: "Kadrey-related cases: court orders second Zuckerberg deposition by Aug 26", id: "kadrey-v-meta" },
+  { d: "Jul 31", t: "xAI v. Ellison: Minnesota's nudification-tool ban survives TRO bid — PI hearing Aug 19", id: "xai-v-ellison" },
   { d: "Aug 13", t: "Reddit v. SerpApi & Perplexity added — DMCA anti-circumvention claims survive dismissal", id: "reddit-v-serpapi-perplexity" },
   { d: "Aug 12", t: "EU Digital Omnibus confirmed as Regulation (EU) 2026/1744; AI Act entry updated", id: "eu-ai-act" },
   { d: "Aug 12", t: "Denmark's deepfake copyright amendment downgraded to proposed — bill lapsed in the March snap election", id: "denmark-deepfake-copyright" },
