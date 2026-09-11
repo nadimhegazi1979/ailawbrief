@@ -54,9 +54,9 @@ Entry statuses were verified against official sources in August 2026. Known watc
 **Laws:**
 - **EU Digital Omnibus**: RESOLVED Aug 2026 — confirmed as Regulation (EU) 2026/1744, OJ 24.7.2026, in force Jul 27, 2026; cited on the EU AI Act entry.
 - **Denmark deepfake copyright amendment**: downgraded to "proposed" Aug 2026 — the bill appears to have lapsed when the Mar 2026 snap election dissolved parliament before final passage. Watch for reintroduction; confirm against retsinformation.dk.
-- **Spain**: still a bill; committee vote expected autumn 2026.
-- **Brazil PL 2338**: Chamber of Deputies vote anticipated around Aug 2026.
-- **Australia**: legislated "Australian Standards for AI" announced July 2026 — could flip from guidance to binding.
+- **Spain**: still a bill; amendment deadline extended to Sep 16, 2026, committee vote slipping.
+- **Brazil PL 2338**: rapporteur says Chamber vote after the October 2026 elections.
+- **Australia**: National Cabinet agreed the framework Aug 26, 2026; Commonwealth bill expected early 2027 — will flip from guidance to binding.
 - **Utah AI Policy Act**: sunsets Jul 1, 2027 unless reauthorized.
 - **South Korea**: fine enforcement begins ~early 2027 after grace period.
 
@@ -66,9 +66,18 @@ Entry statuses were verified against official sources in August 2026. Known watc
 - **Kohls v. Bonta** — 9th Cir., fully briefed: election-deepfake laws (also flips the AB 2839/2655 law entry if reversed).
 - **xAI v. Bonta** — 9th Cir., argued Jul 2026: AB 2013 training-data transparency (also affects the AB 2013 law entry).
 - **Getty v. Stability (UK)** — Court of Appeal, hearing date TBD: are model weights infringing copies?
-- **Bartz v. Anthropic** — objector-appeal window open after Jul 20, 2026 final approval.
+- **Bartz v. Anthropic** — settlement effectively final (window closed Aug 19); fee-side appeals pending; distribution underway.
 - **Kadrey v. Meta** — final judgment imminent; expect status change to on-appeal.
-- **Andersen v. Stability** — trial reportedly set Sep 8, 2026 (date from secondary sources; confirm on docket).
+- **Andersen v. Stability** — trial continued to Apr 5, 2027.
 - **GEMA v. OpenAI / v. Suno** — Munich appeals pending.
 - **xAI v. Weiser** — may be amended or mooted after Colorado replaced its AI Act.
-- **Reddit v. SerpApi/Perplexity** — added Aug 2026 after the Jul 31, 2026 MTD ruling; discovery phase ahead, watch for the docket number to upgrade the citation.
+- **Reddit v. SerpApi/Perplexity** — discovery phase; watch for the docket number to upgrade the citation.
+- **xAI v. Ellison** — PI denied Sep 4, 2026; Eighth Circuit appeal expected; MTD pending in district court.
+- **OpenAI MDL** — cross-SJ motions filed Sep 4, 2026 (DOJ statement of interest backs fair use); decision watch through winter.
+- **California desk bills** — SB 1111, AB 2713, SB 1000, AB 1609, SB 903 await Newsom's signature/veto by ~Sep 30, 2026.
+- **CJEU "Like Company"** — ruling reportedly due Sept 2026; could affect both GEMA appeals (unverified — confirm).
+- **Italy** — Law 132/2025 implementing decrees due by the Oct 10, 2026 delegation deadline.
+- **Denmark** — watch the Folketing's October session program for deepfake-bill reintroduction.
+- **China** — AI Safety Governance Framework 3.0 expected during Cybersecurity Week (Sep 14-20, 2026).
+- **Saudi Arabia** — new Copyright Law (in force Aug 1, 2026) reportedly includes a TDM-style AI-training exception; verify against the gazette before adding an entry.
+- **Massachusetts** — synthetic-CSAM amendment still in economic-development conference committee.
