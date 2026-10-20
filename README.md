@@ -49,35 +49,36 @@ Deployed via **GitHub Pages** from https://github.com/nadimhegazi1979/ailawbrief
 To publish changes: run `./deploy.sh` (commits and pushes; Pages rebuilds in about a minute). The daily scheduled task runs it automatically after content updates. Git pushes authenticate through the GitHub CLI (`~/.local/bin/gh`, token in the macOS keychain).
 
 ## Content status
-Entry statuses were verified against official sources in August 2026. Known watch items at that date:
+Entry statuses were verified against official sources in October 2026. Known watch items at that date:
 
 **Laws:**
-- **EU Digital Omnibus**: RESOLVED Aug 2026 — confirmed as Regulation (EU) 2026/1744, OJ 24.7.2026, in force Jul 27, 2026; cited on the EU AI Act entry.
-- **Denmark deepfake copyright amendment**: downgraded to "proposed" Aug 2026 — the bill appears to have lapsed when the Mar 2026 snap election dissolved parliament before final passage. Watch for reintroduction; confirm against retsinformation.dk.
-- **Spain**: still a bill; amendment deadline extended to Sep 16, 2026, committee vote slipping.
-- **Brazil PL 2338**: rapporteur says Chamber vote after the October 2026 elections.
+- **EU Digital Omnibus**: RESOLVED Aug 2026 — Regulation (EU) 2026/1744, OJ 24.7.2026, in force Jul 27, 2026; cited on the EU AI Act entry. High-risk (Annex III) duties now deferred to Dec 2, 2027.
+- **Denmark deepfake copyright amendment**: RESOLVED Oct 2026 — revised bill (L 49) reintroduced Oct 8, 2026 by Culture Minister Zenia Stampe; still "proposed." Watch for passage and a Jan 1, 2027 commencement.
+- **Italy**: RESOLVED Oct 2026 — D.Lgs. 179/2026 (G.U. n. 234, 8.10.2026, in force Oct 23, 2026) closed the Law 132/2025 delegation. Watch for AgID/ACN enforcement practice.
+- **Saudi Arabia**: RESOLVED Oct 2026 — added as a LAWS entry (Royal Decree M/169, art. 26 AI-training exception, in force Aug 12, 2026). Watch for SAIP implementing regulations defining the proportionality limits.
+- **China**: RESOLVED Oct 2026 — TC260 AI Safety Governance Framework 3.0 published Sep 14, 2026. Watch for the promised mandatory national standard on AI-agent applications.
+- **Spain**: still a bill — approved as a Proyecto de Ley May 26, 2026, published by Congress Jun 12, 2026; committee stage ongoing.
+- **Brazil PL 2338**: rapporteur Aguinaldo Ribeiro confirmed (Aug 24, 2026) the Chamber vote waits until after the October 2026 elections. Watch the Nov–Dec session.
 - **Australia**: National Cabinet agreed the framework Aug 26, 2026; Commonwealth bill expected early 2027 — will flip from guidance to binding.
 - **Utah AI Policy Act**: sunsets Jul 1, 2027 unless reauthorized.
-- **South Korea**: fine enforcement begins ~early 2027 after grace period.
+- **South Korea**: fine enforcement begins ~early 2027 after the one-year grace period ends Jan 22, 2027.
+- **California**: SB 1000 took effect immediately on signing (Sep 30, 2026); AB 2713, SB 1111 and AB 1609 are operative in 2027 — flip those state-entry rows to `in-force` in January.
 
-**Cases (pending decisions that could land any week):**
-- **Thomson Reuters v. Ross** — 3d Cir., argued Jun 11, 2026: first appellate ruling on AI-training fair use.
-- **Doe v. GitHub** — 9th Cir., argued Feb 11, 2026: DMCA § 1202(b) identicality.
+**Cases:**
+- **Thomson Reuters v. Ross** — RESOLVED Sep 29, 2026: 3d Cir. affirmed; first appellate ruling that AI training was not fair use, expressly carved out from generative AI. Watch for a cert petition.
+- **Doe v. GitHub** — RESOLVED Sep 16, 2026: 9th Cir. (No. 24-7700) affirmed dismissal of the § 1202(b) claims; the training-stage CMI theory survives for a future case that pleads it.
+- **OpenAI MDL** — cross-SJ motions filed Sep 4, 2026; OpenAI/Microsoft responses due Oct 23, replies Nov 6. Judge Stein's fair-use ruling is the biggest pending item.
 - **Kohls v. Bonta** — 9th Cir., fully briefed: election-deepfake laws (also flips the AB 2839/2655 law entry if reversed).
-- **xAI v. Bonta** — 9th Cir., argued Jul 2026: AB 2013 training-data transparency (also affects the AB 2013 law entry).
-- **Getty v. Stability (UK)** — Court of Appeal, hearing date TBD: are model weights infringing copies?
-- **Bartz v. Anthropic** — settlement effectively final (window closed Aug 19); fee-side appeals pending; distribution underway.
-- **Kadrey v. Meta** — final judgment imminent; expect status change to on-appeal.
+- **xAI v. Bonta** — 9th Cir. oral argument set for Nov 18, 2026: AB 2013 training-data transparency.
+- **CJEU "Like Company" (C-250/25)** — AG Szpunar's opinion slipped from Sep 3; now reported for Nov 19, 2026. Judgment months later. Could affect both GEMA appeals.
+- **Getty v. Stability (UK)** — Court of Appeal, hearing expected late 2026/2027: are model weights infringing copies?
+- **Bartz v. Anthropic** — settlement final; fee-side appeals pending; first payments expected on or before Nov 15, 2026.
+- **Kadrey v. Meta** — interlocutory appeal denied Jul 2026; Chhabria said final judgment would follow shortly. Expect a 9th Cir. appeal — flip to on-appeal when entered.
+- **Eight state AGs v. OpenAI** — filed Oct 14, 2026 in eight state courts; watch for removal fights, MTDs, and more states joining.
 - **Andersen v. Stability** — trial continued to Apr 5, 2027.
 - **GEMA v. OpenAI / v. Suno** — Munich appeals pending.
 - **xAI v. Weiser** — may be amended or mooted after Colorado replaced its AI Act.
 - **Reddit v. SerpApi/Perplexity** — discovery phase; watch for the docket number to upgrade the citation.
 - **xAI v. Ellison** — PI denied Sep 4, 2026; Eighth Circuit appeal expected; MTD pending in district court.
-- **OpenAI MDL** — cross-SJ motions filed Sep 4, 2026 (DOJ statement of interest backs fair use); decision watch through winter.
-- **California desk bills** — SB 1111, AB 2713, SB 1000, AB 1609, SB 903 await Newsom's signature/veto by ~Sep 30, 2026.
-- **CJEU "Like Company"** — ruling reportedly due Sept 2026; could affect both GEMA appeals (unverified — confirm).
-- **Italy** — Law 132/2025 implementing decrees due by the Oct 10, 2026 delegation deadline.
-- **Denmark** — watch the Folketing's October session program for deepfake-bill reintroduction.
-- **China** — AI Safety Governance Framework 3.0 expected during Cybersecurity Week (Sep 14-20, 2026).
-- **Saudi Arabia** — new Copyright Law (in force Aug 1, 2026) reportedly includes a TDM-style AI-training exception; verify against the gazette before adding an entry.
 - **Massachusetts** — synthetic-CSAM amendment still in economic-development conference committee.
+- **Federal Rules of Evidence** — the Advisory Committee's proposed Rule 901(c) on authenticating possibly AI-fabricated evidence was discussed Oct 15, 2026; track if it advances.

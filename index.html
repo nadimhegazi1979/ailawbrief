@@ -257,7 +257,7 @@
   <div class="wrap">
     <h1>The laws governing generative AI, tracked in one place.</h1>
     <p class="lede">A plain-English guide to how the world regulates AI-generated text, images, video, and audio — what's in force, what's coming, and what it requires.</p>
-    <p class="updated">Last reviewed: <strong id="last-updated">September 11, 2026</strong> · Statuses verified against official sources</p>
+    <p class="updated">Last reviewed: <strong id="last-updated">October 19, 2026</strong> · Statuses verified against official sources</p>
     <div class="stats">
       <div class="stat"><div class="num" id="stat-laws">–</div><div class="label">Laws &amp; regulations tracked</div></div>
       <div class="stat"><div class="num" id="stat-states">–</div><div class="label">US states covered</div></div>
@@ -543,19 +543,20 @@ const LAWS = [
     jurisdiction: "Italy",
     region: "Europe",
     status: "in-force",
-    statusDetail: "In force since Oct 10, 2025; implementing decrees on governance, training and liability rolling out through 2026.",
+    statusDetail: "In force since Oct 10, 2025. The implementing-decree delegation closed on schedule: Legislative Decree No. 179 of Oct 7, 2026 (G.U. n. 234, 8.10.2026; in force Oct 23, 2026) sets out national authority powers, the AI Act sanctions regime, regulatory sandboxes and rules on AI in training, the professions and the workplace.",
     modalities: ["all"],
     summary: "The first comprehensive national AI law in the EU, complementing the AI Act. It creates a standalone criminal deepfake offence punishing dissemination of AI-generated or altered images, video or voice that mislead as to authenticity and cause unjust harm, and confirms that AI-assisted works are protectable by copyright only as results of human intellectual work.",
     keyObligations: [
       "Criminal liability for harmful dissemination of deceptive deepfakes (new Art. 612-quater Criminal Code, 1–5 years' imprisonment)",
       "Human-authorship requirement for copyright in AI-assisted works",
       "Text-and-data mining for AI training allowed only with lawful access and subject to rights-holder opt-outs",
-      "National governance via AgID and ACN as designated AI authorities",
+      "National governance via AgID and ACN as designated AI authorities, with sanctioning powers and sector supervisors (Banca d'Italia, CONSOB, IVASS) fixed by D.Lgs. 179/2026",
+      "No employment decision may rest solely on automated processing (D.Lgs. 179/2026, art. 41)",
       "Sector rules (health, labor, justice) and child-protection consent rules for AI access"
     ],
     penalties: "Deepfake offence: 1 to 5 years' imprisonment; EU AI Act administrative fines apply in parallel",
     officialLink: "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:2025-09-23;132",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   {
     id: "spain-ai-governance-bill",
@@ -586,7 +587,7 @@ const LAWS = [
     jurisdiction: "Denmark",
     region: "Europe",
     status: "proposed",
-    statusDetail: "The bill was on track for a reported Mar 31, 2026 commencement, but a snap general election intervened (called Feb 26, held Mar 24, 2026) — under Danish procedure, bills not finally passed before dissolution lapse. Reintroduction expected; status pending confirmation in the consolidated Copyright Act.",
+    statusDetail: "Reintroduced Oct 8, 2026. The original bill lapsed when the Mar 2026 snap election dissolved parliament; Culture Minister Zenia Stampe laid a revised version (L 49) before the Folketing, targeting entry into force on Jan 1, 2027.",
     modalities: ["image", "video", "audio"],
     summary: "A world-first proposed amendment that would give every natural person a copyright-style right over realistic, digitally generated imitations of their face, appearance and voice. As drafted, making realistic AI imitations of a person publicly available without consent would be prohibited, with protection lasting 50 years after death, and performers separately protected against AI imitations of their performances.",
     keyObligations: [
@@ -597,7 +598,7 @@ const LAWS = [
     ],
     penalties: "Civil remedies: takedown, compensation and damages; platform liability",
     officialLink: "https://www.europarl.europa.eu/thinktank/en/document/EPRS_ATA(2026)782611",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   /* ================= AMERICAS ================= */
   {
@@ -646,24 +647,25 @@ const LAWS = [
     id: "california-sb942-transparency",
     usState: "CA",
     commentary: [{"title": "New California AI Disclosure Rules Become Operative", "source": "Morgan Lewis", "url": "https://www.morganlewis.com/pubs/2026/08/new-california-ai-disclosure-rules-become-operative", "type": "law-firm"}, {"title": "California Amends Artificial Intelligence Transparency Act and Passes AI Defenses Act", "source": "Hintze Law", "url": "https://hintzelaw.com/blog/2025/10/19/california-amends-artificial-intelligence-transparency-act-and-passes-ai-defenses-act", "type": "law-firm"}, {"title": "California AI Transparency Act Amendments Signed Into Law", "source": "Troutman Pepper Locke", "url": "https://www.troutmanprivacy.com/2025/10/california-ai-transparency-act-amendments-signed-into-law/", "type": "law-firm"}],
-    citation: "Cal. Bus. & Prof. Code § 22757 et seq. (SB 942 (2024), as amended by AB 853 (2025))",
-    name: "California AI Transparency Act (SB 942, as amended by AB 853)",
+    citation: "Cal. Bus. & Prof. Code § 22757 et seq. (SB 942 (2024), as amended by AB 853 (2025), SB 1000 (2026, Ch. 861) and AB 2713 (2026))",
+    name: "California AI Transparency Act (SB 942, as amended by AB 853, SB 1000 & AB 2713)",
     jurisdiction: "California, USA",
     region: "Americas",
     status: "partially-in-force",
-    statusDetail: "Core provider duties in force since Aug 2, 2026 (delayed from Jan 1 by AB 853). Large-online-platform duties start Jan 1, 2027; capture-device rules Jan 1, 2028.",
+    statusDetail: "Core provider duties in force since Aug 2, 2026 (delayed from Jan 1 by AB 853). SB 1000, signed and chaptered Sept 30, 2026, took effect immediately: it deletes the 1,000,000-monthly-user threshold, replaces the AI-detection-tool duty with a disclosure-verification tool, drops the mandatory manifest-disclosure option and revises latent-disclosure, privacy and licensee-response rules. AB 2713 (signed Sept 2026, operative 2027) further widens the scheme. Large-online-platform duties start Jan 1, 2027; capture-device rules Jan 1, 2028.",
     modalities: ["image", "video", "audio"],
-    summary: "Requires large generative-AI providers (over 1M monthly users) to offer a free AI-detection tool and to embed latent (machine-readable provenance) and optional manifest disclosures in AI-generated image, video, and audio content. AB 853 extended the scheme to hosting platforms, large online platforms, and capture-device makers.",
+    summary: "Requires generative-AI providers to offer a free public tool for verifying whether content carries their provenance disclosures, and to embed latent (machine-readable) disclosures in AI-generated image, video, and audio content. AB 853 extended the scheme to hosting platforms, large online platforms, and capture-device makers; SB 1000 (2026) removed the user-count threshold, pulling far more providers into scope.",
     keyObligations: [
-      "Provide a free, public AI-detection tool for the provider's generated content",
+      "Provide a free, public disclosure-verification tool for the provider's generated content",
       "Embed latent provenance disclosures in AI-generated image/video/audio",
-      "Offer users an optional manifest 'AI-generated' disclosure",
-      "Contractually bind licensees to maintain disclosure capability",
-      "Large online platforms (from 2027): surface embedded provenance data to users"
+      "Applies regardless of user count since SB 1000 (2026) deleted the 1M-monthly-user threshold",
+      "Contractually bind licensees to maintain disclosure capability, and revoke licences that strip it",
+      "Large online platforms (from 2027): surface embedded provenance data to users",
+      "Assistive-technology systems exempt until Jan 1, 2029 (SB 1000)"
     ],
     penalties: "$5,000 per violation per day, enforced by the AG or city/county attorneys",
     officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB942",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   {
     id: "california-ab2013-training-data",
@@ -756,23 +758,24 @@ const LAWS = [
     id: "california-performer-replicas",
     usState: "CA",
     commentary: [{"title": "California Enacts Generative AI Law Addressing 'Digital Replicas' of Performers", "source": "Proskauer", "url": "https://www.proskauer.com/blog/california-enacts-generative-ai-law-addressing-digital-replicas-of-performers", "type": "law-firm"}, {"title": "California's New AI Laws Limit Uses of Digital Likeness", "source": "Fenwick & West", "url": "https://www.fenwick.com/insights/publications/californias-new-ai-laws-limit-uses-of-digital-likeness", "type": "law-firm"}, {"title": "California Considers a Digital Replica Law for the Dead", "source": "Rothman's Roadmap to the Right of Publicity", "url": "https://rightofpublicityroadmap.com/news_commentary/california-considers-a-digital-replica-law-for-the-dead/", "type": "academic"}],
-    citation: "Cal. Lab. Code § 927 (AB 2602 (2024)); Cal. Civ. Code § 3344.1 (AB 1836 (2024))",
+    citation: "Cal. Lab. Code § 927 (AB 2602 (2024)); Cal. Civ. Code § 3344.1 (AB 1836 (2024)); SB 1111 (2026)",
     name: "California digital replica laws for performers (AB 2602 & AB 1836)",
     jurisdiction: "California, USA",
     region: "Americas",
     status: "in-force",
-    statusDetail: "Both effective Jan 1, 2025; complemented by pre-existing AB 602 (civil action for sexually explicit depictions, in force since 2020).",
+    statusDetail: "Both effective Jan 1, 2025; complemented by pre-existing AB 602 (civil action for sexually explicit depictions, in force since 2020). SB 1111, signed Sept 2026 and operative in 2027, extends California's unauthorized-impersonation and name-image-likeness rules expressly to AI 'digital replicas' of any person — not just performers — and adds criminal penalties for false impersonation.",
     modalities: ["image", "video", "audio"],
     summary: "AB 2602 voids contract provisions allowing use of a living performer's AI digital replica in place of work the performer could have done, unless the use is specifically described and the performer had legal or union representation. AB 1836 prohibits commercial use of digital replicas of deceased performers without estate consent.",
     keyObligations: [
       "Digital-replica contract clauses must specifically describe intended uses (AB 2602)",
       "Performer must be represented by counsel or a union when consenting",
       "Obtain estate consent before using replicas of deceased performers (AB 1836)",
+      "From 2027, digital replicas of any person fall within the impersonation and NIL rules (SB 1111)",
       "Applies to voice clones and visual likenesses in audiovisual works and sound recordings"
     ],
-    penalties: "AB 1836: minimum statutory damages of $10,000 or actual damages plus profits; AB 2602 renders offending contract terms unenforceable",
+    penalties: "AB 1836: minimum statutory damages of $10,000 or actual damages plus profits; AB 2602 renders offending contract terms unenforceable; SB 1111 adds criminal penalties for false impersonation",
     officialLink: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB1836",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   {
     id: "colorado-admt-act",
@@ -958,7 +961,7 @@ const LAWS = [
     jurisdiction: "China",
     region: "Asia-Pacific",
     status: "in-force",
-    statusDetail: "In force since Aug 15, 2023. Remains the core binding generative-AI rule; 748 generative AI services had completed CAC filing as of December 2025.",
+    statusDetail: "In force since Aug 15, 2023. Remains the core binding generative-AI rule; 748 generative AI services had completed CAC filing as of December 2025. On Sept 14, 2026 the TC260 standards body published AI Safety Governance Framework 3.0 — non-binding guidance that expands the risk catalogue from 30 to 54 entries and adds a first dedicated section on autonomous AI agents, with a mandatory national standard for agent applications said to be in preparation.",
     modalities: ["all"],
     summary: "China's first binding regulation specifically targeting generative AI, covering public-facing services that generate text, images, audio, and video. Providers are responsible for the legality of training data and outputs, and must complete security assessments and algorithm filings before launch.",
     keyObligations: [
@@ -970,7 +973,7 @@ const LAWS = [
     ],
     penalties: "No standalone fine schedule; enforcement via existing cyber/data laws — warnings, rectification orders, suspension, criminal referral in serious cases",
     officialLink: "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   {
     id: "china-deep-synthesis",
@@ -1292,6 +1295,28 @@ const LAWS = [
     officialLink: "https://ai.gov.ae/",
     lastVerified: "Aug 2026"
   },
+  {
+    id: "saudi-copyright-ai-exception",
+    commentary: [{"title": "Saudi Arabia: New Copyright Law Modernises KSA IP Framework", "source": "Baker McKenzie", "url": "https://www.bakermckenzie.com/en/insight/publications/2026/07/saudi-arabia-new-copyright-law-modernises-ksa-ip-framework", "type": "law-firm"}, {"title": "Saudi Arabia's New Copyright Law: Key Changes and Implications", "source": "A&O Shearman", "url": "https://www.aoshearman.com/en/insights/saudi-arabias-new-copyright-law-key-changes-and-implications", "type": "law-firm"}, {"title": "Saudi Arabia Copyright Law 2026: key changes and what businesses need to know", "source": "Gowling WLG", "url": "https://gowlingwlg.com/en/insights-resources/articles/2026/saudi-arabia-copyright-law-2026", "type": "law-firm"}],
+    citation: "Saudi Copyright Law, Royal Decree No. M/169 (1447 AH / 2026), art. 26",
+    name: "Saudi Arabia — Copyright Law AI training exception (art. 26)",
+    jurisdiction: "Saudi Arabia",
+    region: "Middle East",
+    status: "in-force",
+    statusDetail: "Approved by Cabinet Jan 27, 2026 and issued by Royal Decree No. M/169; published in the Official Gazette Feb 2026 and in force since Aug 12, 2026. Implementing regulations from SAIP are expected to define the proportionality limits.",
+    modalities: ["all"],
+    summary: "The Kingdom's first copyright overhaul in a generation writes a standalone AI-training exception directly into statute. Article 26 lets developers reproduce lawfully published works to develop AI systems and algorithms without the rightsholder's permission and without payment — with no opt-out for rightsholders, unlike the EU's text-and-data-mining regime.",
+    keyObligations: [
+      "The work must have been lawfully published and the copy lawfully obtained",
+      "Reproduction limited to what serves the stated purpose",
+      "Use must not conflict with the normal exploitation of the work",
+      "Use must not unreasonably prejudice the rightsholder's legitimate interests",
+      "No rightsholder opt-out mechanism — unlike the EU DSM Directive art. 4"
+    ],
+    penalties: "Copyright infringement penalties under the Law apply where the exception's conditions are not met",
+    officialLink: "https://www.saip.gov.sa/en/",
+    lastVerified: "Oct 2026"
+  },
 ];
 
 /* =====================================================================
@@ -1309,7 +1334,7 @@ const CASES = [
     jurisdiction: "United States",
     region: "Americas",
     caseStatus: "settled",
-    statusDetail: "June 2025: Judge Alsup held training on lawfully acquired books was fair use but retaining pirated copies was not. The $1.5B settlement received final approval July 20, 2026 and is now effectively final: the appeal window closed August 19 with no challenge to the settlement itself (three pending appeals concern attorney fees only), and distribution began — claimants received share notices September 4, 2026.",
+    statusDetail: "June 2025: Judge Alsup held training on lawfully acquired books was fair use but retaining pirated copies was not. The $1.5B settlement received final approval July 20, 2026 and is now effectively final: the appeal window closed August 19 with no challenge to the settlement itself (three pending appeals concern attorney fees only), and distribution is underway — claimants received share notices September 4, 2026, and the administrator expects the first payments on or before November 15, 2026 for works with no allocation dispute.",
     issues: ["training-data", "fair-use"],
     modalities: ["text"],
     summary: "Authors brought a class action against Anthropic for training Claude on their books, including copies downloaded from pirate 'shadow libraries.' After a split fair-use ruling, Anthropic agreed to pay $1.5 billion — the largest copyright settlement in history — covering roughly 480,000 works at about $3,000 per work.",
@@ -1321,7 +1346,7 @@ const CASES = [
     ],
     significance: "First mega-settlement in generative-AI copyright litigation, and the leading precedent splitting fair use for training from liability for pirated acquisition.",
     officialLink: "https://www.courtlistener.com/docket/69058235/bartz-v-anthropic-pbc/",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   {
     id: "kadrey-v-meta",
@@ -1391,25 +1416,26 @@ const CASES = [
   },
   {
     id: "thomson-reuters-v-ross",
-    commentary: [{"title": "IP Hot Topic: Third Circuit Probes Fair Use in Thomson Reuters v. Ross Intelligence", "source": "Sterne Kessler", "url": "https://www.sternekessler.com/news-insights/client-alerts/ip-hot-topic-third-circuit-probes-fair-use-in-thomson-reuters-v-ross-intelligence/", "type": "law-firm"}, {"title": "Third Circuit Hears Oral Argument in Ross v. Reuters AI Training Copyright Case", "source": "Baker Botts", "url": "https://www.bakerbotts.com/thought-leadership/publications/2026/july/third-circuit-hears-oral-argument", "type": "law-firm"}, {"title": "Amicus Briefs in 'Thomson Reuters v. Ross' Urge Application of Established Standards of Copyrightability, Fair Use", "source": "Copyright Alliance", "url": "https://copyrightalliance.org/thomson-reuters-v-ross-amicus-briefs/", "type": "think-tank"}],
-    citation: "Thomson Reuters Enter. Centre GmbH v. Ross Intelligence Inc., No. 1:20-cv-00613 (D. Del.); No. 25-2153 (3d Cir.)",
+    commentary: [{"title": "IP Hot Topic: Third Circuit Probes Fair Use in Thomson Reuters v. Ross Intelligence", "source": "Sterne Kessler", "url": "https://www.sternekessler.com/news-insights/client-alerts/ip-hot-topic-third-circuit-probes-fair-use-in-thomson-reuters-v-ross-intelligence/", "type": "law-firm"}, {"title": "Third Circuit Hears Oral Argument in Ross v. Reuters AI Training Copyright Case", "source": "Baker Botts", "url": "https://www.bakerbotts.com/thought-leadership/publications/2026/july/third-circuit-hears-oral-argument", "type": "law-firm"}, {"title": "Third Circuit Addresses Fair Use in AI Training, But Leaves Generative AI Questions Unresolved", "source": "Ballard Spahr", "url": "https://www.ballardspahr.com/insights/alerts-and-articles/2026/10/third-circuit-addresses-fair-use-in-ai-training-but-leaves-generative-ai-questions-unresolved", "type": "law-firm"}, {"title": "Training Day: Third Circuit Affirms Westlaw Headnotes Decision in AI Copyright Fair Use Case", "source": "Jackson Walker", "url": "https://www.jw.com/news/insights-ai-copyright-fair-use-case/", "type": "law-firm"}],
+    citation: "Thomson Reuters Enter. Centre GmbH v. Ross Intelligence Inc., No. 1:20-cv-00613 (D. Del.); No. 25-2153 (3d Cir. Sept. 29, 2026)",
     name: "Thomson Reuters v. Ross Intelligence",
     court: "3d Cir. (from D. Del.)",
     jurisdiction: "United States",
     region: "Americas",
-    caseStatus: "on-appeal",
-    statusDetail: "Feb 2025: Judge Bibas granted Thomson Reuters partial summary judgment — infringement of 2,243 Westlaw headnotes and rejection of Ross's fair-use defense. The Third Circuit heard oral argument June 11, 2026; decision still pending as of Sept 2026 (Ross has flagged the DOJ's pro-fair-use statement in the OpenAI MDL to the panel).",
+    caseStatus: "decided",
+    statusDetail: "Decided Sept 29, 2026: the Third Circuit affirmed Judge Bibas's Feb 2025 ruling in full, holding that Westlaw headnotes are copyrightable and that Ross's use of them to train its legal-research tool was not fair use. The first federal appellate decision on fair use for AI training.",
     issues: ["training-data", "fair-use"],
     modalities: ["text"],
-    summary: "Thomson Reuters sued legal-research startup Ross Intelligence for using Westlaw headnotes to train its AI search tool. The district court rejected fair use, and the Third Circuit is now hearing the first federal appellate case squarely on fair use for AI training.",
+    summary: "Thomson Reuters sued legal-research startup Ross Intelligence for using Westlaw headnotes to train its AI search tool. Both the district court and, on appeal, the Third Circuit rejected fair use — the first appellate ruling on whether training an AI model on copyrighted material is fair use.",
     keyHoldings: [
       "Westlaw headnotes are copyrightable; Ross directly infringed 2,243 of them",
-      "Fair use rejected — Ross's use was commercial, non-transformative, and built a market substitute",
-      "Third Circuit argued June 11, 2026; outcome will be the first appellate word on AI-training fair use"
+      "Factor 1: the use was commercial and 'only minimally transformative' — both parties used the headnotes for the same purpose, and the copying was not a necessary intermediate step",
+      "Factor 4: harm both to the existing legal-research market and to a 'rapidly developing' market for licensing headnotes as AI-training data",
+      "Expressly limited — Ross's platform 'cannot generate original expression,' leaving generative-AI training fair use unresolved"
     ],
-    significance: "The first appellate test of fair use for AI training — whatever the Third Circuit holds will shape every other generative-AI copyright case.",
+    significance: "The first appellate word on AI-training fair use. It establishes that a lost licensing market for training data is cognizable factor-four harm, but the panel deliberately carved generative models out of its holding — so both sides are citing it in the OpenAI, Anthropic and Meta cases.",
     officialLink: "https://www.courtlistener.com/docket/70622297/thomson-reuters-enterprise-centre-gmbh-v-ross-intelligence-inc/",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
   {
     id: "getty-v-stability-us",
@@ -1610,25 +1636,26 @@ const CASES = [
   },
   {
     id: "doe-v-github",
-    commentary: [{"title": "DMCA Question Certified for Appellate Court in Action Involving Artificial Intelligence", "source": "Venable", "url": "https://www.venable.com/insights/publications/2024/10/dmca-question-certified-for-appellate-court", "type": "law-firm"}, {"title": "Beyond Infringement: Rethinking DMCA § 1202 for Generative AI", "source": "Stanford Law Review", "url": "https://www.stanfordlawreview.org/print/article/beyond-infringement-rethinking-dmca-%C2%A7-1202/", "type": "academic"}, {"title": "Do as I Say, Not as I Code: GitHub's Copilot Prompts IP Litigation with International Implications", "source": "NYU Guarini Global Law & Tech", "url": "https://www.guariniglobal.org/gglt-publications/2025/4/23/do-as-i-say-not-as-i-code-githubs-copilot-prompts-ip-litigation-with-international-implications", "type": "academic"}],
-    citation: "Doe v. GitHub, Inc., No. 4:22-cv-06823 (N.D. Cal.); No. 24-6136 (9th Cir.)",
+    commentary: [{"title": "DMCA Question Certified for Appellate Court in Action Involving Artificial Intelligence", "source": "Venable", "url": "https://www.venable.com/insights/publications/2024/10/dmca-question-certified-for-appellate-court", "type": "law-firm"}, {"title": "Beyond Infringement: Rethinking DMCA § 1202 for Generative AI", "source": "Stanford Law Review", "url": "https://www.stanfordlawreview.org/print/article/beyond-infringement-rethinking-dmca-%C2%A7-1202/", "type": "academic"}, {"title": "Ninth Circuit Clarifies Limits of DMCA Liability for AI-Generated Code", "source": "Gibson Dunn", "url": "https://www.gibsondunn.com/ninth-circuit-clarifies-limits-of-dmca-liability-for-ai-generated-code/", "type": "law-firm"}, {"title": "Ninth Circuit Rejects DMCA Section 1202(b) Theory Against Copilot Output in Doe v. GitHub", "source": "Haynes Boone", "url": "https://www.haynesboone.com/news/alerts/ai-legal-news-ninth-circuit-rejects-dmca-section-1202(b)-theory", "type": "law-firm"}],
+    citation: "Doe v. GitHub, Inc., No. 4:22-cv-06823 (N.D. Cal.); No. 24-7700 (9th Cir. Sept. 16, 2026)",
     name: "Doe v. GitHub, Microsoft & OpenAI (Copilot)",
     court: "9th Cir. (from N.D. Cal.)",
     jurisdiction: "United States",
     region: "Americas",
-    caseStatus: "on-appeal",
-    statusDetail: "The district court dismissed DMCA § 1202(b) claims under an 'identicality' requirement and certified an interlocutory appeal. The Ninth Circuit heard oral argument February 11, 2026 on whether § 1202(b) requires identical copies; decision pending as of Aug 2026.",
+    caseStatus: "decided",
+    statusDetail: "Decided Sept 16, 2026: the Ninth Circuit affirmed dismissal of the DMCA § 1202(b) claims, holding that output which merely lacks attribution is not CMI that was 'removed or altered' from an existing work. It rejected the district court's strict identicality rule but still found no liability on these facts.",
     issues: ["dmca", "training-data", "output-infringement"],
     modalities: ["text"],
-    summary: "Anonymous open-source developers sued GitHub, Microsoft, and OpenAI over Copilot, alleging it reproduces licensed code without required attribution and strips copyright-management information. The surviving core is the DMCA § 1202(b) question now before the Ninth Circuit.",
+    summary: "Anonymous open-source developers sued GitHub, Microsoft, and OpenAI over Copilot, alleging it reproduces licensed code without required attribution and strips copyright-management information. The Ninth Circuit resolved the surviving DMCA § 1202(b) question in the defendants' favor.",
     keyHoldings: [
-      "District court: DMCA § 1202(b) liability requires output identical to the original work — Copilot's modified snippets did not qualify",
-      "Question certified and argued to the Ninth Circuit February 2026; ruling pending",
-      "Most other claims previously dismissed"
+      "Generating code that lacks author attribution is not, by itself, removal or alteration of CMI under § 1202(b)",
+      "Strict 'identicality' rejected — 'minor cosmetic changes do not necessarily protect a defendant' who substantially reproduces a protected work without its CMI",
+      "Whether CMI stripping during training (as opposed to in outputs) is actionable was left open — plaintiffs forfeited that theory below",
+      "District court dismissal affirmed"
     ],
-    significance: "The appellate answer on DMCA identicality will determine whether CMI-stripping claims are viable against nearly every generative model.",
+    significance: "Closes the most widely-pleaded CMI-stripping theory against generative models at the output end, while expressly preserving a training-stage § 1202(b) theory for a future case that pleads it properly.",
     officialLink: "https://githubcopilotlitigation.com/case-updates.html",
-    lastVerified: "Aug 2026"
+    lastVerified: "Oct 2026"
   },
 
   /* ============ US CONSTITUTIONAL, LIABILITY & PERSONALITY CASES ============ */
@@ -1780,6 +1807,28 @@ const CASES = [
     significance: "Tests whether video and transcript scraping for AI training is actionable — and shows state-law workarounds collapsing into copyright.",
     officialLink: "https://www.courtlistener.com/docket/69012680/millette-v-openai-inc/",
     lastVerified: "Aug 2026"
+  },
+  {
+    id: "state-ags-v-openai",
+    commentary: [{"title": "Eight State AGs Sue OpenAI Over ChatGPT Safety and Consumer Protection", "source": "Troutman Pepper Locke", "url": "https://www.troutman.com/insights/eight-state-ags-sue-openai-over-chatgpt-safety-and-consumer-protection/", "type": "law-firm"}, {"title": "Just the Docs: Eight States Sue OpenAI, Alleging It Misled the Public About ChatGPT's Safety", "source": "Just Security", "url": "https://www.justsecurity.org/160981/eight-states-sue-openai-chatgpt-safety/", "type": "think-tank"}],
+    citation: "Coordinated state-court actions filed Oct. 14, 2026 by the Attorneys General of Arizona, Arkansas, Idaho, Iowa, Kansas, Montana, Nebraska and West Virginia",
+    name: "Eight State Attorneys General v. OpenAI",
+    court: "State courts (AZ, AR, ID, IA, KS, MT, NE, WV)",
+    jurisdiction: "United States",
+    region: "Americas",
+    caseStatus: "pending",
+    statusDetail: "Filed Oct 14, 2026 — eight attorneys general brought separate but coordinated suits in their own state courts, the first bipartisan multistate legal action against an AI developer over product safety.",
+    issues: ["consumer-protection", "product-liability"],
+    modalities: ["text"],
+    summary: "Eight state attorneys general allege OpenAI marketed ChatGPT as safe while designing it to be highly agreeable and engaging in ways that fostered undue trust, exposing minors and vulnerable users to conversations that reinforced delusions or assisted self-harm.",
+    keyHoldings: [
+      "No merits rulings yet",
+      "Core claims under state consumer-protection statutes, with state-specific additions: Montana's Consumer Data Privacy Act, Nebraska's Age-Appropriate Online Design Code Act, Arkansas's children's online privacy act plus negligence, design-defect and failure-to-warn, unjust enrichment and public nuisance",
+      "Relief sought: civil penalties, damages, disgorgement of profits from young users, and injunctions mandating disclosure of ChatGPT's material risks"
+    ],
+    significance: "Moves chatbot-safety liability from private wrongful-death suits into coordinated state enforcement, and tests whether consumer-protection law can regulate conversational AI design directly — a route that bypasses the copyright fights entirely.",
+    officialLink: "https://www.justsecurity.org/160981/eight-states-sue-openai-chatgpt-safety/",
+    lastVerified: "Oct 2026"
   },
   {
     id: "us-ai-enforcement",
@@ -2016,7 +2065,7 @@ const STATES = [
   {"code": "AK", "name": "Alaska", "level": "proposed-only", "summary": "Nothing enacted; HB 47 (AI CSAM felonies, forged digital likenesses) passed the House unanimously in 2026 but died in the Senate.", "laws": [{"name": "AI CSAM / digital likeness bill (HB 47)", "year": 2026, "status": "proposed", "note": "Passed House 39-0; died at May 2026 adjournment"}, {"name": "Election deepfake disclosure bill (SB 2)", "year": 2025, "status": "proposed", "note": "Deepfake disclaimers; stalled in committee"}]},
   {"code": "AZ", "name": "Arizona", "level": "deepfake-only", "summary": "Election digital impersonation, AI voice-cloning fraud, and AI-generated CSAM laws; a chatbot safety bill remains pending.", "laws": [{"name": "Election digital impersonation law (HB 2394)", "year": 2024, "status": "in-force", "note": "Civil action over unconsented deepfakes of candidates"}, {"name": "AI impersonation fraud law (SB 1295)", "year": 2025, "status": "in-force", "note": "AI voice/image impersonation fraud a felony"}, {"name": "AI CSAM law (HB 2678)", "year": 2025, "status": "in-force", "note": "Criminalizes AI child sexual imagery indistinguishable from real"}, {"name": "Chatbot safety bill (HB 2311)", "year": 2026, "status": "proposed", "note": "Passed House; pending in Senate"}]},
   {"code": "AR", "name": "Arkansas", "level": "targeted", "summary": "2025 package grants ownership of generative-AI outputs, extends publicity rights to AI voice clones, and criminalizes sexual deepfakes and AI CSAM.", "laws": [{"name": "AI content ownership law (Act 927)", "year": 2025, "status": "in-force", "note": "Ownership of generative-AI outputs to the commissioning user"}, {"name": "Publicity rights law (Act 159)", "year": 2025, "status": "in-force", "note": "Publicity rights extended to AI-generated voice and likeness"}, {"name": "Sexual deepfake law (Act 827)", "year": 2025, "status": "in-force", "note": "Criminalizes nonconsensual deepfake sexual material"}, {"name": "AI CSAM law (Act 977)", "year": 2025, "status": "in-force", "note": "Criminalizes AI-generated child sexual abuse material"}]},
-  {"code": "CA", "name": "California", "level": "targeted", "summary": "The deepest state rulebook: frontier-model safety, content transparency, training-data disclosure, chatbot child-safety laws, and first-in-nation AI-audit infrastructure, among others.", "laws": [{"name": "Transparency in Frontier AI Act (SB 53)", "year": 2025, "status": "in-force", "note": "Frontier developers publish safety frameworks, report incidents"}, {"name": "California AI Transparency Act (SB 942)", "year": 2024, "status": "in-force", "note": "AI detection tools and content marking; operative Aug 2026"}, {"name": "Training data transparency (AB 2013)", "year": 2024, "status": "in-force", "note": "Generative-AI training-data documentation since Jan 2026"}, {"name": "Companion chatbot laws (SB 243; SB 1119 'Adam's Law')", "year": 2026, "status": "in-force", "note": "Disclosures and crisis protocols; strengthened Sept 2026 with audits, parental controls"}]},
+  {"code": "CA", "name": "California", "level": "targeted", "summary": "The deepest state rulebook: frontier-model safety, content transparency, training-data disclosure, chatbot child-safety and customer-service rules, digital replicas, and first-in-nation AI-audit infrastructure.", "laws": [{"name": "Transparency in Frontier AI Act (SB 53)", "year": 2025, "status": "in-force", "note": "Frontier developers publish safety frameworks, report incidents"}, {"name": "California AI Transparency Act (SB 942; SB 1000, AB 2713)", "year": 2024, "status": "in-force", "note": "Provenance marking; SB 1000 dropped the 1M-user threshold Sept 2026"}, {"name": "Training data transparency (AB 2013)", "year": 2024, "status": "in-force", "note": "Generative-AI training-data documentation since Jan 2026"}, {"name": "Companion chatbot laws (SB 243; SB 1119 'Adam's Law')", "year": 2026, "status": "in-force", "note": "Disclosures and crisis protocols; strengthened Sept 2026 with audits, parental controls"}, {"name": "Digital replica impersonation law (SB 1111)", "year": 2026, "status": "enacted", "note": "Extends NIL and impersonation rules to AI replicas; operative 2027"}, {"name": "Customer-service chatbot law (AB 1609)", "year": 2026, "status": "enacted", "note": "No passing a chatbot off as human; human agent within 15 minutes"}]},
   {"code": "CO", "name": "Colorado", "level": "comprehensive", "summary": "First-in-nation AI Act (2024) was repealed and replaced by the narrower SB 26-189, effective January 2027; election deepfake disclosure law in force.", "laws": [{"name": "ADMT Act (SB 26-189)", "year": 2026, "status": "enacted", "note": "ADMT transparency, adverse-decision notice, human review; effective Jan 2027"}, {"name": "Colorado AI Act (SB 24-205)", "year": 2024, "status": "enacted", "note": "Repealed by SB 26-189 before taking effect"}, {"name": "Election deepfake law (HB 24-1147)", "year": 2024, "status": "in-force", "note": "Disclosure on AI content in candidate communications"}]},
   {"code": "CT", "name": "Connecticut", "level": "comprehensive", "summary": "Omnibus CART Act (2026) covers frontier models, AI companions, hiring AI, and content provenance; synthetic intimate-image crimes already in force.", "laws": [{"name": "CART Act (SB 5 / PA 26-15)", "year": 2026, "status": "enacted", "note": "Frontier AI, AI companions, provenance; phased 2026-2028"}, {"name": "Synthetic intimate images law (PA 25-168)", "year": 2025, "status": "in-force", "note": "Criminalizes synthetically created intimate images"}, {"name": "Deepfake civil remedies (HB 5312)", "year": 2026, "status": "enacted", "note": "Civil action for victims of synthetic intimate images"}]},
   {"code": "DE", "name": "Delaware", "level": "deepfake-only", "summary": "Deepfake laws only: 2024 election-deepfake crime and the Amelia Kramer Act's remedies for nonconsensual intimate deepfakes.", "laws": [{"name": "Election deepfake law (HS 1 / HB 316)", "year": 2024, "status": "in-force", "note": "Election deepfakes a misdemeanor absent disclaimer"}, {"name": "Amelia Kramer Act (HB 353)", "year": 2024, "status": "in-force", "note": "Criminal and civil remedies for intimate deepfakes"}]},
@@ -2031,7 +2080,7 @@ const STATES = [
   {"code": "KY", "name": "Kentucky", "level": "deepfake-only", "summary": "Requires AI disclosures on electioneering communications and criminalizes sextortion using fabricated images; broader AI bills have stalled.", "laws": [{"name": "Election AI disclosure law (SB 4)", "year": 2025, "status": "in-force", "note": "Election AI disclosures plus state-agency AI governance"}, {"name": "Sextortion law (SB 73)", "year": 2025, "status": "in-force", "note": "Sextortion felony covers threats using fabricated or AI images"}]},
   {"code": "LA", "name": "Louisiana", "level": "deepfake-only", "summary": "Criminal deepfake statutes since 2023, expanded in August 2026, plus new political-ad AI disclosure requirements.", "laws": [{"name": "Unlawful deepfakes law (SB 175)", "year": 2023, "status": "in-force", "note": "Criminalizes sexual deepfakes of minors and nonconsensual deepfakes"}, {"name": "Ivy Daniels Act (HB 119)", "year": 2026, "status": "in-force", "note": "Felonies for AI-generated sexual images; effective Aug 2026"}, {"name": "Political ad disclosure law (HB 459)", "year": 2026, "status": "in-force", "note": "Political ads must disclose materially altered AI content"}]},
   {"code": "ME", "name": "Maine", "level": "targeted", "summary": "Chatbot disclosure law joined by AI revenge-porn coverage and a 2026 campaign-ad synthetic-media disclosure law.", "laws": [{"name": "Chatbot disclosure law (LD 1727)", "year": 2025, "status": "in-force", "note": "Chatbot disclosure in consumer transactions"}, {"name": "AI revenge-porn law (LD 1944)", "year": 2025, "status": "in-force", "note": "Revenge-porn statute covers AI-generated intimate images"}, {"name": "Campaign AI disclosure law (LD 517)", "year": 2026, "status": "in-force", "note": "Campaign ads must disclose AI-manipulated media"}]},
-  {"code": "MD", "name": "Maryland", "level": "deepfake-only", "summary": "Deepfake NCII, election, and impersonation laws arrived 2025-2026; no chatbot or comprehensive AI statute.", "laws": [{"name": "NCII law (SB 360)", "year": 2025, "status": "in-force", "note": "NCII crime and civil action cover computer-generated images"}, {"name": "Election deepfake law (SB 141)", "year": 2026, "status": "in-force", "note": "Prohibits election deepfakes intended to deceive voters"}, {"name": "Deepfake impersonation law (SB 8)", "year": 2026, "status": "enacted", "note": "Impersonation crime with private right of action; effective Oct 2026"}]},
+  {"code": "MD", "name": "Maryland", "level": "deepfake-only", "summary": "Deepfake NCII, election, and impersonation laws arrived 2025-2026; no chatbot or comprehensive AI statute.", "laws": [{"name": "NCII law (SB 360)", "year": 2025, "status": "in-force", "note": "NCII crime and civil action cover computer-generated images"}, {"name": "Election deepfake law (SB 141)", "year": 2026, "status": "in-force", "note": "Prohibits election deepfakes intended to deceive voters"}, {"name": "Deepfake impersonation law (SB 8)", "year": 2026, "status": "in-force", "note": "Impersonation crime with private right of action; effective Oct 1, 2026"}]},
   {"code": "MA", "name": "Massachusetts", "level": "deepfake-only", "summary": "Only enacted statute is the 2024 revenge-porn law covering sexual deepfakes; 2026 election-deepfake and synthetic-CSAM measures stalled in the legislature.", "laws": [{"name": "Act to Prevent Abuse and Exploitation (H.4744)", "year": 2024, "status": "in-force", "note": "Criminalizes nonconsensual intimate images including deepfakes"}, {"name": "Election misinformation bill (H.5093)", "year": 2026, "status": "proposed", "note": "Passed House Feb 2026; died when Senate formal sessions ended"}, {"name": "Synthetic CSAM amendment", "year": 2026, "status": "proposed", "note": "Senate-passed July 2026; awaiting House conference"}]},
   {"code": "MI", "name": "Michigan", "level": "deepfake-only", "summary": "Election-ad AI disclosure and deceptive-media laws plus 2025 intimate-deepfake crimes; a minors' companion-chatbot bill awaits the House.", "laws": [{"name": "Political AI disclaimer law (HB 5141)", "year": 2023, "status": "in-force", "note": "Disclosure on AI-generated political ads"}, {"name": "Materially deceptive election media law (HB 5144)", "year": 2023, "status": "in-force", "note": "Bans undisclosed election deepfakes within 90 days"}, {"name": "Protection from Intimate Deep Fakes Act (PA 11-12)", "year": 2025, "status": "in-force", "note": "Criminal and civil liability for sexual deepfakes"}, {"name": "Kids ethical AI chatbot bill (SB 760)", "year": 2026, "status": "proposed", "note": "Passed Senate May 2026; pending in House"}]},
   {"code": "MN", "name": "Minnesota", "level": "deepfake-only", "summary": "Pioneering 2023 election and sexual deepfake crimes, expanded in 2024, plus the nation's first nudification-tool ban effective August 2026.", "laws": [{"name": "Deepfake crimes law (HF 1370)", "year": 2023, "status": "in-force", "note": "Criminalizes sexual and election deepfakes; election provision under challenge"}, {"name": "Election deepfake amendments (HF 4772)", "year": 2024, "status": "in-force", "note": "Broader coverage; convicted candidates forfeit office"}, {"name": "Nudification technology ban (HF 1606)", "year": 2026, "status": "in-force", "note": "In force; survived xAI TRO and preliminary-injunction bids"}]},
@@ -2069,14 +2118,14 @@ const STATES = [
    text, and the id of the related entry (law, case, or state).
    ===================================================================== */
 const RECENT = [
+  { d: "Oct 14", t: "Eight state attorneys general sue OpenAI over ChatGPT child safety — the first bipartisan multistate action against an AI developer", id: "state-ags-v-openai" },
+  { d: "Oct 8", t: "Denmark reintroduces its deepfake copyright bill, targeting entry into force on Jan 1, 2027", id: "denmark-deepfake-copyright" },
+  { d: "Oct 7", t: "Italy completes its AI Act implementing decrees (D.Lgs. 179/2026): authority powers, sanctions and workplace rules", id: "italy-ai-law-132-2025" },
+  { d: "Sep 30", t: "Newsom signs SB 1000, AB 2713, SB 1111 and AB 1609, and vetoes the AI-psychotherapy bill SB 903", id: "state-CA" },
+  { d: "Sep 29", t: "Third Circuit affirms in Thomson Reuters v. Ross — the first appellate ruling that AI training was not fair use", id: "thomson-reuters-v-ross" },
+  { d: "Sep 16", t: "Ninth Circuit rejects the DMCA § 1202(b) theory against Copilot's output in Doe v. GitHub", id: "doe-v-github" },
+  { d: "Sep 14", t: "China's TC260 publishes AI Safety Governance Framework 3.0, adding a dedicated AI-agent risk section", id: "china-genai-interim-measures" },
   { d: "Sep 10", t: "California signs the nation's strongest chatbot child-safety package, including 'Adam's Law' (SB 1119)", id: "state-CA" },
-  { d: "Sep 9", t: "California creates first-in-nation AI audit infrastructure (SB 813, AB 1405)", id: "state-CA" },
-  { d: "Sep 4", t: "OpenAI MDL: cross-motions for summary judgment filed — the fair-use question heads to decision", id: "nyt-v-openai" },
-  { d: "Sep 4", t: "xAI v. Ellison: preliminary injunction denied — Minnesota's nudification ban stays in force", id: "xai-v-ellison" },
-  { d: "Sep 1", t: "DOJ tells the OpenAI MDL court that LLM training is 'generally fair use' in a statement of interest", id: "nyt-v-openai" },
-  { d: "Aug 31", t: "EU designates ChatGPT under the DSA's strictest tier; first AI Act information requests to GPAI providers", id: "eu-ai-act" },
-  { d: "Aug 28", t: "Sony and Warner music publishers sue Anthropic over lyrics — all three majors now litigating", id: "concord-v-anthropic" },
-  { d: "Aug 19", t: "Bartz v. Anthropic $1.5B settlement effectively final; distribution underway", id: "bartz-v-anthropic" },
 ];
 
 /* ---------- Rendering ----------
